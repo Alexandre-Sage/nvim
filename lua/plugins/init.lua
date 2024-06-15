@@ -1,0 +1,43 @@
+local Plugs = {
+  "lazyvim.config", --GIT
+  "rcarriga/nvim-notify",
+  -- "tpope/vim-fugitive",
+  "rktjmp/shipwright.nvim",
+  "Xuyuanp/nerdtree-git-plugin",
+  "lewis6991/gitsigns.nvim",
+  -- UTILS
+  "mracos/mermaid.vim",
+  "b0o/schemastore.nvim",
+  "gennaro-tedesco/nvim-jqx",
+  "sharkdp/fd",
+  "BurntSushi/ripgrep",
+  "rktjmp/lush.nvim",
+  -- THEMES
+  "folke/tokyonight.nvim",
+  "nvim-tree/nvim-web-devicons",
+  "zootedb0t/citruszest.nvim",
+  "dubskysteam/neom",
+  "mr-ubik/vim-hackerman-syntax",
+  "amadeus/vim-evokai",
+  "xiyaowong/transparent.nvim",
+  "ianfabs/sex.vim",
+  "tanvirtin/monokai.nvim",
+  "samharju/synthweave.nvim",
+  "space-chalk/spacechalk.nvim",
+  "samueljoli/cyberpunk.nvim",
+  "polirritmico/monokai-nightasty.nvim",
+  "lettertwo/laserwave.nvim",
+  --	"cesarsl/neo-hybrid.nvim",
+  "numToStr/Sakura.nvim",
+  "perpetuatheme/nvim",
+  "avoonix/pink-as-fox.nvim",
+  "wellsjo/wellsokai.vim",
+  "caiocutrim/black-coffee-molokai",
+  "pearance/vimez-themes",
+  "boschni/vim-sublime256",
+  --	"patrickmult/vim_settings",
+  "patstockwell/vim-monokai-tasty",
+  "Lewiky/moonokai",
+}
+
+return Plugs
