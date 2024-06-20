@@ -1,5 +1,3 @@
 {
-  "diagnostics.globals": ["vim",
-        "create_user_command"]
+  "diagnostics.globals": ["vim", "create_user_command"]
 }
-
