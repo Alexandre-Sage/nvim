@@ -14,6 +14,8 @@ local Plugs = {
   "BurntSushi/ripgrep",
   "rktjmp/lush.nvim",
   -- THEMES
+  "xero/miasma.nvim",
+  "adamkali/vaporlush",
   "folke/tokyonight.nvim",
   "nvim-tree/nvim-web-devicons",
   "zootedb0t/citruszest.nvim",
