@@ -1,5 +1,5 @@
 local Plugs = {
-  "Alexandre-Sage/blue-dream",
+  "Alexandre-Sage/blue-dream.nvim",
   "lazyvim.config", --GIT
   "rcarriga/nvim-notify",
   -- "tpope/vim-fugitive",
