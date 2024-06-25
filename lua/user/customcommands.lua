@@ -24,7 +24,7 @@ create_command("Break", function(opt)
   require("dap").toggle_breakpoint()
 end, {})
 
-create_command("ToggleVTerm", function(opt)
+create_command("ToggleTermV", function(opt)
   vim.cmd([[
 		ToggleTerm direction=vertical size=75
 	]])
