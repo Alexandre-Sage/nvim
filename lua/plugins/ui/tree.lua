@@ -36,7 +36,7 @@ Plug.opts = {
   },
   filters = {
     enable = true,
-    git_ignored = true,
+    git_ignored = false,
     dotfiles = false,
     custom = { "node_modules" },
   },
