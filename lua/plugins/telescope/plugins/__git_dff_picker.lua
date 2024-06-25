@@ -92,7 +92,7 @@ user_cmd("GitActions", function()
   git_actions(require("telescope.themes").get_dropdown({}))
 end, "?")
 
-map_key({ "v", "n" }, "<leader>ga", cmd("GitActions"), { desc = "Toggle git actions for underline hunk or buffer" })
+map_key({ "v", "n" }, "<leader>Ga", cmd("GitActions"), { desc = "Toggle git actions for underline hunk or buffer" })
 
 -- to execute the function
 -- colors()

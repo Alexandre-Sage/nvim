@@ -45,7 +45,7 @@ Plug.opts = {
     lsp_references = {
       layout_strategy = "vertical",
       layout_config = { width = 0.9, height = 0.9 },
-      theme = "dropdown",
+      theme = "ivy",
       width = 0.9,
       height = 0.9,
     },
