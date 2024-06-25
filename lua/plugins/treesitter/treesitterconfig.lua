@@ -28,7 +28,7 @@ Plug.opts = {
   },
 
   -- rainbow = { enable = true },
-  -- autotag = { enabled = true },
+  autotag = { enabled = true },
   ensure_installed = {
     "javascript",
     "typescript",
@@ -54,8 +54,8 @@ Plug.opts = {
   },
 }
 
---function Plug.config(name, opts)
---  require("nvim-treesitter.configs").setup(opts)
---end
+function Plug.config(name, opts)
+  require("nvim-treesitter.configs").setup(opts)
+end
 
 return Plug
