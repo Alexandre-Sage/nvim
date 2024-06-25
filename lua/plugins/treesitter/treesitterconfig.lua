@@ -4,7 +4,7 @@ Plug.dependencies = {
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   -- { 'TornaxO7/tree-setter' },
   --	{ "HiPhish/nvim-ts-rainbow2" },
-  { "windwp/nvim-ts-autotag" },
+  -- { "windwp/nvim-ts-autotag" },
 }
 Plug.build = ":TSUpdate"
 Plug.lazy = false
@@ -26,8 +26,9 @@ Plug.opts = {
       },
     },
   },
+
   -- rainbow = { enable = true },
-  autotag = { enable = true },
+  -- autotag = { enabled = true },
   ensure_installed = {
     "javascript",
     "typescript",
@@ -49,17 +50,12 @@ Plug.opts = {
     "json",
     "json5",
     "jsonc",
-  },
-  custom_captures = {
-    -- Highlight variable declarations
-    -- ["variable.declaration"] = "TSVariableDeclaration",
-    -- Highlight variable usages
-    ["variable.usage"] = "TSVariableUsage",
+    "sql",
   },
 }
 
-function Plug.config(name, opts)
-  require("nvim-treesitter.configs").setup(opts)
-end
+--function Plug.config(name, opts)
+--  require("nvim-treesitter.configs").setup(opts)
+--end
 
 return Plug

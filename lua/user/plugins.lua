@@ -40,6 +40,7 @@ lazy.setup({
     { import = "plugins.ui" },
     { import = "plugins.git" },
     { import = "plugins.telescope.plug" },
+    { import = "plugins.treesitter" },
     --		{ import = "plugins.dap" },
   },
 })

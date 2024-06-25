@@ -46,6 +46,9 @@ Plug.opts = {
       layout_strategy = "vertical",
       layout_config = { width = 0.9, height = 0.9 },
       theme = "ivy",
+      path_display = {
+        "smart",
+      },
       width = 0.9,
       height = 0.9,
     },
@@ -69,7 +72,7 @@ Plug.opts = {
   },
   defaults = {
     -- Default configuration for telescope goes here:
-    path_display = "truncate", --{ "filename_first", "shorten" },
+    path_display = { truncate = 2 }, --{ "filename_first", "shorten" },
     layout_config = {
       width = 0.9,
       -- bottom_pane = {
