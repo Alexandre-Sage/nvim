@@ -12,6 +12,7 @@ map_key("n", "<leader>g", normal_cmd("Neogit"), { desc = "G in normal mode to vi
 map_key("v", "<leader>d", '"_d', { desc = "Delete to black hole" })
 map_key({ "v" }, "<leader>t", normal_cmd("ToggleTermSendVisualSelection"))
 map_key({ "v" }, "<leader>T", normal_cmd("ToggleTermSendVisualLine"))
+map_key({ "v", "n" }, "<leader>sn", normal_cmd("set number"))
 map_key("n", "Rr", normal_cmd("Rr"), { desc = "Rr to rester search", noremap = true })
 map_key({ "n", "v" }, "Br", normal_cmd("Break"), { desc = "Br to set break point", noremap = true })
 --azerty mapping

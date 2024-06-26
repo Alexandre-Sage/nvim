@@ -15,7 +15,8 @@ Plug.cmd = { "Telescope" }
 function Plug.init()
   local utils = require("telescope.utils")
   local telescope = require("telescope.builtin")
-  local api = telescope_api(telescope)
+  local themes = require("telescope.themes")
+  local api = telescope_api(telescope, themes)
   commands(api)
   map_key({ "n" }, "<C-p>", api.find_in_files, { noremap = true })
   map_key({ "n" }, "<c-f>", api.find_in_project, { noremap = true })
@@ -24,6 +25,8 @@ function Plug.init()
   map_key({ "n" }, "<C-d>", api.current_buffer_diagnostic, { noremap = true })
   map_key({ "n" }, "<C-r>", api.lsp_references, { noremap = true })
   map_key({ "n" }, "<A-d>", api.lsp_definitions, { noremap = true })
+  map_key({ "n" }, "<leader>m", api.marks, { noremap = true })
+  map_key({ "n" }, "<leader>r", api.registers, { noremap = true })
   map_key({ "n" }, "<leader>gc", telescope.git_commits, { noremap = true })
   map_key({ "n" }, "<leader>gb", telescope.git_branches, { noremap = true })
   map_key({ "n" }, "<leader>nc", telescope.commands, { noremap = true })
@@ -45,7 +48,6 @@ Plug.opts = {
     lsp_references = {
       layout_strategy = "vertical",
       layout_config = { width = 0.9, height = 0.9 },
-      theme = "ivy",
       path_display = {
         "smart",
       },
@@ -57,6 +59,10 @@ Plug.opts = {
         return current_entry.lnum < existing_entry.lnum
       end,
     },
+    -- registers = {
+
+    --   theme = "cursor",
+    -- },
     --live_grep = {
     --	theme = "dropdown",
     --}

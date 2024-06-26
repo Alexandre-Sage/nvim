@@ -1,4 +1,4 @@
-return function(telescope)
+return function(telescope, themes)
   return {
     find_in_files = function(opts)
       return telescope.find_files({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
@@ -20,6 +20,12 @@ return function(telescope)
     end,
     lsp_definitions = function()
       return telescope.lsp_definitions()
+    end,
+    marks = function()
+      return telescope.marks()
+    end,
+    registers = function()
+      return telescope.registers(themes.get_ivy({}))
     end,
   }
 end

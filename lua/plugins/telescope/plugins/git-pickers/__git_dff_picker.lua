@@ -1,4 +1,4 @@
-local api = require("plugins.telescope.plugins.api")
+local api = require("plugins.telescope.plugins.git-pickers.api")
 local user_cmd = require("helpers").create_user_command
 local map_key = require("helpers").map_key
 local cmd = require("helpers").normal_cmd

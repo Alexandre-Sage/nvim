@@ -32,7 +32,6 @@ lazy.path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 lazy.setup({
 
-  { dir = "/home/adsoftware/.config/nvim/lua/nice-blue" },
   spec = {
     { import = "plugins" },
     { import = "plugins.lsp-plugs" },

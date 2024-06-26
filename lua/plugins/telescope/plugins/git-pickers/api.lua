@@ -5,10 +5,8 @@ local helpers = require("helpers")
 
 local function highlight_text(bufnr, start_line, end_line)
   local ns_id = vim.api.nvim_create_namespace("GitActions")
-
-  for line = start_line, end_line do
-    vim.api.nvim_buf_add_highlight(bufnr, 0, "", line, 0, -1)
-  end
+  -- vim.api.nvim_buf_set_extmark(bufnr, ns_id, start_line, 0, { end_row = 10, end_col = 10, hl_group = "MyHighlight" })
+  vim.api.nvim_buf_add_highlight(0, ns_id, "NeogitChangeModified", 10, 0, 5)
 end
 
 local function is_current_line_in_git_diff(bufnr)
