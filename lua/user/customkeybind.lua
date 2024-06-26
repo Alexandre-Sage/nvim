@@ -20,6 +20,12 @@ map_key({ "v" }, "a*", "a]", { desc = "Replace a] in visual mode (azerty mapping
 map_key({ "v" }, "iù", "i[", { desc = "Replace i[ in visual mode (azerty mapping)" })
 map_key({ "v" }, "i*", "i]", { desc = "Replace i] in visual mode (azerty mapping)" })
 --vim.api.nvim_set_keymap({ "v", "n", "i" }, "(", "<Nop>[", {})
+
+map_key({ "i" }, "<c-h>", "<Left>", {})
+map_key({ "i" }, "<c-j>", "<Down>", {})
+map_key({ "i" }, "<c-k>", "<Up>", {})
+map_key({ "i" }, "<c-l>", "<Right>", {})
+
 map_key({ "v", "n" }, "<C-c>", require("actions-preview").code_actions)
 vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
