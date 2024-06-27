@@ -24,6 +24,7 @@ local Plugs = {
   "samharju/synthweave.nvim",
   "lettertwo/laserwave.nvim",
   "Lewiky/moonokai",
+  { dir = "~/project/json-TS-enhanced", dev = true },
 }
 
 return Plugs
