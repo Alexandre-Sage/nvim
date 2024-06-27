@@ -4,7 +4,7 @@ return function(telescope, themes)
       return telescope.find_files({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
     end,
     find_in_project = function(opts)
-      return telescope.live_grep({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
+      return telescope.live_grep(opts)
     end,
     find_in_current_file = function(opts)
       return telescope.current_buffer_fuzzy_find({ results_ts_highlight = true })
