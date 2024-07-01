@@ -1,7 +1,7 @@
 return function(telescope, themes)
   return {
     find_in_files = function(opts)
-      return telescope.find_files({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
+      return telescope.find_files({ no_ignore = true, hidden = true, file_ignore_patterns = { ".git", "node_modules" } })
     end,
     find_in_project = function(opts)
       return telescope.live_grep(opts)
