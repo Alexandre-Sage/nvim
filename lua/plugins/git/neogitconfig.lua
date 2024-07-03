@@ -11,6 +11,9 @@ Plug.opts = {
     diffview = true,
     telescope = true,
   },
+  commit_editor = {
+    kind = "vsplit",
+  },
 }
 
 --  function Plug.config()
