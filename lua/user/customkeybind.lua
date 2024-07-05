@@ -1,8 +1,8 @@
 local map_key = require("helpers").map_key
 local normal_cmd = require("helpers").normal_cmd
 
-map_key({ "n", "i" }, "<leader>s", normal_cmd("w"), { desc = "Ctrl+s to save", noremap = true })
-map_key({ "n", "i" }, "<leader>z", normal_cmd("u"), { desc = "Ctrl+z to undo", noremap = true, silent = true })
+map_key({ "n" }, "<leader>s", normal_cmd("w"), { desc = "Ctrl+s to save", noremap = true })
+map_key({ "n" }, "<leader>z", normal_cmd("u"), { desc = "Ctrl+z to undo", noremap = true, silent = true })
 -- map("n", "<c-a>", get_normal_cmd("wa"), { desc = "Ctrl+a to save all file", noremap = true })
 map_key("n", "<c-t>", normal_cmd("tabnext"), { desc = "Ctr+Tab go to next tab" })
 map_key("n", "<c-l>", normal_cmd("BufferNext"), { desc = "Ctrl + m for bar bar next tab" })
