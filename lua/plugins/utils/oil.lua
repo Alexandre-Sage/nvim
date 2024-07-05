@@ -19,8 +19,10 @@ Plug.opts = {
 }
 function Plug.init()
   local oil = require("oil")
-  helpers.map_key({ "n" }, "<leader>o", oil.toggle_float, { desc = "Toogle oil pop up" })
-  helpers.map_key({ "n" }, "<leader>O", oil.open, { desc = "Open oil buffer" })
+  helpers.map_key({ "n" }, "<leader>O", function()
+    oil.open(vim.fn.getcwd())
+  end, { desc = "Toogle oil pop up" })
+  helpers.map_key({ "n" }, "<leader>o", oil.toggle_float, { desc = "Open oil buffer" })
 end
 
 return Plug
