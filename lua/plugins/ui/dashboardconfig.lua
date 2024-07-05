@@ -29,7 +29,6 @@ function Plug.config()
           key_format = "%s", -- remove default surrounding `[]`
           action = [[
 						lua require("persistence").load({last = true})
-						NvimTreeToggle
 					]],
         },
         {
@@ -43,7 +42,6 @@ function Plug.config()
           key_format = "%s", -- remove default surrounding `[]`
           action = [[
 						lua require("persistence").load()
-						NvimTreeToggle
 					]],
         },
         {
@@ -57,7 +55,20 @@ function Plug.config()
           key_format = "%s", -- remove default surrounding `[]`
           action = [[
 						lua require('telescope.builtin').find_files()
-						NvimTreeToggle
+					]],
+        },
+
+        {
+          icon = " ",
+          icon_hl = "Title",
+          desc = "Oil",
+          desc_hl = "String",
+          key = "o",
+          -- 	keymap = 'SPC f f',
+          key_hl = "Number",
+          key_format = "%s", -- remove default surrounding `[]`
+          action = [[
+						lua require('oil').open()
 					]],
         },
         --{
