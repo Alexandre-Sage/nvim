@@ -20,12 +20,13 @@ function Plug.init()
   commands(api)
 
   map_key({ "n" }, "<C-p>", api.find_in_files, { noremap = true })
+  map_key({ "n" }, "<leader>ff", api.find_in_files, { noremap = true })
 
   map_key({ "n" }, "<c-f>", function()
     api.find_in_project({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
   end, { noremap = true })
 
-  map_key({ "n" }, "<leader>f", api.find_in_current_file, { noremap = true })
+  map_key({ "n" }, "<leader>fc", api.find_in_current_file, { noremap = true })
   map_key({ "n" }, "<leader>b", api.opened_buffers, { noremap = true })
   map_key({ "n" }, "<C-d>", api.current_buffer_diagnostic, { noremap = true })
   map_key({ "n" }, "<C-r>", api.lsp_references, { noremap = true })
