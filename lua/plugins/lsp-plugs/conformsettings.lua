@@ -11,6 +11,7 @@ Plug.opts = {
     json = { { "prettierd", "prettier" } },
     json5 = { { "prettierd", "prettier" } },
     jsonc = { { "prettierd", "prettier" } },
+    html = { { "prettierd", "prettier" } },
     sql = {
       -- { "sqlfmt" },
       { "sqlfluff" },
