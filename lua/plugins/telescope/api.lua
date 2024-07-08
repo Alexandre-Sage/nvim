@@ -27,5 +27,8 @@ return function(telescope, themes)
     registers = function()
       return telescope.registers(themes.get_ivy({}))
     end,
+    code_actions = function()
+      return telescope.quickfix()
+    end,
   }
 end

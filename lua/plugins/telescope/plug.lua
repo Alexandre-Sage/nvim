@@ -36,6 +36,7 @@ function Plug.init()
   map_key({ "n" }, "<leader>gc", telescope.git_commits, { noremap = true })
   map_key({ "n" }, "<leader>gb", telescope.git_branches, { noremap = true })
   map_key({ "n" }, "<leader>nc", telescope.commands, { noremap = true })
+  map_key({ "n", "v" }, "<leader>ca", api.code_actions)
   require("telescope").load_extension("fzf")
 end
 
