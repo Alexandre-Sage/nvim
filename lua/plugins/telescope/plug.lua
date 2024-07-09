@@ -34,7 +34,7 @@ function Plug.init()
     api.current_buffer_diagnostic,
     { noremap = true, desc = "Show LSP diag for current buffer" }
   )
-  map_key({ "n" }, "<C-r>", api.lsp_references, { noremap = true })
+  map_key({ "n" }, "<leader>fd", api.lsp_references, { noremap = true })
   map_key({ "n" }, "<A-d>", api.lsp_definitions, { noremap = true })
   map_key({ "n" }, "<leader>m", api.marks, { noremap = true })
   map_key({ "n" }, "<leader>r", api.registers, { noremap = true })
