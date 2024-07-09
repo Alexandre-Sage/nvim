@@ -8,15 +8,17 @@ local function lsp_code_actions(opts)
   local params = vim.lsp.util.make_range_params()
   params.context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
   local results_lsp = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-
   local results = {}
-  for _, res in pairs(results_lsp) do
+  for x, res in pairs(results_lsp) do
     if res.result then
       for _, r in pairs(res.result) do
         table.insert(results, r)
       end
     end
   end
+  -- for k, v in pairs(results) do
+  --   v.idx = k
+  -- end
 
   pickers
     .new(opts, {
@@ -24,10 +26,12 @@ local function lsp_code_actions(opts)
       finder = finders.new_table({
         results = results,
         entry_maker = function(entry)
+          require("helpers").log_to_file("./logt.txt", vim.inspect(entry))
           return {
             value = entry,
             display = entry.title,
             ordinal = entry.title,
+            -- lnum = entry.idx,
           }
         end,
       }),
@@ -45,7 +49,7 @@ local function lsp_code_actions(opts)
     :find()
 end
 -- Map the function to a keybinding
-require("helpers").map_key("n", "<leader>cA", function()
+require("helpers").map_key("n", "<leader>ca", function()
   lsp_code_actions(require("telescope.themes").get_cursor({
     --   layout_config = { anchor = "NO" },
     -- layout_strategy = "vertical",

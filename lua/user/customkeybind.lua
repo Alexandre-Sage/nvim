@@ -22,7 +22,7 @@ map_key({ "i" }, "<c-j>", "<Down>", {})
 map_key({ "i" }, "<c-k>", "<Up>", {})
 map_key({ "i" }, "<c-l>", "<Right>", {})
 
-map_key({ "v", "n" }, "<leader>c", require("actions-preview").code_actions)
+-- map_key({ "v", "n" } "<leader>c", require("actions-preview").code_actions)
 map_key({ "v", "n" }, "<leader>rn", normal_cmd("set relativenumber"))
 map_key({ "v", "n" }, "<leader>an", normal_cmd("set norelativenumber"))
 vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
