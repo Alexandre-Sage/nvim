@@ -16,7 +16,7 @@ Plug.opts = {
 }
 
 function Plug.init()
-  vim.keymap.set("n", "<C-a>", "<cmd>AerialToggle!<CR>")
+  vim.keymap.set("n", "<leader>ta", "<cmd>AerialToggle!<CR>")
   vim.keymap.set("n", "<leader>a", "<cmd>AerialNavToggle<CR>")
   vim.keymap.set("n", "<leader>A", "<cmd>AerialOpen<CR>")
   vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufAdd" }, {

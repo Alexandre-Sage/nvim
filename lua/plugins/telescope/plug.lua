@@ -28,7 +28,12 @@ function Plug.init()
 
   map_key({ "n" }, "<leader>fc", api.find_in_current_file, { noremap = true })
   map_key({ "n" }, "<leader>b", api.opened_buffers, { noremap = true })
-  map_key({ "n" }, "<C-d>", api.current_buffer_diagnostic, { noremap = true })
+  map_key(
+    { "n" },
+    "<leader>sd",
+    api.current_buffer_diagnostic,
+    { noremap = true, desc = "Show LSP diag for current buffer" }
+  )
   map_key({ "n" }, "<C-r>", api.lsp_references, { noremap = true })
   map_key({ "n" }, "<A-d>", api.lsp_definitions, { noremap = true })
   map_key({ "n" }, "<leader>m", api.marks, { noremap = true })
