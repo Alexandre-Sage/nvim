@@ -1,5 +1,5 @@
 local Plug = { "aznhe21/actions-preview.nvim" }
-Plug.enabled = true
+Plug.enabled = false
 Plug.opt = {
   telescope = {
     sorting_strategy = "ascending",

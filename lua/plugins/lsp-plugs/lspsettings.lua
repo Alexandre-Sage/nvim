@@ -25,7 +25,7 @@ local on_attach = function(ev)
   vim.keymap.set("n", "<space>f", function()
     vim.lsp.buf.format({ async = true })
   end, opts)
-  -- vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
+  vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 end
 
 Plug.dependencies = {

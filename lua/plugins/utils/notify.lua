@@ -10,9 +10,10 @@ function Plug.init()
     pattern = "*",
     callback = function()
       local file_name = vim.fn.expand("%:t")
-      vim.notify("File saved: " .. file_name, 3, {
-        title = "Notification",
+      vim.notify("Saving " .. file_name .. " ✓", vim.log.levels.INFO, {
+        title = file_name,
         timeout = 2000,
+        icon = "󰳿",
       })
     end,
   })
