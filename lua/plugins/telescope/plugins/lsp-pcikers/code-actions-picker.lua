@@ -26,7 +26,6 @@ local function lsp_code_actions(opts)
       finder = finders.new_table({
         results = results,
         entry_maker = function(entry)
-          require("helpers").log_to_file("./logt.txt", vim.inspect(entry))
           return {
             value = entry,
             display = entry.title,
@@ -39,8 +38,9 @@ local function lsp_code_actions(opts)
       attach_mappings = function(prompt_bufnr, map)
         local execute_code_action = function()
           local selection = action_state.get_selected_entry()
+          require("helpers").log_to_file("./logt.txt", vim.inspect(selection))
           actions.close(prompt_bufnr)
-          vim.lsp.buf.execute_command(selection.value.command)
+          vim.lsp.buf.execute_command(selection.value.command or selection.value.data)
         end
         actions.select_default:replace(execute_code_action)
         return true
@@ -49,7 +49,7 @@ local function lsp_code_actions(opts)
     :find()
 end
 -- Map the function to a keybinding
-require("helpers").map_key("n", "<leader>ca", function()
+require("helpers").map_key("n", "<leader>cea", function()
   lsp_code_actions(require("telescope.themes").get_cursor({
     --   layout_config = { anchor = "NO" },
     -- layout_strategy = "vertical",

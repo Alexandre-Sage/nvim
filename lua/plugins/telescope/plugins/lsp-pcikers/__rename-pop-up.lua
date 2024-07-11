@@ -67,7 +67,7 @@ function Rename()
 end
 
 -- Optional: Bind this function to a keymap
-require("helpers").map_key("n", "<leader>rn", Rename, { noremap = true, silent = true })
+require("helpers").map_key("n", "<space>rn", Rename, { noremap = true, silent = true })
 
 -- local telescope = require("telescope")
 -- local actions = require("telescope.actions")
