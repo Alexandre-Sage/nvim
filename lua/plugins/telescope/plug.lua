@@ -30,17 +30,18 @@ function Plug.init()
   map_key({ "n" }, "<leader>b", api.opened_buffers, { noremap = true })
   map_key(
     { "n" },
-    "<leader>bd",
+    "<leader>dg",
     api.current_buffer_diagnostic,
     { noremap = true, desc = "Show LSP diag for current buffer" }
   )
   map_key({ "n" }, "<leader>fr", api.lsp_references, { noremap = true })
   map_key({ "n" }, "<leader>fd", api.lsp_definitions, { noremap = true })
-  map_key({ "n" }, "<leader>m", api.marks, { noremap = true })
-  map_key({ "n" }, "<leader>r", api.registers, { noremap = true })
+  map_key({ "n" }, "<leader>fm", api.marks, { noremap = true })
+  map_key({ "n" }, "<leader>rr", api.registers, { noremap = true })
   map_key({ "n" }, "<leader>gc", telescope.git_commits, { noremap = true })
   map_key({ "n" }, "<leader>gb", telescope.git_branches, { noremap = true })
   map_key({ "n" }, "<leader>nc", telescope.commands, { noremap = true })
+  map_key({ "n" }, "<leader>pd", api.project_buffer_diagnostic, { noremap = true })
   require("telescope").load_extension("fzf")
   require("telescope").load_extension("ui-select")
 end

@@ -35,6 +35,7 @@ lazy.setup({
   spec = {
     { import = "plugins" },
     { import = "plugins.lsp-plugs" },
+    { import = "plugins.debugger" },
     { import = "plugins.utils" },
     { import = "plugins.ui" },
     { import = "plugins.git" },

@@ -18,6 +18,9 @@ return function(telescope, themes)
     current_buffer_diagnostic = function()
       return telescope.diagnostics({ bufnr = 0 })
     end,
+    project_buffer_diagnostic = function()
+      return telescope.diagnostics({ severity = vim.diagnostic.severity.ERROR })
+    end,
     lsp_definitions = function()
       return telescope.lsp_definitions()
     end,
