@@ -19,7 +19,7 @@ function Plug.config()
 
       center = {
         {
-          icon = " ",
+          icon = "󱄋 ",
           icon_hl = "Re Boot",
           desc = "Recover last session                 ",
           desc_hl = "String",
@@ -32,7 +32,7 @@ function Plug.config()
 					]],
         },
         {
-          icon = " ",
+          icon = "󰸨 ",
           icon_hl = "Resume",
           desc = "Load directory last session          ",
           desc_hl = "String",
@@ -45,7 +45,7 @@ function Plug.config()
 					]],
         },
         {
-          icon = " ",
+          icon = "󰮗 ",
           icon_hl = "Title",
           desc = "Find File                           ",
           desc_hl = "String",
@@ -59,7 +59,7 @@ function Plug.config()
         },
 
         {
-          icon = " ",
+          icon = "󱏒 ",
           icon_hl = "Title",
           desc = "Oil",
           desc_hl = "String",
