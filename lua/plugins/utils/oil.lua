@@ -2,7 +2,9 @@ local helpers = require("helpers")
 local language_specific_hidden = { "node_modules", "target" }
 local Plug = { "stevearc/oil.nvim" }
 Plug.dependencies = { "nvim-tree/nvim-web-devicons" }
-
+Plug.keymaps = {
+  ["<c-p>"] = { "actions.preview", opts = { split = "right" } },
+}
 Plug.opts = {
   lsp_file_methods = {
     timeout_ms = 1000,
@@ -21,8 +23,8 @@ function Plug.init()
   local oil = require("oil")
   helpers.map_key({ "n" }, "<leader>O", function()
     oil.open(vim.fn.getcwd())
-  end, { desc = "Toogle oil pop up" })
-  helpers.map_key({ "n" }, "<leader>o", oil.toggle_float, { desc = "Open oil buffer" })
+  end, { desc = "Open oil buffer" })
+  helpers.map_key({ "n" }, "<leader>o", oil.toggle_float, { desc = "Toogle oil pop up" })
 end
 
 return Plug

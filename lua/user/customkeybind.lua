@@ -16,6 +16,8 @@ map_key("n", "Rr", normal_cmd("Rr"), { desc = "reset search", noremap = true })
 map_key({ "n", "v" }, "Br", normal_cmd("Break"), { desc = "Br to set break point", noremap = true })
 map_key({ "n" }, "<leader>dvo", normal_cmd("DiffviewOpen"), { desc = "Open diff view" })
 map_key({ "n" }, "<leader>dvc", normal_cmd("DiffviewClose"), { desc = "Close diff view" })
+map_key({ "n", "v" }, "<leader>cp", '"+y', { desc = "Br to set break point", noremap = true })
+
 map_key({ "i" }, "<c-h>", "<Left>", {})
 map_key({ "i" }, "<c-j>", "<Down>", {})
 map_key({ "i" }, "<c-k>", "<Up>", {})
