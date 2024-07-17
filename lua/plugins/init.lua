@@ -25,6 +25,11 @@ local Plugs = {
   "lettertwo/laserwave.nvim",
   "Lewiky/moonokai",
   { dir = "~/project/json-TS-enhanced", dev = true },
+  "cryptomilk/nightcity.nvim",
+  "titanzero/zephyrium",
+  "ofirgall/ofirkai.nvim",
+  "tiagovla/tokyodark.nvim",
+  "kevinm6/kurayami.nvim",
 }
 
 return Plugs

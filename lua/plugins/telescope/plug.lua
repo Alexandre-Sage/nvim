@@ -19,7 +19,7 @@ function Plug.init()
   local api = telescope_api(telescope, themes)
   commands(api)
 
-  map_key({ "n" }, "<C-p>", api.find_in_files, { noremap = true })
+  -- map_key({ "n" }, "<C-p>", api.find_in_files, { noremap = true })
   map_key({ "n" }, "<leader>ff", api.find_in_files, { noremap = true })
 
   map_key({ "n" }, "<c-f>", function()
