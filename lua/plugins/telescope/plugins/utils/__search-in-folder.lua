@@ -32,7 +32,7 @@ local function select_folder()
   pickers
     .new(opts, {
       prompt_title = "Select Folder to search in",
-      finder = finders.new_oneshot_job({ "find", ".", "-type", "d" }, opts),
+      finder = finders.new_oneshot_job({ "fd", ".", "--type", "d" }, opts),
       sorter = conf.generic_sorter(opts),
       attach_mappings = function(prompt_bufnr, map)
         actions.select_default:replace(function()
