@@ -3,7 +3,6 @@ local Plug = { "neovim/nvim-lspconfig" }
 local on_attach = function(ev)
   -- Enable completion triggered by <c-x><c-o>
   vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
   -- Buffer local mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local opts = { buffer = ev.buf }
@@ -42,8 +41,8 @@ function Plug.on_attach() end
 
 function Plug.config()
   vim.keymap.set("n", "D", vim.diagnostic.open_float)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+  vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev)
+  vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next)
   vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
   require("neodev").setup()
   local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })

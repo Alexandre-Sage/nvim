@@ -17,24 +17,21 @@ local function open_file_picker()
   pickers
     .new({}, {
       prompt_title = "Select a file to read",
-      finder = finders.new_oneshot_job(
-        {
-          "fd",
-          "--type",
-          "f",
-          "--hidden",
-          "--no-ignore",
-          "--exclude",
-          ".git",
-          "--exclude",
-          "node_modules",
-          "--exclude",
-          "dist",
-          "--exclude",
-          "build",
-        },
-        {}
-      ),
+      finder = finders.new_oneshot_job({
+        "fd",
+        "--type",
+        "f",
+        "--hidden",
+        "--no-ignore",
+        "--exclude",
+        ".git",
+        "--exclude",
+        "node_modules",
+        "--exclude",
+        "dist",
+        "--exclude",
+        "build",
+      }, {}),
       sorter = conf.file_sorter({}),
       attach_mappings = function(_, map)
         map("i", "<CR>", read_selected_file)
@@ -46,4 +43,4 @@ local function open_file_picker()
 end
 
 -- Map the function to a command or keybinding
-require("helpers").map_key({ "n" }, "<leader>fr", open_file_picker, { desc = "Read file from picker" })
+require("helpers").map_key({ "n" }, "<leader>fR", open_file_picker, { desc = "Read file from picker" })
