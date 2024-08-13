@@ -1,4 +1,4 @@
-local Plug = { "nvim-tree/nvim-tree.lua" }
+local Plug = { "nvim-tree/nvim-tree.lua", enabled = false }
 
 local function my_on_attach(bufnr)
   local api = require("nvim-tree.api")

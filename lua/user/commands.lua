@@ -3,6 +3,7 @@ vim.opt.termguicolors = true
 --    set softtabstop=-1
 
 vim.cmd([[
+ autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
     colorscheme bluedream    
     syntax off
     set number

@@ -51,6 +51,8 @@ Plug.opts = {
     "json5",
     "jsonc",
     "sql",
+    "sh",
+    "scss",
   },
 }
 

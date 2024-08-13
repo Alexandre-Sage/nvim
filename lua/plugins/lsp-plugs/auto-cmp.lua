@@ -59,6 +59,7 @@ function Plug.config()
       { name = "buffer" },
       { name = "luasnip" },
       { name = "path" },
+      { name = "vim-dadbod-completion" },
     },
     view = {
       entries = {

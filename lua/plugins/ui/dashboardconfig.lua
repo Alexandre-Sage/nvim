@@ -1,87 +1,110 @@
-local Plug = { "nvimdev/dashboard-nvim" }
+local Plug = { "nvimdev/dashboard-nvim", enabled = true }
 Plug.dependencies = { { "nvim-tree/nvim-web-devicons" } }
 Plug.event = "VimEnter"
+Plug.opts = {
+  theme = "doom",
+  config = {
+    header = {
+      [[]],
+      [[]],
+      [[]],
+      [[]],
+      [[{___     {__                    {__         {__                ]],
+      [[{_ {__   {__                     {__       {__  {_             ]],
+      [[{__ {__  {__   {__       {__      {__     {__     {___ {__ {__ ]],
+      [[{__  {__ {__ {_   {__  {__  {__    {__   {__   {__ {__  {_  {__]],
+      [[{__   {_ {__{_____ {__{__    {__    {__ {__    {__ {__  {_  {__]],
+      [[{__    {_ __{_         {__  {__      {____     {__ {__  {_  {__]],
+      [[{__      {__  {____      {__          {__      {__{___  {_  {__]],
+      [[]],
+      [[]],
+      [[]],
+      [[]],
+    },
+    center = {
+      {
+        icon = "󱄋 ",
+        icon_hl = "Re Boot",
+        desc = "Recover last session                 ",
+        desc_hl = "String",
+        key = "r",
+        -- keymap = 'r',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        action = [[ 
+	  	lua require("persistence").load({last = true}) 
+	  ]],
+      },
+      {
+        icon = "󰸨 ",
+        icon_hl = "Resume",
+        desc = "Load directory last session          ",
+        desc_hl = "String",
+        key = "h",
+        -- keymap = 'r',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        action = [[
+		lua require("persistence").load()
+	  ]],
+      },
+      {
+        icon = "󰮗 ",
+        icon_hl = "Title",
+        desc = "Find File                           ",
+        desc_hl = "String",
+        key = "f",
+        -- 	keymap = 'SPC f f',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        action = [[
+		lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, file_ignore_patterns = { ".git", "node_modules", "dist", "build", "target" }, })
+	  ]],
+      },
 
-function Plug.config()
-  require("dashboard").setup({
-    theme = "doom",
-    -- preview = {
-    -- 	command = require('telescope.builtin').find_files(), -- preview command
-    -- 	file_path = ".",                                  -- preview file path
-    -- 	file_height = 50,                                 -- preview file height
-    -- 	file_width = 50                                   -- preview file width
-    -- },
-    config = {
-      --header = {
-      --	Desc = "Telescope",
-      --	--action = require('telescope.builtin').find_files({ layout_config = { width = 0.2, height = 0.2 } })
-      --},
-
-      center = {
-        {
-          icon = "󱄋 ",
-          icon_hl = "Re Boot",
-          desc = "Recover last session                 ",
-          desc_hl = "String",
-          key = "r",
-          -- keymap = 'r',
-          key_hl = "Number",
-          key_format = "%s", -- remove default surrounding `[]`
-          action = [[
-						lua require("persistence").load({last = true})
-					]],
-        },
-        {
-          icon = "󰸨 ",
-          icon_hl = "Resume",
-          desc = "Load directory last session          ",
-          desc_hl = "String",
-          key = "h",
-          -- keymap = 'r',
-          key_hl = "Number",
-          key_format = "%s", -- remove default surrounding `[]`
-          action = [[
-						lua require("persistence").load()
-					]],
-        },
-        {
-          icon = "󰮗 ",
-          icon_hl = "Title",
-          desc = "Find File                           ",
-          desc_hl = "String",
-          key = "f",
-          -- 	keymap = 'SPC f f',
-          key_hl = "Number",
-          key_format = "%s", -- remove default surrounding `[]`
-          action = [[
-						lua require('telescope.builtin').find_files()
-					]],
-        },
-
-        {
-          icon = "󱏒 ",
-          icon_hl = "Title",
-          desc = "Oil",
-          desc_hl = "String",
-          key = "o",
-          -- 	keymap = 'SPC f f',
-          key_hl = "Number",
-          key_format = "%s", -- remove default surrounding `[]`
-          action = [[
+      {
+        icon = "󰜏 ",
+        icon_hl = "Title",
+        desc = "Live Grep                           ",
+        desc_hl = "String",
+        key = "g",
+        -- 	keymap = 'SPC f f',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        action = [[
+		lua require('telescope.builtin').live_grep({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
+	  ]],
+      },
+      {
+        icon = "󱏒 ",
+        icon_hl = "Title",
+        desc = "Oil",
+        desc_hl = "String",
+        key = "o",
+        -- 	keymap = 'SPC f f',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        action = [[
 						lua require('oil').open()
 					]],
-        },
-        --{
-        --	icon = ' ',
-        --	desc = 'Find Dotfiles',
-        --	key = 'f',
-        --	keymap = 'SPC f d',
-        --	key_format = ' %s', -- remove default surrounding `[]`
-        --	action = 'lua print(3)'
-        --},
+      },
+      {
+        icon = " ",
+        icon_hl = "Title",
+        desc = "Databases",
+        desc_hl = "String",
+        key = "d",
+        -- 	keymap = 'SPC f f',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        action = [[ 
+		DBUI 
+		wincmd l 
+		q 
+	]],
       },
     },
-  })
-end
+  },
+}
 
 return Plug
