@@ -89,6 +89,19 @@ Plug.opts = {
 					]],
       },
       {
+        icon = " ",
+        icon_hl = "Title",
+        desc = "NeoGit",
+        desc_hl = "String",
+        key = "n",
+        -- 	keymap = 'SPC f f',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        action = [[ 
+		Neogit	
+	]],
+      },
+      {
         icon = " ",
         icon_hl = "Title",
         desc = "Databases",
