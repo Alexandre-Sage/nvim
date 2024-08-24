@@ -1,5 +1,20 @@
 local Plug = { "neovim/nvim-lspconfig" }
 
+Plug.opts = {
+  setup = {
+
+    purescriptls = function(_, opts)
+      opts.root_dir = function(path)
+        local util = require("lspconfig.util")
+        if path:match("/.spago/") then
+          return nil
+        end
+        return util.root_pattern("bower.json", "psc-package.json", "spago.dhall", "flake.nix", "shell.nix")(path)
+      end
+    end,
+  },
+}
+
 local on_attach = function(ev)
   -- Enable completion triggered by <c-x><c-o>
   vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -31,6 +46,7 @@ Plug.dependencies = {
   { "hrsh7th/cmp-nvim-lsp" },
   { "williamboman/mason-lspconfig.nvim" },
   { "simrat39/rust-tools.nvim" },
+  { "purescript-contrib/purescript-vim" },
   { "folke/neodev.nvim", opts = {} },
 }
 
