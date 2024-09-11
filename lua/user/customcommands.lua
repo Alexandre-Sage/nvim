@@ -29,6 +29,11 @@ create_command("ToggleTermV", function(opt)
 		ToggleTerm direction=vertical size=75
 	]])
 end, {})
+create_command("ToggleTermH", function(opt)
+  vim.cmd([[
+		ToggleTerm direction=horizontal size=15
+	]])
+end, {})
 
 create_command("FaRP", function(opt)
   local find = opt.fargs[1]

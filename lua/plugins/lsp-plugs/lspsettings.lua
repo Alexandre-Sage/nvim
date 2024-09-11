@@ -1,8 +1,13 @@
 local Plug = { "neovim/nvim-lspconfig" }
 
-Plug.opts = {
+local PlugHaskell = {
+  "mrcjkb/haskell-tools.nvim",
+}
+PlugHaskell.enabled = false
+PlugHaskell.lazy = false -- This plugin is already lazy
+PlugHaskell.version = "^4" -- Recommended
+PlugHaskell.opts = {
   setup = {
-
     purescriptls = function(_, opts)
       opts.root_dir = function(path)
         local util = require("lspconfig.util")
@@ -48,6 +53,8 @@ Plug.dependencies = {
   { "simrat39/rust-tools.nvim" },
   { "purescript-contrib/purescript-vim" },
   { "folke/neodev.nvim", opts = {} },
+  { "neovimhaskell/haskell-vim" },
+  PlugHaskell,
 }
 
 Plug.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
@@ -68,7 +75,9 @@ function Plug.config()
   })
   local lspconfig = require("lspconfig")
   local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-
+  lspconfig.hls.setup({
+    filetypes = { "Haskell", "haskell", "lhaskell", "cabal", "hs" },
+  })
   require("mason-lspconfig").setup({
     ensure_installed = {
       "eslint",
@@ -108,6 +117,9 @@ function Plug.config()
       ["sqlls"] = function()
         require("plugins.lsp-plugs.servers.sql")(lspconfig)
       end,
+      -- ["hls"] = function()
+      --   require("plugins.lsp-plugs.servers.haskell")(lspconfig, lsp_capabilities)
+      -- end,
     },
   })
 end
