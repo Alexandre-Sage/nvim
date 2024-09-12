@@ -78,6 +78,7 @@ function Plug.config()
   lspconfig.hls.setup({
     filetypes = { "Haskell", "haskell", "lhaskell", "cabal", "hs" },
   })
+
   require("mason-lspconfig").setup({
     ensure_installed = {
       "eslint",
