@@ -96,35 +96,6 @@ Plug.opts = {
     path_display = { truncate = 2 }, --{ "filename_first", "shorten" },
     layout_config = {
       width = 0.9,
-      -- bottom_pane = {
-      --   height = 25,
-      --   preview_cutoff = 120,
-      --   prompt_position = "top",
-      --   width = 100,
-      -- },
-      -- center = {
-      --   height = 0.4,
-      --   preview_cutoff = 40,
-      --   prompt_position = "top",
-      --   width = 100,
-      -- },
-      -- cursor = {
-      --   height = 0.9,
-      --   preview_cutoff = 40,
-      --   width = 100,
-      -- },
-      -- horizontal = {
-      --   height = 0.9,
-      --   preview_cutoff = 120,
-      --   prompt_position = "bottom",
-      --   width = 100,
-      -- },
-      -- vertical = {
-      --   height = 0.9,
-      --   preview_cutoff = 40,
-      --   prompt_position = "bottom",
-      --   width = 0.9,
-      -- },
     },
     -- ..
   },
