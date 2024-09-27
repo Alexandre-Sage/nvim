@@ -31,62 +31,55 @@ Plug.dependencies = {
 function Plug.config()
   local dap = require("dap")
   local dapui = require("dapui")
-
+  dap.set_log_level("TRACE")
   -- Setup dap-ui
   dapui.setup()
   local dap_debug = "/.local/js-debug/src/dapDebugServer.js"
   local dap_2 = "/.local/vscode-node-debug2/out/src/nodeDebugAdapter.js"
-  -- Node.js adapter setup
-  dap.adapters.node2 = {
-    type = "executable",
-    command = "node",
-    args = { os.getenv("HOME") .. "/.local/js-debug/src/dapDebugServer.js" },
+  dap.adapters["pwa-node"] = {
+    type = "server",
+    host = "localhost",
+    port = "${port}", -- Dynamically allocate port
+    executable = {
+      command = "node",
+      args = {
+        require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+          .. "/js-debug/src/dapDebugServer.js", -- Use Mason's installed path
+        "${port}",
+      },
+    },
   }
 
-  dap.adapters.node2_ts = {
-    type = "executable",
-    command = "node",
-    args = { os.getenv("HOME") .. dap_2 },
-  }
-
+  -- Debug Configurations for JavaScript
   dap.configurations.javascript = {
     {
-      type = "node2",
+      type = "pwa-node",
       request = "launch",
-      name = "Launch file",
-      program = "${file}", -- Launch the current file
+      name = "Launch JS file",
+      program = function()
+        return vim.fn.expand("%:p") -- Launch the current file
+      end,
       cwd = vim.fn.getcwd(),
       sourceMaps = true,
       protocol = "inspector",
       console = "integratedTerminal",
     },
-    {
-      type = "node2",
-      request = "attach",
-      name = "Attach to process",
-      processId = require("dap.utils").pick_process,
-      cwd = vim.fn.getcwd(),
-    },
   }
 
-  -- Debug configurations for TypeScript/ES6 modules
+  -- Debug Configurations for TypeScript
   dap.configurations.typescript = {
     {
-      name = "Lanunch Node",
-      type = "node2",
+      type = "pwa-node",
       request = "launch",
-      runtimeArgs = { "-r", "ts-node/register" },
-      runtimeExecutable = "node",
-      args = { "--inspect", "${file}" },
-      skipFiles = { "node_modules/**" },
-      console = "integratedTerminal",
-    },
-    {
-      type = "node2_ts",
-      request = "attach",
-      name = "Attach to TypeScript process",
-      processId = require("dap.utils").pick_process,
+      name = "Launch TS file",
+      program = function()
+        return vim.fn.expand("%:p") -- Launch the current file
+      end,
       cwd = vim.fn.getcwd(),
+      -- sourceMaps = true,
+      protocol = "inspector",
+      runtimeArgs = { "-r", "ts-node/register" }, -- Use ts-node for TypeScript
+      console = "integratedTerminal",
     },
   }
   -- Automatically open and close dap-ui
