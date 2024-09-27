@@ -32,9 +32,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = removed_ununsed_imports,
 })
 
-return function(lspconfig, lsp_capabilities)
+return function(lspconfig, lsp_capabilities, on_attach)
   lspconfig.tsserver.setup({
     capabilities = lsp_capabilities,
+    -- on_attach = on_attach,
     commands = {
       OrganizeImports = {
         organize_imports,

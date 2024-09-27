@@ -1,5 +1,4 @@
 local Plug = { "neovim/nvim-lspconfig" }
-
 local PlugHaskell = {
   "mrcjkb/haskell-tools.nvim",
 }
@@ -49,7 +48,7 @@ end
 
 Plug.dependencies = {
   { "hrsh7th/cmp-nvim-lsp" },
-  { "williamboman/mason-lspconfig.nvim" },
+  -- { "williamboman/mason-lspconfig.nvim" },
   { "simrat39/rust-tools.nvim" },
   { "purescript-contrib/purescript-vim" },
   { "folke/neodev.nvim", opts = {} },
@@ -78,51 +77,56 @@ function Plug.config()
   lspconfig.hls.setup({
     filetypes = { "Haskell", "haskell", "lhaskell", "cabal", "hs" },
   })
-
-  require("mason-lspconfig").setup({
-    ensure_installed = {
-      "eslint",
-      "tsserver",
-      "html",
-      "cssls",
-      "lua_ls",
-      "dockerls",
-      "rust_analyzer",
-      "yamlls",
-      "jsonls",
-      "sqlls",
-    },
-    handlers = {
-      -- See :help mason-lspconfig-dynamic-server-setup
-      function(server)
-        -- See :help lspconfig-setup
-        lspconfig[server].setup({
-          capabilities = lsp_capabilities,
-        })
-      end,
-      ["tsserver"] = function()
-        require("plugins.lsp-plugs.servers.typescript")(lspconfig, lsp_capabilities)
-      end,
-      ["rust_analyzer"] = function()
-        require("plugins.lsp-plugs.servers.rust")(lspconfig, lsp_capabilities)
-      end,
-      ["lua_ls"] = function()
-        require("plugins.lsp-plugs.servers.luals")(lspconfig)
-      end,
-      ["jsonls"] = function()
-        require("plugins.lsp-plugs.servers.json")(lspconfig, lsp_capabilities)
-      end,
-      ["yamlls"] = function()
-        require("plugins.lsp-plugs.servers.yaml")(lspconfig, lsp_capabilities)
-      end,
-      ["sqlls"] = function()
-        require("plugins.lsp-plugs.servers.sql")(lspconfig)
-      end,
-      -- ["hls"] = function()
-      --   require("plugins.lsp-plugs.servers.haskell")(lspconfig, lsp_capabilities)
-      -- end,
-    },
+  local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = on_attach,
   })
+
+  -- require("mason-lspconfig").setup({
+  --   ensure_installed = {
+  --     "eslint",
+  --     "tsserver",
+  --     "html",
+  --     "cssls",
+  --     "lua_ls",
+  --     "dockerls",
+  --     "rust_analyzer",
+  --     "yamlls",
+  --     "jsonls",
+  --     "sqlls",
+  --   },
+  --   handlers = {
+  --     -- See :help mason-lspconfig-dynamic-server-setup
+  --     function(server)
+  --       -- See :help lspconfig-setup
+  --       lspconfig[server].setup({
+  --         capabilities = lsp_capabilities,
+  --       })
+  --     end,
+  --     ["tsserver"] = function()
+  require("plugins.lsp-plugs.servers.typescript")(lspconfig, lsp_capabilities, on_attach)
+  -- end,
+  -- ["rust_analyzer"] = function()
+  require("plugins.lsp-plugs.servers.rust")(lspconfig, lsp_capabilities, on_attach)
+  -- end,
+  -- ["lua_ls"] = function()
+  require("plugins.lsp-plugs.servers.luals")(lspconfig, lsp_capabilities, on_attach)
+  -- end,
+  -- ["jsonls"] = function()
+  require("plugins.lsp-plugs.servers.json")(lspconfig, lsp_capabilities, on_attach)
+  -- end,
+  -- ["yamlls"] = function()
+  require("plugins.lsp-plugs.servers.yaml")(lspconfig, lsp_capabilities, on_attach)
+  -- end,
+  -- ["sqlls"] = function()
+  require("plugins.lsp-plugs.servers.sql")(lspconfig, lsp_capabilities, on_attach)
+  --   end,
+  -- ["hls"] = function()
+  --   require("plugins.lsp-plugs.servers.haskell")(lspconfig, lsp_capabilities)
+  -- end,
+  -- },
+  -- })
 end
 
 return Plug
