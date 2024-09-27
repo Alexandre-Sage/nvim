@@ -1,6 +1,8 @@
 local Plug = { "mfussenegger/nvim-dap" }
 
 Plug.dependencies = {
+
+  { "jay-babu/mason-nvim-dap.nvim" },
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "nvim-neotest/nvim-nio" },
@@ -29,6 +31,10 @@ Plug.dependencies = {
 }
 
 function Plug.config()
+  require("mason-nvim-dap").setup({
+    ensure_installed = { "node-debug2-adapter", "js-debug-adapter" },
+    automatic_installation = true,
+  })
   local dap = require("dap")
   local dapui = require("dapui")
   dap.set_log_level("TRACE")
@@ -39,7 +45,7 @@ function Plug.config()
   dap.adapters["pwa-node"] = {
     type = "server",
     host = "localhost",
-    port = "${port}", -- Dynamically allocate port
+    port = "${port}",
     executable = {
       command = "node",
       args = {
@@ -65,7 +71,6 @@ function Plug.config()
       console = "integratedTerminal",
     },
   }
-
   -- Debug Configurations for TypeScript
   dap.configurations.typescript = {
     {
@@ -76,9 +81,17 @@ function Plug.config()
         return vim.fn.expand("%:p") -- Launch the current file
       end,
       cwd = vim.fn.getcwd(),
-      -- sourceMaps = true,
+      sourceMaps = false,
       protocol = "inspector",
-      runtimeArgs = { "-r", "ts-node/register" }, -- Use ts-node for TypeScript
+      runtimeExecutable = "node",
+      runtimeArgs = {
+        "-r",
+        os.getenv("HOME")
+          .. "/.nvm/versions/node/"
+          .. vim.fn.system("node -v"):gsub("%s+", "")
+          .. "/lib/node_modules/ts-node/register",
+      }, -- Use ts-node for TypeScript
+
       console = "integratedTerminal",
     },
   }
