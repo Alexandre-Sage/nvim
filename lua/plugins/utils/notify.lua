@@ -2,7 +2,9 @@ local Plug = { "rcarriga/nvim-notify" }
 
 Plug.enabled = true
 
-Plug.opts = {}
+Plug.opts = {
+  background_colour = "#1f1f1f",
+}
 
 function Plug.init()
   vim.notify = require("notify")
@@ -12,7 +14,7 @@ function Plug.init()
       local file_name = vim.fn.expand("%:t")
       vim.notify("Saving " .. file_name .. " ✓", vim.log.levels.INFO, {
         title = file_name,
-        timeout = 4000,
+        timeout = 2000,
         icon = "󰳿",
       })
     end,
