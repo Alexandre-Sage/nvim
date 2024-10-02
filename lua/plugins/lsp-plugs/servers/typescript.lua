@@ -1,3 +1,12 @@
+-- autodetect root workspace
+-- on_attach = function(client, bufnr)
+--     -- Automatically change the current directory to the project root
+--     local project_root = util.root_pattern('package.json', 'tsconfig.json', '.git')(vim.fn.expand('%:p'))
+--     if project_root then
+--       vim.cmd('cd ' .. project_root)
+--     end
+--   end,
+--   root_dir = util.root_pattern('package.json', 'tsconfig.json', '.git'),
 local function organize_imports()
   local params = {
     command = "_typescript.organizeImports",
@@ -33,7 +42,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 return function(lspconfig, lsp_capabilities)
-  lspconfig.tsserver.setup({
+  lspconfig.ts_ls.setup({
     capabilities = lsp_capabilities,
     commands = {
       OrganizeImports = {

@@ -81,7 +81,7 @@ function Plug.config()
   require("mason-lspconfig").setup({
     ensure_installed = {
       "eslint",
-      "tsserver",
+      "ts_ls",
       "html",
       "cssls",
       "lua_ls",
@@ -99,7 +99,7 @@ function Plug.config()
           capabilities = lsp_capabilities,
         })
       end,
-      ["tsserver"] = function()
+      ["ts_ls"] = function()
         require("plugins.lsp-plugs.servers.typescript")(lspconfig, lsp_capabilities)
       end,
       ["rust_analyzer"] = function()

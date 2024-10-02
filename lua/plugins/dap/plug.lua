@@ -1,18 +1,4 @@
 local Plug = { "mfussenegger/nvim-dap" }
-local function load_env_file()
-  local env_path = vim.fn.getcwd() .. "/.env"
-  local env_file = io.open(env_path, "r")
-
-  if env_file then
-    for line in env_file:lines() do
-      local key, value = line:match("([^=]+)=([^=]+)")
-      if key and value then
-        vim.fn.setenv(key, value)
-      end
-    end
-    env_file:close()
-  end
-end
 Plug.dependencies = {
 
   { "jay-babu/mason-nvim-dap.nvim" },
@@ -36,7 +22,56 @@ Plug.dependencies = {
         mode = { "n", "v" },
       },
     },
-    opts = {},
+    opts = {
+      layouts = {
+        {
+          elements = {
+            {
+              id = "scopes",
+              size = 0.25,
+            },
+            {
+              id = "breakpoints",
+              size = 0.5,
+            },
+            -- {
+            --   id = "stacks",
+            --   size = 0.25,
+            -- },
+            -- {
+            --   id = "watches",
+            --   size = 0.5,
+            -- },
+          },
+          position = "right",
+          size = 40,
+        },
+        {
+          elements = {
+            {
+              id = "console",
+              size = 0.5,
+            },
+            {
+              id = "repl",
+              size = 0.5,
+            },
+          },
+          position = "bottom",
+          size = 15,
+        },
+        -- {
+        --   position = "bottom",
+        --   size = 10,
+        --   elements = {
+        --     {
+        --       id = "console",
+        --       size = 1.0,
+        --     },
+        --   },
+        -- },
+      },
+    },
     config = function(_, opts)
       local dap = require("dap")
       local dapui = require("dapui")
@@ -44,12 +79,12 @@ Plug.dependencies = {
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open({})
       end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close({})
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close({})
-      end
+      -- dap.listeners.before.event_terminated["dapui_config"] = function()
+      --   dapui.close({})
+      -- end
+      -- dap.listeners.before.event_exited["dapui_config"] = function()
+      --   dapui.close({})
+      -- end
     end,
   },
   "nvim-neotest/nvim-nio",
@@ -59,14 +94,11 @@ function Plug.config()
   require("mason-nvim-dap").setup({
     ensure_installed = { "node-debug2-adapter", "js-debug-adapter" },
     automatic_installation = true,
+    handlers = nil,
   })
   local dap = require("dap")
   local dapui = require("dapui")
   dap.set_log_level("TRACE")
-  -- Setup dap-ui
-  dapui.setup()
-  local dap_debug = "/.local/js-debug/src/dapDebugServer.js"
-  local dap_2 = "/.local/vscode-node-debug2/out/src/nodeDebugAdapter.js"
   dap.adapters["pwa-node"] = {
     type = "server",
     host = "localhost",
@@ -80,7 +112,42 @@ function Plug.config()
       },
     },
   }
+  dap.adapters.firefox = {
+    type = "executable",
+    command = "node",
+    args = { os.getenv("HOME") .. "/.local/vscode-firefox-debug/dist/adapter.bundle.js" },
+  }
+  dap.adapters["pwa-chrome"] = {
+    type = "executable",
+    command = "node",
+    args = {
+      require("mason-registry").get_package("chrome-debug-adapter"):get_install_path() .. "/out/src/chromeDebug.js", -- Use Mason's installed path
+    },
+  }
 
+  dap.configurations.typescriptreact = {
+    {
+      name = "Debug with Firefox",
+      type = "firefox",
+      request = "launch",
+      reAttach = true,
+      url = "http://localhost:3000",
+      webRoot = "${workspaceFolder}",
+      firefoxExecutable = "/usr/bin/firefox",
+      sourceMaps = true,
+    },
+    {
+      type = "pwa-chrome",
+      name = "Chrome",
+      request = "attach",
+      program = "${file}",
+      cwd = vim.fn.getcwd(),
+      sourceMaps = true,
+      protocol = "inspector",
+      port = 9222,
+      webRoot = "${workspaceFolder}",
+    },
+  }
   -- Debug Configurations for JavaScript
   dap.configurations.javascript = {
     {
@@ -111,9 +178,14 @@ function Plug.config()
       runtimeExecutable = "/usr/bin/ts-node",
       -- env = {
       -- },
-      before_setup = function()
-        load_env_file() -- Load the .env file before launching the debugger
+      envFile = function()
+        -- Determine the correct .env file based on the project folder
+        local cwd = vim.fn.getcwd() -- Get the current working directory
+        return cwd .. "/.env" -- Assuming each project has its own .env file
       end,
+      -- before_setup = function()
+      --   load_env_file() -- Load the .env file before launching the debugger
+      -- end,
       runtimeArgs = {}, -- Use ts-node for TypeScript
 
       console = "integratedTerminal",
@@ -124,13 +196,13 @@ function Plug.config()
     dapui.open()
   end
 
-  dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
-  end
-
-  dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
-  end
+  -- dap.listeners.before.event_terminated["dapui_config"] = function()
+  --   dapui.close()
+  -- end
+  --
+  -- dap.listeners.before.event_exited["dapui_config"] = function()
+  --   dapui.close()
+  -- end
 
   -- Key mappings for debugging
 
