@@ -1,10 +1,11 @@
 local map_key = require("helpers").map_key
 local normal_cmd = require("helpers").normal_cmd
 
-map_key({ "n" }, "<leader>s", normal_cmd("w"), { desc = "save", noremap = true })
+function _(mods, key, command, opts)
+  return { mods = mods, key = key, commands = command, opts = opts }
+end
+
 map_key("n", "<c-t>", normal_cmd("tabnext"), { desc = "go to next tab" })
-map_key("n", "<c-l>", normal_cmd("BufferNext"), { desc = "bar bar next tab" })
-map_key("n", "<c-h>", normal_cmd("BufferPrevious"), { desc = "bar bar prev tab" })
 map_key("n", "<c-q>", normal_cmd("BufferClose"), { desc = "bar bar close tab" })
 map_key("n", "<leader>ng", normal_cmd("Neogit"), { desc = " open neo git" })
 map_key("v", "<leader>d", '"_d', { desc = "Delete to black hole" })
@@ -34,3 +35,11 @@ vim.keymap.set("n", "<leader>dN", [[<cmd>lua vim.diagnostic.goto_next()<cr><cmd>
 vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
 vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+
+local keymaps = {
+  { mods = { "n" }, map = "<c-l>", command = normal_cmd("BufferNext"), opts = { desc = "Bar bar next tab" } },
+  { mods = { "n" }, map = "<c-h>", command = normal_cmd("BufferPrevious"), opts = { desc = "Bar bar prev tab" } },
+}
+for key, value in pairs(keymaps) do
+  vim.keymap.set(value.mods, value.map, value.command, value.opts)
+end

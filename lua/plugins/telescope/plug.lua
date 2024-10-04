@@ -12,44 +12,11 @@ Plug.dependencies = {
 
 Plug.cmd = { "Telescope" }
 
-function Plug.init()
-  local utils = require("telescope.utils")
-  local telescope = require("telescope.builtin")
-  local themes = require("telescope.themes")
-  local api = telescope_api(telescope, themes)
-  commands(api)
-
-  -- map_key({ "n" }, "<C-p>", api.find_in_files, { noremap = true })
-  map_key({ "n" }, "<leader>ff", api.find_in_files, { noremap = true })
-
-  map_key({ "n" }, "<c-f>", function()
-    api.find_in_project({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
-  end, { noremap = true })
-
-  map_key({ "n" }, "<leader>fc", api.find_in_current_file, { noremap = true })
-  map_key({ "n" }, "<leader>b", api.opened_buffers, { noremap = true })
-  map_key(
-    { "n" },
-    "<leader>dg",
-    api.current_buffer_diagnostic,
-    { noremap = true, desc = "Show LSP diag for current buffer" }
-  )
-  map_key({ "n" }, "<leader>fr", api.lsp_references, { noremap = true })
-  map_key({ "n" }, "<leader>fd", api.lsp_definitions, { noremap = true })
-  map_key({ "n" }, "<leader>fm", api.marks, { noremap = true })
-  map_key({ "n" }, "<leader>rr", api.registers, { noremap = true })
-  map_key({ "n" }, "<leader>gc", telescope.git_commits, { noremap = true })
-  map_key({ "n" }, "<leader>gb", telescope.git_branches, { noremap = true })
-  map_key({ "n" }, "<leader>nc", telescope.commands, { noremap = true })
-  map_key({ "n" }, "<leader>pd", api.project_buffer_diagnostic, { noremap = true })
-  require("telescope").load_extension("fzf")
-  require("telescope").load_extension("ui-select")
-end
-
 Plug.opts = {
   pickers = {
     find_files = {
       layout_strategy = "vertical",
+      -- border = false,
       layout_config = {
         width = 0.9,
         height = 0.9,
@@ -92,14 +59,49 @@ Plug.opts = {
     },
   },
   defaults = {
-    -- Default configuration for telescope goes here:
+    -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+    -- border = false,
     path_display = { truncate = 2 }, --{ "filename_first", "shorten" },
     layout_config = {
       width = 0.9,
     },
-    -- ..
   },
 }
+function Plug.init()
+  local utils = require("telescope.utils")
+  local telescope = require("telescope.builtin")
+  require("telescope").setup({ defaults = {
+    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+  } })
+  local themes = require("telescope.themes")
+  local api = telescope_api(telescope, themes)
+  commands(api)
+
+  map_key({ "n" }, "<leader>ff", api.find_in_files, { noremap = true })
+
+  map_key({ "n" }, "<c-f>", function()
+    api.find_in_project({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
+  end, { noremap = true })
+
+  map_key({ "n" }, "<leader>fc", api.find_in_current_file, { noremap = true })
+  map_key({ "n" }, "<leader>b", api.opened_buffers, { noremap = true })
+  map_key(
+    { "n" },
+    "<leader>dg",
+    api.current_buffer_diagnostic,
+    { noremap = true, desc = "Show LSP diag for current buffer" }
+  )
+  map_key({ "n" }, "<leader>fr", api.lsp_references, { noremap = true })
+  map_key({ "n" }, "<leader>fd", api.lsp_definitions, { noremap = true })
+  map_key({ "n" }, "<leader>fm", api.marks, { noremap = true })
+  map_key({ "n" }, "<leader>rr", api.registers, { noremap = true })
+  map_key({ "n" }, "<leader>gc", telescope.git_commits, { noremap = true })
+  map_key({ "n" }, "<leader>gb", telescope.git_branches, { noremap = true })
+  map_key({ "n" }, "<leader>nc", telescope.commands, { noremap = true })
+  map_key({ "n" }, "<leader>pd", api.project_buffer_diagnostic, { noremap = true })
+  require("telescope").load_extension("fzf")
+  require("telescope").load_extension("ui-select")
+end
 
 return Plug
 
