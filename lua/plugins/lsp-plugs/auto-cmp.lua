@@ -27,16 +27,6 @@ function Plug.config()
         compare.kind,
         compare.sort_text,
         compare.length,
-        -- compare.scopes,
-        -- compare.locality,
-        -- compare.exact,
-        -- compare.score,
-        -- compare.kind,
-        -- compare.recently_used,
-        -- compare.offset,
-        -- compare.sort_text,
-        -- compare.length,
-        -- compare.order,
       },
     },
     window = {
@@ -71,8 +61,8 @@ function Plug.config()
       },
     },
     mapping = cmp.mapping.preset.insert({
-      ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- Up
-      ["<C-d>"] = cmp.mapping.scroll_docs(4), -- Down
+      -- ["<C-o>"] = cmp.mapping.scroll_docs(-4), -- Up
+      -- ["<C-p>"] = cmp.mapping.scroll_docs(4), -- Down
       ["<tab>"] = cmp.mapping.select_next_item(),
       ["<C-a>"] = cmp.mapping.select_prev_item(),
       ["<C-Space>"] = cmp.mapping.complete(),
@@ -82,27 +72,7 @@ function Plug.config()
       }),
     }),
   })
-  -- vim.api.nvim_create_autocmd("BufWritePre", {
-  --   pattern = "*",
-  --   callback = function(args)
-  --     require("conform").format({ bufnr = args.buf })
-  --   end,
-  -- })
-  -- vim.api.nvim_create_autocmd("BufWritePre", {
-  -- 	callback = function()
-  -- 		vim.lsp.buf.format({
-  -- 			async = false,
-  -- 		})
-  -- 	end,
-  -- })
 
-  vim.lsp.handlers["workspace/didChangeConfiguration"] = vim.lsp.with({
-    typescript = {
-      format = {
-        semicolons = "insert",
-      },
-    },
-  })
   vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.with(vim.lsp.diagnostic.on_diagnostic, {
     -- Enable underline, use default values
     underline = true,

@@ -25,10 +25,16 @@ local function concat_tables(...)
   return result
 end
 
+local function parse_key_map(keymaps)
+  for _, keymap in pairs(keymaps) do
+    vim.keymap.set(keymap[1], keymap[2], keymap[3], keymap[4])
+  end
+end
 return {
   create_user_command = create_user_command,
   map_key = vim.keymap.set,
   normal_cmd = normal_cmd,
   log_to_file = log_to_file,
   concat_tables = concat_tables,
+  parse_key_map = parse_key_map,
 }

@@ -1,18 +1,9 @@
 local Plug = { "neovim/nvim-lspconfig" }
-
+local helpers = require("helpers")
+local keymaps = require("plugins.lsp-plugs.commons.keymaps")
 local on_attach = function(ev)
   vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-  local opts = { buffer = ev.buf }
-
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-  vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-  vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-  vim.keymap.set("n", "<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, opts)
-  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-  vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
+  helpers.parse_key_map(keymaps.attach(ev.buf))
 end
 
 Plug.dependencies = {
@@ -29,12 +20,8 @@ Plug.event = { "BufReadPre", "BufNewFile" }
 function Plug.on_attach() end
 
 function Plug.config()
-  vim.keymap.set("n", "D", vim.diagnostic.open_float)
-  vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev)
-  vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next)
-  vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+  helpers.parse_key_map(keymaps.lspconfig)
   require("neodev").setup()
-  local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = on_attach,
