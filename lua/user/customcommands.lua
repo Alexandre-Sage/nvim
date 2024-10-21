@@ -8,12 +8,6 @@ create_command("Fx", function(opt)
   vim.cmd("/\\<" .. opt.fargs[1] .. "\\>")
 end, { nargs = 1 })
 
-create_command("Fr", function(opt)
-  local find = opt.fargs[1]
-  local replace = opt.fargs[2]
-  vim.cmd("%s/" .. find .. "/" .. replace .. "/g")
-end, { nargs = "*" })
-
 create_command("Rr", function(opt)
   vim.cmd([[
 		noh
@@ -34,14 +28,3 @@ create_command("ToggleTermH", function(opt)
 		ToggleTerm direction=horizontal size=15
 	]])
 end, {})
-
-create_command("FaRP", function(opt)
-  local find = opt.fargs[1]
-  local replace = opt.fargs[2]
-  local path = "./**/*"
-  if opt.fargs[3] then
-    path = opt.fargs[3]
-  end
-  vim.cmd("vimgrep " .. find .. " " .. path)
-  vim.cmd("cfdo %s/" .. find .. "/" .. replace .. "/g")
-end, { nargs = "*" })

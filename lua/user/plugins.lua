@@ -31,8 +31,8 @@ end
 lazy.path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 lazy.setup({
-
   spec = {
+
     { import = "plugins" },
     { import = "plugins.lsp-plugs" },
     -- { import = "plugins.debugger" },

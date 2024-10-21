@@ -12,9 +12,23 @@ local function log_to_file(path, message)
     log_file:close()
   end
 end
+
+local function concat_tables(...)
+  local result = {}
+  local current_index = 1
+
+  for _, tbl in ipairs({ ... }) do
+    table.move(tbl, 1, #tbl, current_index, result)
+    current_index = current_index + #tbl
+  end
+
+  return result
+end
+
 return {
   create_user_command = create_user_command,
   map_key = vim.keymap.set,
   normal_cmd = normal_cmd,
   log_to_file = log_to_file,
+  concat_tables = concat_tables,
 }

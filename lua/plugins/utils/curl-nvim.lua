@@ -5,6 +5,9 @@ Plug.cmd = { "CurlOpen" }
 Plug.dependencies = {
   "nvim-lua/plenary.nvim",
 }
+Plug.opts = {
+  open_with = "tab",
+}
 -- vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 --   pattern = "Curl output_*",
 --   callback = function()

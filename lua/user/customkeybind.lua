@@ -37,8 +37,12 @@ vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").loa
 vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
 
 local keymaps = {
-  { mods = { "n" }, map = "<c-l>", command = normal_cmd("BufferNext"), opts = { desc = "Bar bar next tab" } },
-  { mods = { "n" }, map = "<c-h>", command = normal_cmd("BufferPrevious"), opts = { desc = "Bar bar prev tab" } },
+  { mods = { "n" }, map = "<c-z>", command = normal_cmd("BufferNext"), opts = { desc = "Bar bar next tab" } },
+  { mods = { "n" }, map = "<c-a>", command = normal_cmd("BufferPrevious"), opts = { desc = "Bar bar prev tab" } },
+  { mods = { "n" }, map = "<C-j>", command = "<C-w>j", opts = { desc = "Bar bar prev tab" } },
+  { mods = { "n" }, map = "<C-k>", command = "<C-w>k", opts = { desc = "Bar bar prev tab" } },
+  { mods = { "n" }, map = "<C-l>", command = "<C-w>l", opts = { desc = "Bar bar prev tab" } },
+  { mods = { "n" }, map = "<C-h>", command = "<C-w>h", opts = { desc = "Bar bar prev tab" } },
 }
 for key, value in pairs(keymaps) do
   vim.keymap.set(value.mods, value.map, value.command, value.opts)

@@ -1,15 +1,13 @@
 local Plugs = {
   "Alexandre-Sage/blue-dream.nvim",
+  "ThePrimeagen/vim-be-good",
   -- "lazyvim.config", --GIT
-  "rcarriga/nvim-notify",
   -- "tpope/vim-fugitive",
   "rktjmp/shipwright.nvim",
   "Xuyuanp/nerdtree-git-plugin",
-  "lewis6991/gitsigns.nvim",
   -- UTILS
   "mracos/mermaid.vim",
   "b0o/schemastore.nvim",
-  "gennaro-tedesco/nvim-jqx",
   "sharkdp/fd",
   "BurntSushi/ripgrep",
   "rktjmp/lush.nvim",
@@ -24,7 +22,6 @@ local Plugs = {
   "samharju/synthweave.nvim",
   "lettertwo/laserwave.nvim",
   "Lewiky/moonokai",
-  { dir = "~/project/json-TS-enhanced", dev = true },
   "cryptomilk/nightcity.nvim",
   "titanzero/zephyrium",
   "ofirgall/ofirkai.nvim",
