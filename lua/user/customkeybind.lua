@@ -2,8 +2,8 @@ local normal_cmd = require("helpers").normal_cmd
 local parse_key_map = require("helpers").parse_key_map
 
 local keymaps = {
-  { { "n" }, "<c-z>", normal_cmd("BufferNext"), { desc = "Bar bar next tab" } },
-  { { "n" }, "<c-a>", normal_cmd("BufferPrevious"), { desc = "Bar bar prev tab" } },
+  { { "n" }, "<c-s>", normal_cmd("BufferNext"), { desc = "Bar bar next tab" } },
+  { { "n" }, "<c-q>", normal_cmd("BufferPrevious"), { desc = "Bar bar prev tab" } },
   { { "n" }, "<C-j>", "<C-w>j", {} },
   { { "n" }, "<C-k>", "<C-w>k", {} },
   { { "n" }, "<C-l>", "<C-w>l", {} },
