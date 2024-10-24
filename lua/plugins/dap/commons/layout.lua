@@ -11,7 +11,7 @@ return {
       },
     },
     position = "right",
-    size = 40,
+    size = 100,
   },
   {
     elements = {

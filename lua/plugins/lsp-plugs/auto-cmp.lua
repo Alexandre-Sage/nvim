@@ -7,6 +7,7 @@ Plug.dependencies = {
   { "hrsh7th/cmp-nvim-lsp" },
   { "L3MON4D3/LuaSnip" },
   { "rafamadriz/friendly-snippets" },
+  { "rcarriga/cmp-dap" },
 }
 
 Plug.event = "InsertEnter"
@@ -16,6 +17,9 @@ function Plug.config()
   local snip = require("luasnip")
   local compare = cmp.config.compare
   cmp.setup({
+    enabled = function()
+      return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+    end,
     sorting = {
       priority_weight = 1.0,
       comparators = {
@@ -29,16 +33,6 @@ function Plug.config()
         compare.length,
       },
     },
-    window = {
-      completion = {
-        border = "rounded",
-        scrollbar = "||",
-      },
-      documentation = {
-        border = "rounded",
-        scrollbar = "||",
-      },
-    },
     snippet = {
       expand = function(args)
         snip.lsp_expand(args.body)
@@ -50,6 +44,7 @@ function Plug.config()
       { name = "luasnip" },
       { name = "path" },
       { name = "vim-dadbod-completion" },
+      -- { name = "ts_repl" },
     },
     view = {
       entries = {
@@ -72,7 +67,11 @@ function Plug.config()
       }),
     }),
   })
-
+  cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
+    sources = {
+      { name = "dap" },
+    },
+  })
   vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.with(vim.lsp.diagnostic.on_diagnostic, {
     -- Enable underline, use default values
     underline = true,
