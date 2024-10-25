@@ -124,6 +124,13 @@ return {
       desc = "Pause",
     },
     {
+      "<leader>dR",
+      function()
+        require("dap").restart()
+      end,
+      desc = "Toggle REPL",
+    },
+    {
       "<leader>dr",
       function()
         require("dap").repl.toggle()

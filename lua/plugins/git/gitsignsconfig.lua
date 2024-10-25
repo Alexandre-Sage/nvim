@@ -1,5 +1,4 @@
 local Plug = { "lewis6991/gitsigns.nvim" }
-
 Plug.opts = {
   on_attach = function(bufnr)
     local gitsigns = require("gitsigns")
@@ -27,37 +26,7 @@ Plug.opts = {
       end
     end)
 
-    -- Actions
-    map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage hunk" })
-    map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Rest hunk" })
-    map("n", "<leader>hn", function()
-      gitsigns.nav_hunk("next")
-    end, { desc = "Next hunk" })
-    map("n", "<leader>hp", function()
-      gitsigns.nav_hunk("prev")
-    end, { desc = "Prev hunk" })
-    map("v", "<leader>hs", function()
-      gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-    end)
-    map("v", "<leader>hr", function()
-      gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-    end)
-    map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage buffer" })
-    map("n", "<leader>hu", gitsigns.undo_stage_hunk)
-    map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset buff" })
-    map("n", "<leader>hP", gitsigns.preview_hunk)
-    map("n", "<leader>hb", function()
-      gitsigns.blame_line({ full = true })
-    end)
-    map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
-    map("n", "<leader>hd", gitsigns.diffthis, { desc = "Git diff current file" })
-    map("n", "<leader>hD", function()
-      gitsigns.diffthis("~")
-    end, { desc = "Git diff current dir" })
-    map("n", "<leader>td", gitsigns.toggle_deleted)
-
-    -- Text object
-    map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+    require("helpers").parse_key_map(require("plugins.git.commons.keymaps"))
   end,
 }
 

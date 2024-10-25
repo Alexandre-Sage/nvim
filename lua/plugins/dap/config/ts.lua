@@ -10,14 +10,20 @@ return {
           return vim.fn.expand("%:p") -- Launch the current file
         end,
         cwd = vim.fn.getcwd(),
-        sourceMaps = false,
+        sourceMaps = true,
         protocol = "inspector",
         runtimeExecutable = "/usr/bin/ts-node",
         envFile = function()
           local cwd = vim.fn.getcwd() -- Get the current working directory
           return cwd .. "/.env" -- Assuming each project has its own .env file
         end,
-        runtimeArgs = {},
+        runtimeArgs = {
+          -- "--inspect-brk",
+        },
+        -- outFiles = {
+        --   "${workspaceFolder}/dist/**/*.js",
+        --   "${workspaceFolder}/build/**/*.js",
+        -- },
         console = "integratedTerminal",
       },
     },
