@@ -7,10 +7,10 @@ local colors = {
   violet = "#d183e8",
   grey = "#303030",
 }
-
+local blue_1 = "#3477eb"
 local bubbles_theme = {
   normal = {
-    a = { fg = colors.black, bg = colors.violet },
+    a = { fg = colors.black, bg = blue_1 },
     b = { fg = colors.white, bg = colors.grey },
     c = { fg = colors.white, bg = colors.grey },
   },
@@ -20,8 +20,8 @@ local bubbles_theme = {
   replace = { a = { fg = colors.black, bg = colors.red } },
 
   inactive = {
-    a = { fg = colors.white, bg = colors.black },
-    b = { fg = colors.white, bg = colors.black },
+    a = { fg = colors.white, bg = blue_1 },
+    b = { fg = colors.white, bg = blue_1 },
     c = { fg = colors.white, bg = colors.grey },
   },
 }
@@ -39,7 +39,7 @@ Plug.opts = {
   },
   options = {
     theme = bubbles_theme,
-    component_separators = "☠️",
+    component_separators = "󱓇",
     section_separators = { left = "", right = "" },
   },
   sections = {
