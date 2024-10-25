@@ -3,7 +3,6 @@ local Plug = { "mfussenegger/nvim-dap" }
 Plug.dependencies = {
   { "niuiic/dap-utils.nvim" },
   { "theHamsta/nvim-dap-virtual-text" },
-  { "jay-babu/mason-nvim-dap.nvim" },
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "nvim-neotest/nvim-nio" },
@@ -36,11 +35,6 @@ Plug.dependencies = {
 }
 
 function Plug.config()
-  require("mason-nvim-dap").setup({
-    ensure_installed = { "node-debug2-adapter", "js-debug-adapter" },
-    automatic_installation = true,
-    handlers = nil,
-  })
   local dap = require("dap")
   local dapui = require("dapui")
 
@@ -54,7 +48,7 @@ function Plug.config()
     dapui.open()
   end
   for _, sign in pairs(require("plugins.dap.commons.signs")) do
-    vim.fn.sign_define(sign.name, sign.config)
+    vim.fn.sign_define(sign.name, { text = "" })
   end
 end
 

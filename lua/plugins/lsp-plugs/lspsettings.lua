@@ -12,6 +12,7 @@ Plug.dependencies = {
   { "simrat39/rust-tools.nvim" },
   { "folke/neodev.nvim", opts = {} },
   { "neovimhaskell/haskell-vim" },
+  { "jay-babu/mason-nvim-dap.nvim" },
 }
 
 Plug.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
@@ -30,6 +31,11 @@ function Plug.config()
   local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
   lspconfig.hls.setup({
     filetypes = { "Haskell", "haskell", "lhaskell", "cabal", "hs" },
+  })
+  require("mason-nvim-dap").setup({
+    ensure_installed = { "node-debug2-adapter", "js-debug-adapter" },
+    automatic_installation = true,
+    handlers = nil,
   })
   require("mason-lspconfig").setup({
     ensure_installed = {
