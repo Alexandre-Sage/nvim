@@ -1,246 +1,66 @@
-local Plug = { "freddiehaddad/feline.nvim" }
-function Plug.config()
-  local line_ok, feline = pcall(require, "feline")
-  if not line_ok then
-    return
-  end
+local colors = {
+  blue = "#80a0ff",
+  cyan = "#79dac8",
+  black = "#080808",
+  white = "#c6c6c6",
+  red = "#ff5189",
+  violet = "#d183e8",
+  grey = "#303030",
+}
 
-  local one_monokai = {
-    fg = "#abb2bf",
-    bg = "#1e2024",
-    green = "#98c379",
-    yellow = "#e5c07b",
-    purple = "#c678dd",
-    orange = "#d19a66",
-    peanut = "#f6d5a4",
-    red = "#e06c75",
-    aqua = "#61afef",
-    darkblue = "#282c34",
-    dark_red = "#f75f5f",
-  }
+local bubbles_theme = {
+  normal = {
+    a = { fg = colors.black, bg = colors.violet },
+    b = { fg = colors.white, bg = colors.grey },
+    c = { fg = colors.white, bg = colors.grey },
+  },
 
-  local vi_mode_colors = {
-    NORMAL = "green",
-    OP = "green",
-    INSERT = "yellow",
-    VISUAL = "purple",
-    LINES = "orange",
-    BLOCK = "dark_red",
-    REPLACE = "red",
-    COMMAND = "aqua",
-  }
+  insert = { a = { fg = colors.black, bg = colors.blue } },
+  visual = { a = { fg = colors.black, bg = colors.cyan } },
+  replace = { a = { fg = colors.black, bg = colors.red } },
 
-  local c = {
-    vim_mode = {
-      provider = {
-        name = "vi_mode",
-        opts = {
-          show_mode_name = true,
-          -- padding = "center", -- Uncomment for extra padding.
-        },
-      },
-      hl = function()
-        return {
-          fg = require("feline.providers.vi_mode").get_mode_color(),
-          bg = "darkblue",
-          style = "bold",
-          name = "NeovimModeHLColor",
-        }
-      end,
-      left_sep = "block",
-      right_sep = "block",
-    },
-    gitBranch = {
-      provider = "git_branch",
-      hl = {
-        fg = "peanut",
-        bg = "darkblue",
-        style = "bold",
-      },
-      left_sep = "block",
-      right_sep = "block",
-    },
-    gitDiffAdded = {
-      provider = "git_diff_added",
-      hl = {
-        fg = "green",
-        bg = "darkblue",
-      },
-      left_sep = "block",
-      right_sep = "block",
-    },
-    gitDiffRemoved = {
-      provider = "git_diff_removed",
-      hl = {
-        fg = "red",
-        bg = "darkblue",
-      },
-      left_sep = "block",
-      right_sep = "block",
-    },
-    gitDiffChanged = {
-      provider = "git_diff_changed",
-      hl = {
-        fg = "fg",
-        bg = "darkblue",
-      },
-      left_sep = "block",
-      right_sep = "right_filled",
-    },
-    separator = {
-      provider = "",
-    },
-    fileinfo = {
-      provider = {
-        name = "file_info",
-        opts = {
-          type = "relative",
-        },
-      },
-      hl = {
-        style = "bold",
-      },
-      left_sep = " ",
-      right_sep = " ",
-    },
-    diagnostic_errors = {
-      provider = "diagnostic_errors",
-      hl = {
-        fg = "red",
-      },
-    },
-    diagnostic_warnings = {
-      provider = "diagnostic_warnings",
-      hl = {
-        fg = "yellow",
-      },
-    },
-    diagnostic_hints = {
-      provider = "diagnostic_hints",
-      hl = {
-        fg = "aqua",
-      },
-    },
-    diagnostic_info = {
-      provider = "diagnostic_info",
-    },
-    lsp_client_names = {
-      provider = "lsp_client_names",
-      hl = {
-        fg = "purple",
-        bg = "darkblue",
-        style = "bold",
-      },
-      left_sep = "left_filled",
-      right_sep = "block",
-    },
-    file_type = {
-      provider = {
-        name = "file_type",
-        opts = {
-          filetype_icon = true,
-          case = "titlecase",
-        },
-      },
-      hl = {
-        fg = "red",
-        bg = "darkblue",
-        style = "bold",
-      },
-      left_sep = "block",
-      right_sep = "block",
-    },
-    file_encoding = {
-      provider = "file_encoding",
-      hl = {
-        fg = "orange",
-        bg = "darkblue",
-        style = "italic",
-      },
-      left_sep = "block",
-      right_sep = "block",
-    },
-    position = {
-      provider = "position",
-      hl = {
-        fg = "green",
-        bg = "darkblue",
-        style = "bold",
-      },
-      left_sep = "block",
-      right_sep = "block",
-    },
-    line_percentage = {
-      provider = "line_percentage",
-      hl = {
-        fg = "aqua",
-        bg = "darkblue",
-        style = "bold",
-      },
-      left_sep = "block",
-      right_sep = "block",
-    },
-    scroll_bar = {
-      provider = "scroll_bar",
-      hl = {
-        fg = "yellow",
-        style = "bold",
-      },
-    },
-  }
+  inactive = {
+    a = { fg = colors.white, bg = colors.black },
+    b = { fg = colors.white, bg = colors.black },
+    c = { fg = colors.white, bg = colors.grey },
+  },
+}
 
-  local left = {
-    c.vim_mode,
-    c.gitBranch,
-    c.gitDiffAdded,
-    c.gitDiffRemoved,
-    c.gitDiffChanged,
-    c.separator,
-  }
+local Plug = { "nvim-lualine/lualine.nvim" }
 
-  local middle = {
-    c.fileinfo,
-    c.diagnostic_errors,
-    c.diagnostic_warnings,
-    c.diagnostic_info,
-    c.diagnostic_hints,
-  }
-
-  local right = {
-    c.lsp_client_names,
-    c.file_type,
-    c.file_encoding,
-    c.position,
-    c.line_percentage,
-    c.scroll_bar,
-  }
-
-  local components = {
-    active = {
-      left,
-      middle,
-      right,
+Plug.dependencies = { "nvim-tree/nvim-web-devicons" }
+Plug.opts = {
+  extensions = {
+    "quickfix",
+    "aerial",
+    "oil",
+    "toggleterm",
+    "nvim-dap-ui",
+  },
+  options = {
+    theme = bubbles_theme,
+    component_separators = "☠️",
+    section_separators = { left = "", right = "" },
+  },
+  sections = {
+    lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+    lualine_b = { "filename", "branch" },
+    lualine_c = {
+      "%=", --[[ add your center compoentnts here in place of this comment ]]
     },
-    inactive = {
-      left,
-      middle,
-      right,
+    lualine_x = {},
+    lualine_y = { "filetype", "progress" },
+    lualine_z = {
+      { "location", separator = { right = "" }, left_padding = 2 },
     },
-  }
-
-  feline.setup({
-    components = components,
-    theme = one_monokai,
-    vi_mode_colors = vi_mode_colors,
-    -- disable = {
-    --   filetypes = {
-    --     "dapui_scopes",
-    --     "dapui_breakpoints",
-    --     "dapui_stacks",
-    --     "dapui_watches",
-    --   },
-    -- },
-  })
-end
-
+  },
+  inactive_sections = {
+    lualine_a = { "filename" },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { "location" },
+  },
+}
 return Plug
