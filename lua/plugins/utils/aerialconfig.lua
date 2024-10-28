@@ -7,37 +7,28 @@ Plug.dependencies = {
 
 Plug.opts = {
   backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
-  layout = { min_width = 15 },
+  layout = { min_width = 30 },
   on_attach = function(bufnr)
     -- Jump forwards/backwards with '{' and '}'
     vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
     vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
   end,
+  ignore = {
+    -- Ignore unlisted buffers. See :help buflisted
+    unlisted_buffers = false,
+    diff_windows = true,
+    filetypes = {},
+    buftypes = "special",
+    wintypes = "special",
+  },
+  open_automatic = true,
+  lazy = true,
 }
 
 function Plug.init()
   vim.keymap.set("n", "<leader>ta", "<cmd>AerialToggle!<CR>")
   vim.keymap.set("n", "<leader>a", "<cmd>AerialNavToggle<CR>")
   vim.keymap.set("n", "<leader>A", "<cmd>AerialOpen<CR>")
-  vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufAdd" }, {
-    pattern = {
-      "*.lua",
-      "*.ts",
-      "*.tsx",
-      "*.jsx",
-      "*.rs",
-      "*.js",
-    },
-    callback = function()
-      if vim.bo.filetype == ".json" then
-        return
-      end
-      --vim.cmd([[
-      --AerialOpen!
-      -- ]])
-    end,
-    -- command = "AerialOpen!",
-  })
 end
 
 return Plug

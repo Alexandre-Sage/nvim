@@ -45,10 +45,19 @@ Plug.opts = {
   sections = {
     lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
     lualine_b = { "filename", "branch" },
-    lualine_c = {
-      "%=", --[[ add your center compoentnts here in place of this comment ]]
+    lualine_c = {},
+    lualine_x = {
+      {
+        function()
+          if vim.bo.modified then
+            return "󰓧" -- Symbol indicating unsaved changes (customizable)
+          else
+            return "" -- Symbol indicating no unsaved changes
+          end
+        end,
+        color = { fg = "#0afa82" }, -- Customize colors if needed
+      },
     },
-    lualine_x = {},
     lualine_y = { "filetype", "progress" },
     lualine_z = {
       { "location", separator = { right = "" }, left_padding = 2 },

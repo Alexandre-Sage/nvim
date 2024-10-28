@@ -1,4 +1,5 @@
 local Plugs = {
+  "stevearc/stickybuf.nvim",
   "Alexandre-Sage/blue-dream.nvim",
   "ThePrimeagen/vim-be-good",
   -- "lazyvim.config", --GIT
