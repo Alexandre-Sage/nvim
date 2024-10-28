@@ -42,16 +42,45 @@ return {
         sourceMaps = true,
       },
       {
-        type = "pwa-chrome",
-        name = "Chrome",
+        name = "Attach to Firefox",
+        type = "firefox",
         request = "attach",
-        program = "${file}",
-        cwd = vim.fn.getcwd(),
+        url = "http://localhost:3000", -- Adjust if your app runs on a different port
+        webRoot = "${workspaceFolder}",
+        port = 9222, -- Default port for Firefox remote debugging
+        sourceMaps = true,
+        trace = true, -- Optional: enables tracing for more detailed logs
+      },
+      {
+        name = "Debug with Chromium",
+        type = "pwa-chrome", -- Use 'pwa-chrome' for Chromium
+        request = "launch",
+        url = "http://localhost:3000", -- Adjust if your app runs on a different port
+        webRoot = "${workspaceFolder}",
+        sourceMaps = true,
+        trace = true, -- Optional: enables tracing for more detailed logs
+        runtimeExecutable = "/bin/chromium", -- Path to your Chromium executable
+      },
+      {
+        name = "Attach to Chromium",
+        type = "pwa-chrome",
+        request = "attach",
+        port = 9222, -- Port for remote debugging
+        webRoot = "${workspaceFolder}",
         sourceMaps = true,
         protocol = "inspector",
-        port = 9222,
-        webRoot = "${workspaceFolder}",
       },
+      -- {
+      --   type = "pwa-chrome",
+      --   name = "Chrome",
+      --   request = "attach",
+      --   program = "${file}",
+      --   cwd = vim.fn.getcwd(),
+      --   sourceMaps = true,
+      --   protocol = "inspector",
+      --   port = 9222,
+      --   webRoot = "${workspaceFolder}",
+      -- },
     },
   },
 }

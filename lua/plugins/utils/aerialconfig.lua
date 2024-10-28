@@ -15,13 +15,14 @@ Plug.opts = {
   end,
   ignore = {
     -- Ignore unlisted buffers. See :help buflisted
-    unlisted_buffers = false,
+    unlisted_buffers = true,
     diff_windows = true,
-    filetypes = {},
+    filetypes = { "unfocus", "switch_buffer", "unsupported" },
     buftypes = "special",
     wintypes = "special",
   },
-  open_automatic = true,
+  close_automatic_events = {},
+  -- open_automatic = true,
   lazy = true,
 }
 

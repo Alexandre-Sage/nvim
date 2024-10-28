@@ -14,26 +14,25 @@ Plug.cmd = { "Telescope" }
 
 Plug.opts = {
   pickers = {
-    find_files = {
-      layout_strategy = "vertical",
-      -- border = false,
-      layout_config = {
-        width = 0.9,
-        height = 0.9,
-      },
-      theme = "dropdown",
-      width = 0.9,
-      height = 0.9,
-    },
-    lsp_references = {
-      layout_strategy = "vertical",
-      layout_config = { width = 0.9, height = 0.9 },
-      path_display = {
-        "smart",
-      },
-      width = 0.9,
-      height = 0.9,
-    },
+    -- find_files = {
+    --   layout_strategy = "vertical",
+    --   layout_config = {
+    --     width = 0.9,
+    --     height = 0.9,
+    --   },
+    --   theme = "dropdown",
+    --   width = 0.9,
+    --   height = 0.9,
+    -- },
+    -- lsp_references = {
+    --   layout_strategy = "vertical",
+    --   layout_config = { width = 0.9, height = 0.9 },
+    --   path_display = {
+    --     "smart",
+    --   },
+    --   width = 0.9,
+    --   height = 0.9,
+    -- },
     current_buffer_fuzzy_find = {
       tiebreak = function(current_entry, existing_entry)
         return current_entry.lnum < existing_entry.lnum
@@ -59,20 +58,19 @@ Plug.opts = {
     },
   },
   defaults = {
-    -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-    -- border = false,
     path_display = { truncate = 2 }, --{ "filename_first", "shorten" },
     layout_config = {
       width = 0.9,
     },
+    borderchars = {
+      prompt = { " ", " ", "─", "│", "│", " ", "─", "└" },
+      results = { "─", " ", " ", "│", "┌", "─", " ", "│" },
+      preview = { "─", "│", "─", "│", "┬", "┐", "┘", "┴" },
+    },
   },
 }
 function Plug.init()
-  local utils = require("telescope.utils")
   local telescope = require("telescope.builtin")
-  require("telescope").setup({ defaults = {
-    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-  } })
   local themes = require("telescope.themes")
   local api = telescope_api(telescope, themes)
   commands(api)

@@ -2,6 +2,7 @@ local keymaps = require("plugins.dap.commons.keymaps")
 local Plug = { "mfussenegger/nvim-dap" }
 Plug.dependencies = {
   { "niuiic/dap-utils.nvim" },
+  { "LiadOz/nvim-dap-repl-highlights" },
   { "theHamsta/nvim-dap-virtual-text" },
   {
     "rcarriga/nvim-dap-ui",

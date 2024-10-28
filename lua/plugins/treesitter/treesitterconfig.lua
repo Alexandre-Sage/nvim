@@ -2,6 +2,7 @@ local Plug = { "nvim-treesitter/nvim-treesitter" }
 
 Plug.dependencies = {
   { "nvim-treesitter/nvim-treesitter-textobjects" },
+  { "LiadOz/nvim-dap-repl-highlights" },
   -- { 'TornaxO7/tree-setter' },
   --	{ "HiPhish/nvim-ts-rainbow2" },
   -- { "windwp/nvim-ts-autotag" },
@@ -57,6 +58,7 @@ Plug.opts = {
 }
 
 function Plug.config(name, opts)
+  require("nvim-dap-repl-highlights").setup()
   require("nvim-treesitter.configs").setup(opts)
 end
 

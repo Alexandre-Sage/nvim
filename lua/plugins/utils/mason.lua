@@ -4,7 +4,7 @@ Plug.lazy = false
 
 -- See :help mason-settings
 Plug.opts = {
-  ui = { border = "rounded" },
+  -- ui = { border = "rounded" },
 }
 
 return Plug
