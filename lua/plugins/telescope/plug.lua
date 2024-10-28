@@ -77,6 +77,7 @@ function Plug.init()
   map_key({ "n" }, "<leader>rr", api.registers, { noremap = true })
   map_key({ "n" }, "<leader>nc", telescope.commands, { noremap = true })
   map_key({ "n" }, "<leader>pd", api.project_buffer_diagnostic, { noremap = true })
+  map_key({ "n" }, "<leader>pD", api.project_buffer_diagnostic_all, { noremap = true })
   require("telescope").load_extension("fzf")
   require("telescope").load_extension("ui-select")
 end

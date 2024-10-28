@@ -67,13 +67,13 @@ return {
       end,
       desc = "Run to Cursor",
     },
-    {
-      "<leader>dg",
-      function()
-        require("dap").goto_()
-      end,
-      desc = "Go to Line (No Execute)",
-    },
+    -- {
+    --   "<leader>dg",
+    --   function()
+    --     require("dap").goto_()
+    --   end,
+    --   desc = "Go to Line (No Execute)",
+    -- },
     {
       "<leader>di",
       function()

@@ -4,18 +4,10 @@ crate_buff_command(0, "Upper", function(opts)
   print(string.upper(opts.fargs[1]))
 end, { nargs = 1 })
 
-create_command("Fx", function(opt)
-  vim.cmd("/\\<" .. opt.fargs[1] .. "\\>")
-end, { nargs = 1 })
-
 create_command("Rr", function(opt)
   vim.cmd([[
 		noh
 	]])
-end, {})
-
-create_command("Break", function(opt)
-  require("dap").toggle_breakpoint()
 end, {})
 
 create_command("ToggleTermV", function(opt)
