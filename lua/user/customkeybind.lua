@@ -2,8 +2,6 @@ local normal_cmd = require("helpers").normal_cmd
 local parse_key_map = require("helpers").parse_key_map
 
 local keymaps = {
-  { { "n" }, "<c-s>", normal_cmd("BufferNext"), { desc = "Bar bar next tab" } },
-  { { "n" }, "<c-q>", normal_cmd("BufferPrevious"), { desc = "Bar bar prev tab" } },
   { { "n" }, "<C-j>", "<C-w>j", {} },
   { { "n" }, "<C-k>", "<C-w>k", {} },
   { { "n" }, "<C-l>", "<C-w>l", {} },
@@ -26,7 +24,8 @@ local keymaps = {
   { { "n", "v" }, "Br", normal_cmd("Break"), { desc = "Br to set break point", noremap = true } },
   { { "n" }, "<leader>dvo", normal_cmd("DiffviewOpen"), { desc = "Open diff view" } },
   { { "n" }, "<leader>dvc", normal_cmd("DiffviewClose"), { desc = "Close diff view" } },
-  { { "n", "v" }, "<leader>cp", '"+y', { desc = "Br to set break point", noremap = true } },
+  { { "n", "v" }, "<leader>cp", '"+y', { desc = "Yank to clipboard", noremap = true } },
+  { { "n", "v" }, "<leader>mv", '"+d', { desc = "Delete to clipboard", noremap = true } },
   { { "v", "n" }, "<leader>rn", normal_cmd("set relativenumber") },
   { { "v", "n" }, "<leader>An", normal_cmd("set norelativenumber") },
   { { "n" }, "<leader>cB", normal_cmd("BufferCloseAllButCurrent"), { desc = "Close all buffer but current" } },
@@ -37,6 +36,7 @@ local keymaps = {
   { "n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {} },
   { "n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {} },
   { "n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {} },
+  { "n", "<leader>cu", normal_cmd("CurlOpen"), { desc = "Curl open" } },
 }
 
 parse_key_map(keymaps)

@@ -14,37 +14,11 @@ Plug.cmd = { "Telescope" }
 
 Plug.opts = {
   pickers = {
-    -- find_files = {
-    --   layout_strategy = "vertical",
-    --   layout_config = {
-    --     width = 0.9,
-    --     height = 0.9,
-    --   },
-    --   theme = "dropdown",
-    --   width = 0.9,
-    --   height = 0.9,
-    -- },
-    -- lsp_references = {
-    --   layout_strategy = "vertical",
-    --   layout_config = { width = 0.9, height = 0.9 },
-    --   path_display = {
-    --     "smart",
-    --   },
-    --   width = 0.9,
-    --   height = 0.9,
-    -- },
     current_buffer_fuzzy_find = {
       tiebreak = function(current_entry, existing_entry)
         return current_entry.lnum < existing_entry.lnum
       end,
     },
-    -- registers = {
-
-    --   theme = "cursor",
-    -- },
-    --live_grep = {
-    --	theme = "dropdown",
-    --}
   },
   extensions = {
     fzf = {
@@ -66,6 +40,14 @@ Plug.opts = {
       prompt = { " ", " ", "─", "│", "│", " ", "─", "└" },
       results = { "─", " ", " ", "│", "┌", "─", " ", "│" },
       preview = { "─", "│", "─", "│", "┬", "┐", "┘", "┴" },
+    },
+    mappings = {
+      n = {
+        ["<C-d>"] = require("telescope.actions").delete_buffer,
+      },
+      i = {
+        ["<C-d>"] = require("telescope.actions").delete_buffer,
+      },
     },
   },
 }
@@ -89,12 +71,10 @@ function Plug.init()
     api.current_buffer_diagnostic,
     { noremap = true, desc = "Show LSP diag for current buffer" }
   )
-  map_key({ "n" }, "<leader>fr", api.lsp_references, { noremap = true })
-  map_key({ "n" }, "<leader>fd", api.lsp_definitions, { noremap = true })
+  map_key({ "n", "v" }, "<leader>fr", api.lsp_references, { noremap = true })
+  map_key({ "n", "v" }, "<leader>fd", api.lsp_definitions, { noremap = true })
   map_key({ "n" }, "<leader>fm", api.marks, { noremap = true })
   map_key({ "n" }, "<leader>rr", api.registers, { noremap = true })
-  map_key({ "n" }, "<leader>gc", telescope.git_commits, { noremap = true })
-  map_key({ "n" }, "<leader>gb", telescope.git_branches, { noremap = true })
   map_key({ "n" }, "<leader>nc", telescope.commands, { noremap = true })
   map_key({ "n" }, "<leader>pd", api.project_buffer_diagnostic, { noremap = true })
   require("telescope").load_extension("fzf")
@@ -102,9 +82,3 @@ function Plug.init()
 end
 
 return Plug
-
--- local builtin = require("telescope.builtin")
--- local utils = require("telescope.utils")
---
--- ["<leader>ff"] = { function() builtin.find_files({ cwd = utils.buffer_dir() }) end,
---       desc = "Find files in cwd" }
