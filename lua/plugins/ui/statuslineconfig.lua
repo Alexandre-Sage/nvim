@@ -30,7 +30,7 @@ local bubbles_theme = {
   replace = { a = { fg = colors.black, bg = colors.red } },
 
   inactive = {
-    a = { fg = colors.white, bg = blue_1 },
+    a = { fg = colors.white, bg = blue_1, guifg = colors.white },
     b = { fg = colors.white, bg = blue_1 },
     c = { fg = colors.white },
   },
@@ -52,7 +52,13 @@ Plug.opts = {
     section_separators = { left = "", right = "" },
   },
   sections = {
-    lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+    lualine_a = {
+      {
+        "mode",
+        -- separator = { left = "" },
+        padding = 3,
+      },
+    },
     lualine_b = { "filename", "branch" },
     lualine_c = {
       {
@@ -83,6 +89,13 @@ Plug.opts = {
     lualine_x = {
       {
         function()
+          local count = vim.fn.searchcount({ maxcount = 0 }).total
+          return "󱁴 " .. count
+        end,
+        color = { fg = colors.cyan },
+      },
+      {
+        function()
           if vim.bo.modified then
             return "󰓧" -- Symbol indicating unsaved changes (customizable)
           else
@@ -100,15 +113,32 @@ Plug.opts = {
     },
     lualine_y = { "filetype", "progress" },
     lualine_z = {
-      { "location", separator = { right = "" }, left_padding = 2 },
+      {
+        "location",
+        -- separator = { right = "" },
+        left_padding = 2,
+      },
     },
   },
   inactive_sections = {
     lualine_a = { "filename" },
-    lualine_b = {},
+    lualine_b = { "branch" },
     lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
+
+    lualine_x = {
+      {
+        function()
+          if vim.bo.modified then
+            return "󰓧" -- Symbol indicating unsaved changes (customizable)
+          else
+            return "" -- Symbol indicating no unsaved changes
+          end
+        end,
+        color = { fg = "#0afa82", guifg = colors.white }, -- Customize colors if needed
+      },
+      { lsp_servers, color = { fg = colors.violet } },
+    },
+    lualine_y = { "filetype" },
     lualine_z = { "location" },
   },
 }
