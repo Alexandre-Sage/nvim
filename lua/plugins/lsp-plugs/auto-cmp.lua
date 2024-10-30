@@ -3,10 +3,15 @@ local Plug = { "hrsh7th/nvim-cmp" }
 Plug.dependencies = {
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
-  { "saadparwaiz1/cmp_luasnip" },
   { "hrsh7th/cmp-nvim-lsp" },
-  { "L3MON4D3/LuaSnip" },
-  { "rafamadriz/friendly-snippets" },
+  { "saadparwaiz1/cmp_luasnip" },
+  { "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, -- Ensure LuaSnip build step is here
+  {
+    "rafamadriz/friendly-snippets",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
   { "rcarriga/cmp-dap" },
 }
 
