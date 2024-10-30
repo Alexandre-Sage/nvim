@@ -49,6 +49,7 @@ function Plug.config()
       "yamlls",
       "jsonls",
       "sqlls",
+      "bashls",
     },
     handlers = {
       -- See :help mason-lspconfig-dynamic-server-setup
@@ -75,6 +76,12 @@ function Plug.config()
       end,
       ["sqlls"] = function()
         require("plugins.lsp-plugs.servers.sql")(lspconfig)
+      end,
+      ["bashls"] = function()
+        lspconfig.bashls.setup({
+          cmd = { "bash-language-server", "start" },
+          filetype = { "sh", "zsh", "curl" },
+        })
       end,
       -- ["hls"] = function()
       --   require("plugins.lsp-plugs.servers.haskell")(lspconfig, lsp_capabilities)
