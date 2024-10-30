@@ -1,4 +1,4 @@
-local Plug = { "akinsho/toggleterm.nvim" }
+local Plug = { "akinsho/toggleterm.nvim", lazy = true }
 
 Plug.version = "*"
 

@@ -5,6 +5,7 @@ Plug.dependencies = {
   { "nvim-lua/plenary.nvim" },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   { "nvim-telescope/telescope-ui-select.nvim" },
+  { "LukasPietzschmann/telescope-tabs" },
 }
 
 Plug.cmd = { "Telescope" }
@@ -49,9 +50,10 @@ Plug.opts = {
   },
 }
 function Plug.init()
-  require("helpers").parse_key_map(require("plugins.telescope.commons.keymaps"))
   require("telescope").load_extension("fzf")
   require("telescope").load_extension("ui-select")
+  require("telescope").load_extension("telescope-tabs")
+  require("helpers").parse_key_map(require("plugins.telescope.commons.keymaps"))
 end
 
 return Plug

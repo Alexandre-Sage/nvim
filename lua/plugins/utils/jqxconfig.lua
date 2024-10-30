@@ -1,8 +1,9 @@
-local Plug = { "gennaro-tedesco/nvim-jqx" }
+local Plug = { "gennaro-tedesco/nvim-jqx", lazy = true }
 
 function Plug.init()
   local jqx_group = vim.api.nvim_create_augroup("Jqx", {})
   local jqx = require("nvim-jqx.config")
+  require("nvim-jqx")
   jqx.geometry.border = "single"
   jqx.geometry.width = 0.8
   jqx.geometry.height = 0.7

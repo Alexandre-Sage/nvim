@@ -1,8 +1,8 @@
-local Plug = { 'gsuuon/note.nvim' }
+local Plug = { "gsuuon/note.nvim", lazy = true }
 Plug.opts = {
-	spaces = {
-		'~',
-	},
+  spaces = {
+    "~",
+  },
 }
 
 Plug.cmd = "Note"
