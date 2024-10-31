@@ -23,7 +23,13 @@ function Plug.on_attach() end
 
 local function parse_lsp_server(servers_config)
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
-  local lsp_servers = {}
+  local lsp_servers = {
+    function(server)
+      require("lspconfig")[server].setup({
+        capabilities = capabilities,
+      })
+    end,
+  }
   for _, server in pairs(servers_config) do
     server.opts.capabilities = capabilities
     lsp_servers[server.name] = require("lspconfig")[server.name].setup(server.opts)
