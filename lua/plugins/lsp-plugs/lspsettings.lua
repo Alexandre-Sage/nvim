@@ -1,8 +1,8 @@
 local Plug = { "neovim/nvim-lspconfig" }
 local helpers = require("helpers")
 local keymaps = require("user.keymaps.lsp-keymaps")
-local servers_configs = require("plugins.lsp-plugs.servers.servers")
-local default = require("plugins.lsp-plugs.commons.default-installed")
+local servers_configs = require("user.lsp.servers.servers")
+local default = require("user.lsp.default-installed")
 local on_attach = function(ev)
   vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
   helpers.parse_key_map(keymaps.attach(ev.buf))
