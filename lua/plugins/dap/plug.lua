@@ -1,4 +1,4 @@
-local keymaps = require("plugins.dap.commons.keymaps")
+local keymaps = require("user.keymaps.dap")
 local Plug = { "mfussenegger/nvim-dap" }
 Plug.dependencies = {
   { "niuiic/dap-utils.nvim" },

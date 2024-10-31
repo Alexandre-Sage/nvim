@@ -1,5 +1,4 @@
 return {
-
   {
     { "n" },
     "<leader>ff",

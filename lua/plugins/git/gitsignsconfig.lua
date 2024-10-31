@@ -26,7 +26,7 @@ Plug.opts = {
       end
     end)
 
-    require("helpers").parse_key_map(require("plugins.git.commons.keymaps"))
+    require("helpers").parse_key_map(require("user.keymaps.git"))
   end,
 }
 

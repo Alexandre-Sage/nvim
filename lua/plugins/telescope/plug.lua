@@ -53,7 +53,7 @@ function Plug.init()
   require("telescope").load_extension("fzf")
   require("telescope").load_extension("ui-select")
   require("telescope").load_extension("telescope-tabs")
-  require("helpers").parse_key_map(require("plugins.telescope.commons.keymaps"))
+  require("helpers").parse_key_map(require("user.keymaps.telescope"))
 end
 
 return Plug

@@ -1,6 +1,6 @@
 local Plug = { "neovim/nvim-lspconfig" }
 local helpers = require("helpers")
-local keymaps = require("plugins.lsp-plugs.commons.keymaps")
+local keymaps = require("user.keymaps.lsp-keymaps")
 local servers_configs = require("plugins.lsp-plugs.servers.servers")
 local default = require("plugins.lsp-plugs.commons.default-installed")
 local on_attach = function(ev)

@@ -1,5 +1,4 @@
 return {
-
   { { "n" }, "<leader>hs", require("gitsigns").stage_hunk, { desc = "Stage hunk" } },
   { { "n" }, "<leader>hr", require("gitsigns").reset_hunk, { desc = "Rest hunk" } },
   {

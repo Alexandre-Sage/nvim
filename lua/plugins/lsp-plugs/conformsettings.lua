@@ -19,16 +19,12 @@ Plug.opts = {
       { "sqlfluff" },
     },
   },
-  -- Set up format-on-save
   format_on_save = { timeout_ms = 500, lsp_fallback = true },
-  -- Customize formatters
   formatters = {
     prettier = {
-      -- command = "my_cmd",
       args = {
         "--config-precedence",
         "prefer-file",
-        --		"--trailing-comma", "all",
         "--no-semi",
         false,
         "--single-quote",
@@ -52,7 +48,6 @@ Plug.opts = {
 }
 Plug.keys = {
   {
-    -- Customize or remove this keymap to your liking
     "<leader>F",
     function()
       require("conform").format({ async = true, lsp_fallback = true })
