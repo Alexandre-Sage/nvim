@@ -1,6 +1,7 @@
 local Plug = { "neovim/nvim-lspconfig" }
 local helpers = require("helpers")
 local keymaps = require("plugins.lsp-plugs.commons.keymaps")
+local default = require("plugins.lsp-plugs.commons.default-installed")
 local on_attach = function(ev)
   vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
   helpers.parse_key_map(keymaps.attach(ev.buf))
@@ -33,24 +34,12 @@ function Plug.config()
     filetypes = { "Haskell", "haskell", "lhaskell", "cabal", "hs" },
   })
   require("mason-nvim-dap").setup({
-    ensure_installed = { "node-debug2-adapter", "js-debug-adapter" },
+    ensure_installed = default.debbuger,
     automatic_installation = true,
     handlers = nil,
   })
   require("mason-lspconfig").setup({
-    ensure_installed = {
-      "eslint",
-      "ts_ls",
-      "html",
-      "cssls",
-      "lua_ls",
-      "dockerls",
-      "rust_analyzer",
-      "yamlls",
-      "jsonls",
-      "sqlls",
-      "bashls",
-    },
+    ensure_installed = default.lsp,
     handlers = {
       -- See :help mason-lspconfig-dynamic-server-setup
       function(server)
