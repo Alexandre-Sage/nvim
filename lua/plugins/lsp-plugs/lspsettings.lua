@@ -43,11 +43,16 @@ function Plug.config()
     handlers = (function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lsp_servers = {
-        function(server)
-          require("lspconfig")[server].setup({
-            capabilities = capabilities,
-          })
-        end,
+        ["rust-analyzer"] = require("rust-tools").setup({
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+              },
+            },
+          },
+          capabilities,
+        }),
       }
       for _, server in pairs(servers_configs) do
         server.opts.capabilities = capabilities

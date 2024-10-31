@@ -1,4 +1,4 @@
-local s = {
+return {
   name = "rust_analyzer",
   opts = require("rust-tools").setup({
     settings = {
@@ -10,7 +10,6 @@ local s = {
     },
   }),
 }
-return s
 -- return function(lspconfig, capabilities)
 --   require("rust-tools").setup({
 --     settings = {
