@@ -1,6 +1,7 @@
 local Plug = { "neovim/nvim-lspconfig" }
 local helpers = require("helpers")
 local keymaps = require("plugins.lsp-plugs.commons.keymaps")
+local servers_configs = require("plugins.lsp-plugs.servers.servers")
 local default = require("plugins.lsp-plugs.commons.default-installed")
 local on_attach = function(ev)
   vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -21,22 +22,6 @@ Plug.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
 Plug.event = { "BufReadPre", "BufNewFile" }
 function Plug.on_attach() end
 
-local function parse_lsp_server(servers_config)
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
-  local lsp_servers = {
-    function(server)
-      require("lspconfig")[server].setup({
-        capabilities = capabilities,
-      })
-    end,
-  }
-  for _, server in pairs(servers_config) do
-    server.opts.capabilities = capabilities
-    lsp_servers[server.name] = require("lspconfig")[server.name].setup(server.opts)
-  end
-  return lsp_servers
-end
-
 function Plug.config()
   helpers.parse_key_map(keymaps.lspconfig)
   require("neodev").setup()
@@ -55,7 +40,21 @@ function Plug.config()
   })
   require("mason-lspconfig").setup({
     ensure_installed = default.lsp,
-    handlers = parse_lsp_server(require("plugins.lsp-plugs.servers.servers")),
+    handlers = (function()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local lsp_servers = {
+        function(server)
+          require("lspconfig")[server].setup({
+            capabilities = capabilities,
+          })
+        end,
+      }
+      for _, server in pairs(servers_configs) do
+        server.opts.capabilities = capabilities
+        lsp_servers[server.name] = require("lspconfig")[server.name].setup(server.opts)
+      end
+      return lsp_servers
+    end)(),
   })
 end
 return Plug
