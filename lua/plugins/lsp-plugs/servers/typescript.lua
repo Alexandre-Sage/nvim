@@ -41,9 +41,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = removed_ununsed_imports,
 })
 
-return function(lspconfig, lsp_capabilities)
-  lspconfig.ts_ls.setup({
-    capabilities = lsp_capabilities,
+return {
+  name = "ts_ls",
+  opts = {
     commands = {
       OrganizeImports = {
         organize_imports,
@@ -75,5 +75,5 @@ return function(lspconfig, lsp_capabilities)
         completeFunctionCalls = true,
       },
     },
-  })
-end
+  },
+}

@@ -1,5 +1,6 @@
-return function(lspconfig)
-  lspconfig.lua_ls.setup({
+return {
+  name = "lua_ls",
+  opts = {
     settings = {
       Lua = {
         diagnostics = {
@@ -7,5 +8,5 @@ return function(lspconfig)
         },
       },
     },
-  })
-end
+  },
+}

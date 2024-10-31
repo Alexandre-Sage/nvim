@@ -1,5 +1,6 @@
-return function(lspconfig, capabilities)
-  require("lspconfig").yamlls.setup({
+return {
+  name = "yamlls",
+  opts = {
     settings = {
       yaml = {
         schemaStore = {
@@ -14,13 +15,5 @@ return function(lspconfig, capabilities)
         },
       },
     },
-  })
-end
--- extra = {
---   {
---     fileMatch = ".artillery.yml",
---     description = "Local JSON schema",
---     name = "artillery.json",
---     url = "https://www.artillery.io/schema.json", -- or '/path/to/your/schema.json'
---   },
--- },
+  },
+}

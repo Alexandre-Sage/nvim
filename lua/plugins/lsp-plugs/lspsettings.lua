@@ -21,6 +21,16 @@ Plug.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
 Plug.event = { "BufReadPre", "BufNewFile" }
 function Plug.on_attach() end
 
+local function parse_lsp_server(servers_config)
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  local lsp_servers = {}
+  for _, server in pairs(servers_config) do
+    server.opts.capabilities = capabilities
+    lsp_servers[server.name] = require("lspconfig")[server.name].setup(server.opts)
+  end
+  return lsp_servers
+end
+
 function Plug.config()
   helpers.parse_key_map(keymaps.lspconfig)
   require("neodev").setup()
@@ -29,7 +39,6 @@ function Plug.config()
     callback = on_attach,
   })
   local lspconfig = require("lspconfig")
-  local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
   lspconfig.hls.setup({
     filetypes = { "Haskell", "haskell", "lhaskell", "cabal", "hs" },
   })
@@ -40,43 +49,7 @@ function Plug.config()
   })
   require("mason-lspconfig").setup({
     ensure_installed = default.lsp,
-    handlers = {
-      -- See :help mason-lspconfig-dynamic-server-setup
-      function(server)
-        -- See :help lspconfig-setup
-        lspconfig[server].setup({
-          capabilities = lsp_capabilities,
-        })
-      end,
-      ["ts_ls"] = function()
-        require("plugins.lsp-plugs.servers.typescript")(lspconfig, lsp_capabilities)
-      end,
-      ["rust_analyzer"] = function()
-        require("plugins.lsp-plugs.servers.rust")(lspconfig, lsp_capabilities)
-      end,
-      ["lua_ls"] = function()
-        require("plugins.lsp-plugs.servers.luals")(lspconfig)
-      end,
-      ["jsonls"] = function()
-        require("plugins.lsp-plugs.servers.json")(lspconfig, lsp_capabilities)
-      end,
-      ["yamlls"] = function()
-        require("plugins.lsp-plugs.servers.yaml")(lspconfig, lsp_capabilities)
-      end,
-      ["sqlls"] = function()
-        require("plugins.lsp-plugs.servers.sql")(lspconfig)
-      end,
-      ["bashls"] = function()
-        lspconfig.bashls.setup({
-          cmd = { "bash-language-server", "start" },
-          filetype = { "sh", "zsh", "curl" },
-        })
-      end,
-      -- ["hls"] = function()
-      --   require("plugins.lsp-plugs.servers.haskell")(lspconfig, lsp_capabilities)
-      -- end,
-    },
+    handlers = parse_lsp_server(require("plugins.lsp-plugs.servers.servers")),
   })
 end
-
 return Plug

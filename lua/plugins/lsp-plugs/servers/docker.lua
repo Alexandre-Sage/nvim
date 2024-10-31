@@ -1,3 +1,1 @@
-return function(lspconfig, capabilities)
-	lspconfig.dockerls.setup {}
-end
+return { name = "dockerls", opts = {} }
