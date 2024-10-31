@@ -49,7 +49,7 @@ function Plug.config()
     dapui.open()
   end
   for _, sign in pairs(require("plugins.dap.commons.signs")) do
-    vim.fn.sign_define(sign.name, { text = "" })
+    vim.fn.sign_define(sign.name, sign.config)
   end
 end
 
