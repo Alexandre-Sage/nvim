@@ -1,3 +1,4 @@
+local helpers = require("helpers")
 vim.g.mapleader = ","
 
 local shada_dir = os.getenv("HOME") .. "/.local/share/nvim/shada"
@@ -28,12 +29,11 @@ local load = function(mod)
   package.loaded[mod] = nil
   require(mod)
 end
-
+helpers.parse_key_map(require("user.keymaps.neovim"))
 -- vimgrep
 -- cfdo %s//gj
 require("user.plugins")
 require("user.commands")
-require("user.customkeybind")
 require("user.customcommands")
 require("user.config")
 require("plugins.telescope.plugins.git-pickers.__git_dff_picker")

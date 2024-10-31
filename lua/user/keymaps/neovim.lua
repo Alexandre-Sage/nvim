@@ -1,7 +1,5 @@
 local normal_cmd = require("helpers").normal_cmd
-local parse_key_map = require("helpers").parse_key_map
-
-local keymaps = {
+return {
   { { "n" }, "<C-j>", "<C-w>j", {} },
   { { "n" }, "<C-k>", "<C-w>k", {} },
   { { "n" }, "<C-l>", "<C-w>l", {} },
@@ -38,5 +36,3 @@ local keymaps = {
   { { "n" }, "<leader>dvo", normal_cmd("DiffviewOpen"), { desc = "Open diff view" } },
   { { "n" }, "<leader>dvc", normal_cmd("DiffviewClose"), { desc = "Close diff view" } },
 }
-
-parse_key_map(keymaps)

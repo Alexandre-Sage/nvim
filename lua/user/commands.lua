@@ -1,6 +1,4 @@
 vim.opt.termguicolors = true
---    set tabstop=2
---    set softtabstop=-1
 
 vim.cmd([[
 	autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni

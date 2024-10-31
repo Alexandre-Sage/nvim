@@ -35,14 +35,11 @@ lazy.setup({
 
     { import = "plugins" },
     { import = "plugins.lsp-plugs" },
-    -- { import = "plugins.debugger" },
     { import = "plugins.utils" },
     { import = "plugins.ui" },
     { import = "plugins.git" },
     { import = "plugins.telescope.plug" },
     { import = "plugins.dap" },
-    --    { import = "plugins.telescope.ui" },
     { import = "plugins.treesitter" },
-    --		{ import = "plugins.dap" },
   },
 })
