@@ -8,4 +8,5 @@ vim.cmd([[
     	set shiftwidth=0
     	set noswapfile
     	set relativenumber
+	set showtabline=0
 ]])

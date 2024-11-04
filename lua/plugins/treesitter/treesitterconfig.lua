@@ -58,8 +58,9 @@ Plug.opts = {
 }
 
 function Plug.config(name, opts)
-  require("nvim-dap-repl-highlights").setup()
   require("nvim-treesitter.configs").setup(opts)
+  require("nvim-dap-repl-highlights").setup()
+  vim.treesitter.language.register("bash", "zsh")
 end
 
 return Plug

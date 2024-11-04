@@ -1,6 +1,6 @@
 local Plug = { "hrsh7th/nvim-cmp" }
-
 Plug.dependencies = {
+  { "SergioRibera/cmp-dotenv" },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-nvim-lsp" },
@@ -49,6 +49,7 @@ function Plug.config()
       { name = "luasnip" },
       { name = "path" },
       { name = "vim-dadbod-completion" },
+      { name = "dotenv" },
       -- { name = "ts_repl" },
     },
     view = {

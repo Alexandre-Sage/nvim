@@ -6,4 +6,5 @@ return {
   require("user.lsp.servers.typescript"),
   require("user.lsp.servers.vimls"),
   require("user.lsp.servers.yaml"),
+  require("user.lsp.servers.bashls"),
 }
