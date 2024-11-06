@@ -20,7 +20,7 @@ return {
     { "<leader>d", "", desc = "+debug", mode = { "n", "v" } },
 
     {
-      "<leader>fdb",
+      "<leader>fDb",
       function()
         require("dap-utils").search_breakpoints({})
       end,
