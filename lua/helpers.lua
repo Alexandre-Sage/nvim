@@ -18,8 +18,7 @@ local function concat_tables(...)
   local current_index = 1
 
   for _, tbl in ipairs({ ... }) do
-    table.move(tbl, 1, #tbl, current_index, result)
-    current_index = current_index + #tbl
+    table.insert(result, tbl)
   end
 
   return result
