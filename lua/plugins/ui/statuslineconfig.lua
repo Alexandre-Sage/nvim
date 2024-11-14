@@ -4,10 +4,15 @@ local function lsp_servers()
     return "No LSP"
   end
   local names = {}
+  local seen = {} -- A table to track already seen clients
+
   for _, client in ipairs(clients) do
-    table.insert(names, client.name)
+    if not seen[client.name] then
+      table.insert(names, client.name) -- Add unique client name
+      seen[client.name] = true -- Mark this name as seen
+    end
   end
-  return table.concat(names, ", ")
+  return table.concat(names, " ")
 end
 local colors = {
   blue = "#80a0ff",
