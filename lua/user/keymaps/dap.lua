@@ -117,7 +117,7 @@ return {
       desc = "Step Over",
     },
     {
-      "<leader>dp",
+      "<leader>dP",
       function()
         require("dap").pause()
       end,

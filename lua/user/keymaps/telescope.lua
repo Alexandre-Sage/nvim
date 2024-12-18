@@ -6,7 +6,7 @@ return {
       require("telescope.builtin").find_files({
         no_ignore = true,
         hidden = true,
-        file_ignore_patterns = { ".git", "node_modules", "dist", "build", "target" },
+        file_ignore_patterns = { "*/.git/*", "node_modules", "dist", "build", "target" },
       })
     end,
     { noremap = true, desc = "Find file in root workspace" },

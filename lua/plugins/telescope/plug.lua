@@ -31,6 +31,7 @@ Plug.opts = {
   },
   defaults = {
     path_display = { truncate = 2 }, --{ "filename_first", "shorten" },
+    no_ignore = true,
     layout_config = {
       width = 0.9,
     },

@@ -36,7 +36,7 @@ return {
         type = "firefox",
         request = "launch",
         reAttach = true,
-        url = "http://localhost:3000",
+        url = "http://localhost:8080",
         webRoot = "${workspaceFolder}",
         firefoxExecutable = "/usr/bin/firefox",
         sourceMaps = true,
@@ -45,17 +45,18 @@ return {
         name = "Attach to Firefox",
         type = "firefox",
         request = "attach",
-        url = "http://localhost:3000", -- Adjust if your app runs on a different port
+        url = "http://localhost:8080", -- Adjust if your app runs on a different port
         webRoot = "${workspaceFolder}",
         port = 9222, -- Default port for Firefox remote debugging
         sourceMaps = true,
         trace = true, -- Optional: enables tracing for more detailed logs
       },
+
       {
         name = "Debug with Chromium",
         type = "pwa-chrome", -- Use 'pwa-chrome' for Chromium
         request = "launch",
-        url = "http://localhost:3000", -- Adjust if your app runs on a different port
+        url = "http://localhost:8080", -- Adjust if your app runs on a different port
         webRoot = "${workspaceFolder}",
         sourceMaps = true,
         trace = true, -- Optional: enables tracing for more detailed logs

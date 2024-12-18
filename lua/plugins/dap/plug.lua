@@ -1,6 +1,14 @@
 local keymaps = require("user.keymaps.dap")
 local Plug = { "mfussenegger/nvim-dap" }
 Plug.dependencies = {
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    opts = {
+      debugger_path = "/home/adsoftware/vscode-js-debug",
+      adapters = { "pwa-chrome", "node-terminal", "pwa-extensionHost" },
+    },
+    -- build = "git clone https://github.com/mxsdev/nvim-dap-vscode-js " .. os.getenv("HOME") .. "/.local/share/nvim/lazy",
+  },
   { "niuiic/dap-utils.nvim" },
   { "LiadOz/nvim-dap-repl-highlights" },
   { "theHamsta/nvim-dap-virtual-text" },

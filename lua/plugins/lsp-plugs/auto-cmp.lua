@@ -46,7 +46,7 @@ function Plug.config()
       end,
     },
     sources = {
-      { name = "nvim_lsp" },
+      { name = "nvim_lsp", priority = 9 },
       { name = "buffer" },
       { name = "luasnip" },
       { name = "path" },
@@ -102,9 +102,9 @@ function Plug.config()
       -- }),
     }),
     sources = cmp.config.sources({
-      { name = "path" },
-      { name = "dotenv" },
-      { name = "buffer" },
+      { name = "path", priority = 1 },
+      { name = "dotenv", priority = 3 },
+      { name = "buffer", priority = 2 },
     }, {
       {
         name = "cmdline",
