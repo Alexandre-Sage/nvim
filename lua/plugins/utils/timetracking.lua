@@ -4,6 +4,7 @@ local Plug = {
   dependencies = {
     "3rd/sqlite.nvim",
   },
+  enabled = false,
 }
 
 Plug.opts = {
