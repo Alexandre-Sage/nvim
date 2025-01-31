@@ -1,4 +1,5 @@
 return {
+  require("user.lsp.servers.rust"),
   require("user.lsp.servers.docker"),
   require("user.lsp.servers.json"),
   require("user.lsp.servers.luals"),

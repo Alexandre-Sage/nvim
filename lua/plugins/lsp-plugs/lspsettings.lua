@@ -24,15 +24,15 @@ function Plug.on_attach() end
 
 function Plug.config()
   helpers.parse_key_map(keymaps.lspconfig)
-  require("neodev").setup()
+  -- require("neodev").setup()
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = on_attach,
   })
   local lspconfig = require("lspconfig")
-  lspconfig.hls.setup({
-    filetypes = { "Haskell", "haskell", "lhaskell", "cabal", "hs" },
-  })
+  -- lspconfig.hls.setup({
+  --   filetypes = { "Haskell", "haskell", "lhaskell", "cabal", "hs" },
+  -- })
   require("mason-nvim-dap").setup({
     ensure_installed = default.debbuger,
     automatic_installation = true,
@@ -40,19 +40,20 @@ function Plug.config()
   })
   require("mason-lspconfig").setup({
     ensure_installed = default.lsp,
+    automatic_installation = true,
     handlers = (function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lsp_servers = {
-        ["rust-analyzer"] = require("rust-tools").setup({
-          settings = {
-            ["rust-analyzer"] = {
-              cargo = {
-                allFeatures = true,
-              },
-            },
-          },
-          capabilities,
-        }),
+        -- ["rust-analyzer"] = require("rust-tools").setup({
+        --   settings = {
+        --     ["rust-analyzer"] = {
+        --       cargo = {
+        --         allFeatures = true,
+        --       },
+        --     },
+        --   },
+        --   capabilities,
+        -- }),
       }
       for _, server in pairs(servers_configs) do
         server.opts.capabilities = capabilities

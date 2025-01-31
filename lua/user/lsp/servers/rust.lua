@@ -1,6 +1,6 @@
 return {
   name = "rust_analyzer",
-  opts = require("rust-tools").setup({
+  opts = {
     settings = {
       ["rust-analyzer"] = {
         cargo = {
@@ -8,7 +8,7 @@ return {
         },
       },
     },
-  }),
+  },
 }
 -- return function(lspconfig, capabilities)
 --   require("rust-tools").setup({
