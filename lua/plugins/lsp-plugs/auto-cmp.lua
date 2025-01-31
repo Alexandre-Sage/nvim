@@ -52,6 +52,7 @@ function Plug.config()
       { name = "path" },
       { name = "vim-dadbod-completion" },
       { name = "dotenv" },
+      { name = "crates" },
       -- { name = "ts_repl" },
     },
     view = {

@@ -29,7 +29,32 @@ local Plugs = {
   { lazy = true, "ofirgall/ofirkai.nvim" },
   { lazy = true, "tiagovla/tokyodark.nvim" },
   { lazy = true, "kevinm6/kurayami.nvim" },
-  { "m4xshen/hardtime.nvim", dependencies = { "MunifTanjim/nui.nvim" }, opts = { disable_mouse = false } },
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {
+      disable_mouse = false,
+      disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "aerial" },
+    },
+  },
+  {
+    "saecki/crates.nvim",
+    tag = "stable",
+    config = function()
+      require("crates").setup({
+        completion = {
+          crates = {
+            enabled = true, -- disabled by default
+            max_results = 8, -- The maximum number of search results to display
+            min_chars = 3, -- The minimum number of charaters to type before completions begin appearing
+          },
+          cmp = {
+            enabled = true,
+          },
+        },
+      })
+    end,
+  },
 }
 
 return Plugs
