@@ -22,8 +22,15 @@ Plug.opts = {
     wintypes = "special",
   },
   close_automatic_events = {},
-  -- open_automatic = true,
+  open_automatic = true,
+  highlight_on_hover = true,
+  autojump = true,
   lazy = true,
+  lsp = {
+    diagnostics_trigger_update = true,
+    update_when_errors = true,
+    update_delay = 300,
+  },
 }
 
 function Plug.init()
