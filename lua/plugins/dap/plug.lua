@@ -47,7 +47,7 @@ function Plug.config()
   local dap = require("dap")
   local dapui = require("dapui")
 
-  for _, value in pairs(require("plugins.dap.adapters.js-ts")) do
+  for _, value in pairs(require("plugins.dap.adapters.index")) do
     dap.adapters[value.name] = value.config
   end
   for _, value in pairs(require("plugins.dap.config.index")) do

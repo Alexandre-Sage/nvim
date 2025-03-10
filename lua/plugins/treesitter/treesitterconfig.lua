@@ -24,6 +24,8 @@ Plug.opts = {
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["ao"] = "@block.outer", -- Use this for objects
+        ["io"] = "@block.inner", -- Use this for inner objects
       },
     },
   },

@@ -17,8 +17,8 @@ Plug.opts = {
     -- Ignore unlisted buffers. See :help buflisted
     unlisted_buffers = true,
     diff_windows = true,
-    filetypes = { "unfocus", "switch_buffer", "unsupported" },
-    buftypes = "special",
+    filetypes = { "unfocus", "switch_buffer", "unsupported", "curl" },
+    buftypes = { "special", "curl" },
     wintypes = "special",
   },
   close_automatic_events = {},
