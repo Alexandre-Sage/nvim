@@ -22,9 +22,32 @@ return {
           return target_dir .. "/debug/" .. target_name
         end,
         cwd = "${workspaceFolder}",
-        stopOnEntry = false,
+        -- stopOnEntry = false,
+        terminal = "integrated",
         args = {},
-        runInTerminal = false,
+        -- runInTerminal = false,
+        console = "integratedTerminal",
+        env = function()
+          -- Load .env file into a table
+          local env = {}
+          local f = io.open(".env", "r")
+          if f then
+            for line in f:lines() do
+              -- Skip comments and empty lines
+              if not line:match("^%s*#") and line:match("%S") then
+                local key, value = line:match("^%s*(%S+)%s*=%s*(.+)%s*$")
+                if key and value then
+                  -- Remove surrounding quotes if present (matching Rust's dotenv behavior)
+                  value = value:gsub('^"(.*)"$', "%1")
+                  value = value:gsub("^'(.*)'$", "%1")
+                  env[key] = value
+                end
+              end
+            end
+            f:close()
+          end
+          return env
+        end,
       },
     },
   },
