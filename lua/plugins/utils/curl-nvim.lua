@@ -19,32 +19,52 @@ Plug.opts = {
 --     vim.wo.wrap = true
 --   end,
 -- })
+--
+Plug.tile_response_to_curl_tab = function()
+  local curl_tab_id = nil
+  local curl_buf_id = nil
+
+  -- Function to ensure curl tab exists or create it
+  local function ensure_curl_tab()
+    if curl_tab_id and vim.api.nvim_tabpage_is_valid(curl_tab_id) then
+      return curl_tab_id, curl_buf_id
+    else
+      -- Create a new tab for curl responses
+      vim.cmd("tabnew")
+      curl_tab_id = vim.api.nvim_get_current_tabpage()
+      curl_buf_id = vim.api.nvim_get_current_buf()
+      vim.api.nvim_buf_set_name(curl_buf_id, "curl-responses")
+      return curl_tab_id, curl_buf_id
+    end
+  end
+
+  -- Override the curl.nvim display function
+  local original_display_fn = vim.g.curl_nvim_display_fn or function() end
+  vim.g.curl_nvim_display_fn = function(response, request)
+    -- Save current tab
+    local current_tab = vim.api.nvim_get_current_tabpage()
+
+    -- Ensure curl tab exists and switch to it
+    local curl_tab, curl_buf = ensure_curl_tab()
+    vim.api.nvim_set_current_tabpage(curl_tab)
+
+    -- Call original display function or use default behavior
+    if type(original_display_fn) == "function" then
+      original_display_fn(response, request)
+    else
+      -- Default display behavior if no original function
+      local lines = vim.split(response, "\n")
+      vim.api.nvim_buf_set_lines(curl_buf, 0, -1, false, lines)
+    end
+
+    -- Optionally return to the original tab if desired
+    -- Uncomment this if you want to go back to where you were
+    -- vim.api.nvim_set_current_tabpage(current_tab)
+  end
+end
 function Plug.init()
-  local curl = require("curl")
-  vim.keymap.set("n", "<leader>cc", function()
-    curl.open_curl_tab()
-  end, { desc = "Open a curl tab scoped to the current working directory" })
-
-  vim.keymap.set("n", "<leader>co", function()
-    curl.open_global_tab()
-  end, { desc = "Open a curl tab with gloabl scope" })
-
-  -- These commands will prompt you for a name for your collection
-  vim.keymap.set("n", "<leader>csc", function()
-    curl.create_scoped_collection()
-  end, { desc = "Create or open a collection with a name from user input" })
-
-  vim.keymap.set("n", "<leader>cgc", function()
-    curl.create_global_collection()
-  end, { desc = "Create or open a global collection with a name from user input" })
-
-  vim.keymap.set("n", "<leader>fsc", function()
-    curl.pick_scoped_collection()
-  end, { desc = "Choose a scoped collection and open it" })
-
-  vim.keymap.set("n", "<leader>fgc", function()
-    curl.pick_global_collection()
-  end, { desc = "Choose a global collection and open it" })
+  Plug.tile_response_to_curl_tab()
+  require("helpers").parse_key_map(require("user.keymaps.curl"))
 end
 
 return Plug
