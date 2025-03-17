@@ -65,6 +65,18 @@ end
 function Plug.init()
   Plug.tile_response_to_curl_tab()
   require("helpers").parse_key_map(require("user.keymaps.curl"))
+
+  vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "Curl output_*", -- Pattern matching all Curl output buffers
+    callback = function()
+      -- Clear error highlighting for this buffer only
+      -- vim.api.nvim_buf_set_option(0, "syntax", "OFF") -- Optional: disable syntax completely
+
+      vim.cmd("hi! link Error NONE")
+      vim.cmd("hi! link @Error NONE")
+      vim.cmd("hi! link DiagnosticError NONE")
+    end,
+  })
 end
 
 return Plug
