@@ -6,6 +6,7 @@ Plug.dependencies = {
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   { "nvim-telescope/telescope-ui-select.nvim" },
   { "LukasPietzschmann/telescope-tabs" },
+  { "Myzel394/jsonfly.nvim" },
 }
 
 Plug.cmd = { "Telescope" }
@@ -54,6 +55,7 @@ function Plug.init()
   require("telescope").load_extension("fzf")
   require("telescope").load_extension("ui-select")
   require("telescope").load_extension("telescope-tabs")
+  require("telescope").load_extension("jsonfly")
   require("helpers").parse_key_map(require("user.keymaps.telescope"))
 end
 

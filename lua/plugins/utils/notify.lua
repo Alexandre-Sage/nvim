@@ -14,8 +14,9 @@ function Plug.init()
       local file_name = vim.fn.expand("%:t")
       vim.notify("Saving " .. file_name .. " ✓", vim.log.levels.INFO, {
         title = file_name,
-        timeout = 2000,
+        timeout = 1000,
         icon = "󰳿",
+        top_down = true,
       })
     end,
   })
