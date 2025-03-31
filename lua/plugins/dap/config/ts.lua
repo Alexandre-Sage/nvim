@@ -17,14 +17,14 @@ return {
           local cwd = vim.fn.getcwd() -- Get the current working directory
           return cwd .. "/.env" -- Assuming each project has its own .env file
         end,
-        runtimeArgs = {
-          -- "--inspect-brk",
-        },
-        -- outFiles = {
-        --   "${workspaceFolder}/dist/**/*.js",
-        --   "${workspaceFolder}/build/**/*.js",
-        -- },
+        runtimeArgs = {},
         console = "integratedTerminal",
+      },
+      {
+        type = "pwa-node",
+        request = "attach",
+        name = "Attach process",
+        processId = require("dap.utils").pick_process,
       },
     },
   },
@@ -71,17 +71,6 @@ return {
         sourceMaps = true,
         protocol = "inspector",
       },
-      -- {
-      --   type = "pwa-chrome",
-      --   name = "Chrome",
-      --   request = "attach",
-      --   program = "${file}",
-      --   cwd = vim.fn.getcwd(),
-      --   sourceMaps = true,
-      --   protocol = "inspector",
-      --   port = 9222,
-      --   webRoot = "${workspaceFolder}",
-      -- },
     },
   },
 }

@@ -62,6 +62,7 @@ return {
   },
   { { "n", "v" }, "<leader>fr", require("telescope.builtin").lsp_references, { noremap = true } },
   { { "n", "v" }, "<leader>fd", require("telescope.builtin").lsp_definitions, { noremap = true } },
+  { { "n" }, "<leader>ic", require("telescope.builtin").lsp_incoming_calls, { noremap = true } },
   { { "n" }, "<leader>fm", require("telescope.builtin").marks, { noremap = true } },
   { { "n" }, "<leader>Rr", require("telescope.builtin").registers, { noremap = true } },
   {

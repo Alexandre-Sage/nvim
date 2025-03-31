@@ -21,7 +21,10 @@ Plug.opts = {
     buftypes = { "special", "curl" },
     wintypes = "special",
   },
-  close_automatic_events = {},
+  show_guides = true,
+  close_automatic_events = {
+    "unsupported",
+  },
   open_automatic = true,
   highlight_on_hover = true,
   autojump = true,

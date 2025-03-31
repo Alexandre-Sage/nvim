@@ -121,12 +121,39 @@ Plug.opts = {
         icon_hl = "Title",
         desc = "Curl",
         desc_hl = "String",
+        -- key = "c",
+        -- 	keymap = 'SPC f f',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        --        action = [[
+        -- 	CurlOpen
+        -- ]],
+      },
+      {
+        icon = "  󱞪  ",
+        icon_hl = "Title",
+        desc = "Current project",
+        desc_hl = "String",
         key = "c",
         -- 	keymap = 'SPC f f',
         key_hl = "Number",
         key_format = "%s", -- remove default surrounding `[]`
         action = [[ 
 		CurlOpen
+	]],
+      },
+      {
+        icon = "  󱞪  ",
+        icon_hl = "Title",
+        desc = "Open global collection",
+        desc_hl = "String",
+        key = "cg",
+        -- 	keymap = 'SPC f f',
+        key_hl = "Number",
+        key_format = "%s", -- remove default surrounding `[]`
+        action = [[ 
+lua	      require("curl").pick_global_collection()
+
 	]],
       },
     },

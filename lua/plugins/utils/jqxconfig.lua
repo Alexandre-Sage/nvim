@@ -12,14 +12,14 @@ function Plug.init()
   jqx.show_legend = true -- show key queried as first line in the jqx floating window
   jqx.use_quickfix = false -- if you prefer the location list
   vim.api.nvim_clear_autocmds({ group = jqx_group })
-  vim.api.nvim_create_autocmd("BufWinEnter", {
-    pattern = { "*.json", "*.yaml" },
-    desc = "preview json and yaml files on open",
-    group = jqx_group,
-    callback = function()
-      vim.cmd.JqxList()
-    end,
-  })
+  -- vim.api.nvim_create_autocmd("BufWinEnter", {
+  --   pattern = { "*.json", "*.yaml" },
+  --   desc = "preview json and yaml files on open",
+  --   group = jqx_group,
+  --   callback = function()
+  --     vim.cmd.JqxList()
+  --   end,
+  -- })
 end
 
 return Plug

@@ -1,12 +1,12 @@
-local Plug = { "LunarVim/bigfile.nvim", enabled = false }
+local Plug = { "LunarVim/bigfile.nvim", enabled = true }
 Plug.features = {
-  "indent_blankline",
+  -- "indent_blankline",
   -- "illuminate",
-  "lsp",
-  -- "treesitter",
+  -- "lsp",
+  "treesitter",
   "syntax",
-  "matchparen",
-  "vimopts",
+  -- "matchparen",
+  -- "vimopts",
   -- "filetype",
 }
 return Plug
