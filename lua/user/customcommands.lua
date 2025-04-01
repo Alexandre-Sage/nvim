@@ -53,3 +53,27 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
   desc = "Re-enable autoformat-on-save",
 })
+vim.api.nvim_create_user_command("MkNeorgWorkSpace", function()
+  local home_dir = os.getenv("HOME")
+  local neorg_wp_folder = "neorg-workspace"
+  -- Prompt the user for input
+  vim.ui.input({
+    prompt = "Create neorg workspace: ",
+    default = "", -- Optional default value
+  }, function(input)
+    -- Check if user provided input and didn't cancel
+    if input and input ~= "" then
+      -- Create the directory
+      local path = home_dir .. "/" .. neorg_wp_folder .. "/" .. input
+      local success = vim.fn.mkdir(path, "p")
+      -- Show a notification based on success/failure
+      if success == 1 then
+        vim.cmd("edit " .. path .. "/" .. "index.norg")
+        vim.cmd("write")
+        vim.notify("Neorg workspace created: " .. input, vim.log.levels.INFO)
+      else
+        vim.notify("Failed to create Neorg workspace: " .. input, vim.log.levels.ERROR)
+      end
+    end
+  end)
+end, {})

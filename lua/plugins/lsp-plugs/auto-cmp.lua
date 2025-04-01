@@ -76,6 +76,7 @@ function Plug.config()
       }),
     }),
   })
+  -- cmp.setup.filetype({ "norg" }, { sources = { name = "neorg" } })
   cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
     sources = {
       { name = "dap" },
@@ -89,7 +90,7 @@ function Plug.config()
     signs = function(namespace, bufnr)
       return vim.b[bufnr].show_signs == true
     end,
-    update_in_insert = false,
+    update_in_insert = true,
   })
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline({ -- ["<C-o>"] = cmp.mapping.scroll_docs(-4), -- Up
