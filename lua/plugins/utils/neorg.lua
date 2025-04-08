@@ -27,6 +27,7 @@ require("neorg").setup({
         default_workspace = "neorg",
         workspaces = {
           neorg = "~/neorg",
+          shared = "~/shared/neorg",
           -- default = { "~/neorg" },
         },
       },

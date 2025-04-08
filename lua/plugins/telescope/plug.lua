@@ -1,5 +1,5 @@
 local Plug = { "nvim-telescope/telescope.nvim" }
-Plug.branch = "0.1.x"
+-- Plug.branch = "0.1.x"
 
 Plug.dependencies = {
   { "nvim-lua/plenary.nvim" },
@@ -43,10 +43,18 @@ Plug.opts = {
     },
     mappings = {
       n = {
-        ["<C-d>"] = require("telescope.actions").delete_buffer,
+        ["<C-x>"] = require("telescope.actions").delete_buffer,
+        ["C-d"] = require("telescope.actions").preview_scrolling_down,
+        ["C-u"] = require("telescope.actions").preview_scrolling_up,
+        ["<C-s>"] = require("telescope.actions").add_selection,
+        -- ["C-s"] = require("telescope.actions.set").select,
+        ["<C-l>"] = require("telescope.actions").send_selected_to_loclist,
+        -- ["C-a"] = require("telescope.actions").send_to_qflist,
+        -- ["C-s"] = require("telescope.actions").toggle_selection,
       },
       i = {
-        ["<C-d>"] = require("telescope.actions").delete_buffer,
+        ["<C-x>"] = require("telescope.actions").delete_buffer,
+        -- ["C-q"] = require("telescope.actions").smart_add_to_qflist,
       },
     },
   },

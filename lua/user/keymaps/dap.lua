@@ -43,6 +43,16 @@ return {
       "<leader>db",
       function()
         require("dap").toggle_breakpoint()
+        local filename = vim.api.nvim_buf_get_name(0)
+        local line_num = vim.api.nvim_win_get_cursor(0)[1]
+        vim.fn.setloclist(0, {
+          {
+            filename = filename,
+            lnum = line_num,
+            col = vim.api.nvim_win_get_cursor(0)[2] + 1,
+            text = "Breakpoint " .. filename .. " " .. line_num,
+          },
+        }, "a")
       end,
       desc = "Toggle Breakpoint",
     },

@@ -38,4 +38,16 @@ return {
   { { "n" }, "<leader>dvc", normal_cmd("DiffviewClose"), { desc = "Close diff view" } },
   -- Neorg
   { { "n" }, "<leader>Ng", normal_cmd("Neorg"), { desc = "Neorg commands" } },
+  -- Quick fix
+  { { "n" }, "<space>co", normal_cmd("copen"), { desc = "Open quick fix list" } },
+  { { "n" }, "<space>cc", normal_cmd("cclose"), { desc = "Close quick fix list" } },
+  { { "n" }, "<space>cn", normal_cmd("cnext"), { desc = "Go to next quick fix" } },
+  { { "n" }, "<space>cp", normal_cmd("cprev"), { desc = "Go to prev quick fix" } },
+  -- Loc list
+  {
+    { "n" },
+    "<space>la",
+    require("helpers").set_current_cursor_to_loclsit,
+    { desc = "Set current cursor pos to loc list" },
+  },
 }

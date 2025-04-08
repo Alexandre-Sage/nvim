@@ -1,5 +1,6 @@
 local create_command = vim.api.nvim_create_user_command
 local crate_buff_command = vim.api.nvim_buf_create_user_command
+-- :execute "laddexpr '" . bufname() . ":" . line('.') . ":" . col('.') . ":Cursor position entry'"
 crate_buff_command(0, "Upper", function(opts)
   print(string.upper(opts.fargs[1]))
 end, { nargs = 1 })
@@ -9,7 +10,20 @@ create_command("Rr", function(opt)
 		noh
 	]])
 end, {})
-
+vim.keymap.set("n", "<leader>sl", function()
+  vim.fn.setloclist(
+    0,
+    {
+      {
+        filename = vim.api.nvim_buf_get_name(0),
+        lnum = vim.api.nvim_win_get_cursor(0)[1],
+        col = vim.api.nvim_win_get_cursor(0)[2] + 1,
+        text = "Cursor position entry",
+      },
+    },
+    "a"
+  )
+end, { noremap = true, silent = true })
 create_command("ToggleTermV", function(opt)
   vim.cmd([[
 		ToggleTerm direction=vertical size=75

@@ -31,6 +31,20 @@ local function parse_key_map(keymaps)
     vim.keymap.set(keymap[1], keymap[2], keymap[3], keymap[4])
   end
 end
+
+local function set_current_cursor_to_loclsit()
+  local filename = vim.api.nvim_buf_get_name(0)
+  local line_num = vim.api.nvim_win_get_cursor(0)[1]
+  vim.fn.setloclist(0, {
+    {
+      filename = filename,
+      lnum = line_num,
+      col = vim.api.nvim_win_get_cursor(0)[2] + 1,
+      text = "Saved location " .. filename .. " " .. line_num,
+    },
+  }, "a")
+end
+
 return {
   create_user_command = create_user_command,
   map_key = vim.keymap.set,
@@ -38,4 +52,5 @@ return {
   log_to_file = log_to_file,
   concat_tables = concat_tables,
   parse_key_map = parse_key_map,
+  set_current_cursor_to_loclsit = set_current_cursor_to_loclsit,
 }
