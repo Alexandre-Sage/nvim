@@ -57,9 +57,9 @@ function Plug.config()
       }
       for _, server in pairs(servers_configs) do
         server.opts.capabilities = capabilities
-        if server.opts.root_dir ~= nil then
-          server.opts.root_dir = require("lspconfig.util").root_pattern(unpack(server.opts.root_dir))
-        end
+        -- if server.opts.root_dir ~= nil then
+        --   server.opts.root_dir = require("lspconfig.util").root_pattern(unpack(server.opts.root_dir))
+        -- end
         lsp_servers[server.name] = require("lspconfig")[server.name].setup(server.opts)
       end
       return lsp_servers

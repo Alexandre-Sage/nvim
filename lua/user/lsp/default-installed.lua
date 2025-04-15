@@ -1,5 +1,5 @@
 return {
-  debbuger = { "node-debug2-adapter", "js-debug-adapter", "firefox-debug-adapter", "chrome-debug-adapter" },
+  debbuger = { "node-debug2-adapter", "js-debug-adapter", "firefox-debug-adapter", "chrome-debug-adapter", "codelldb" },
   lsp = {
     "eslint",
     "ts_ls",
