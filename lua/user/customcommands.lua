@@ -11,18 +11,14 @@ create_command("Rr", function(opt)
 	]])
 end, {})
 vim.keymap.set("n", "<leader>sl", function()
-  vim.fn.setloclist(
-    0,
+  vim.fn.setloclist(0, {
     {
-      {
-        filename = vim.api.nvim_buf_get_name(0),
-        lnum = vim.api.nvim_win_get_cursor(0)[1],
-        col = vim.api.nvim_win_get_cursor(0)[2] + 1,
-        text = "Cursor position entry",
-      },
+      filename = vim.api.nvim_buf_get_name(0),
+      lnum = vim.api.nvim_win_get_cursor(0)[1],
+      col = vim.api.nvim_win_get_cursor(0)[2] + 1,
+      text = "Cursor position entry",
     },
-    "a"
-  )
+  }, "a")
 end, { noremap = true, silent = true })
 create_command("ToggleTermV", function(opt)
   vim.cmd([[

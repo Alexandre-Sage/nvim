@@ -49,7 +49,7 @@ Plug.opts = {
         ["<C-s>"] = require("telescope.actions").add_selection,
         -- ["C-s"] = require("telescope.actions.set").select,
         ["<C-l>"] = require("telescope.actions").send_selected_to_loclist,
-        -- ["C-a"] = require("telescope.actions").send_to_qflist,
+        ["<C-a>"] = require("telescope.actions").send_selected_to_qflist,
         -- ["C-s"] = require("telescope.actions").toggle_selection,
       },
       i = {

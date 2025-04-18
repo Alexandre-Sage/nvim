@@ -13,6 +13,13 @@ Plug.config = true
 --     },
 --   },
 -- }
+
+vim.api.nvim_create_autocmd("Filetype", {
+  pattern = "norg",
+  callback = function()
+    vim.keymap.set("n", "<CR>", "<Plug>(neorg.esupports.hop.hop-link)", { buffer = true })
+  end,
+})
 require("neorg").setup({
   load = {
     ["core.defaults"] = {},

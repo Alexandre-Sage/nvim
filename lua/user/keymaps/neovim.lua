@@ -50,4 +50,8 @@ return {
     require("helpers").set_current_cursor_to_loclsit,
     { desc = "Set current cursor pos to loc list" },
   },
+  { { "n" }, "<space>lo", normal_cmd("lopen"), { desc = "Open location fix list" } },
+  { { "n" }, "<space>lc", normal_cmd("lclose"), { desc = "Close location fix list" } },
+  { { "n" }, "<space>ln", normal_cmd("lnext"), { desc = "Go to next location fix" } },
+  { { "n" }, "<space>lp", normal_cmd("lprev"), { desc = "Go to prev location fix" } },
 }
