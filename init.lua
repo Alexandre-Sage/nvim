@@ -46,6 +46,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_augroup("TypeScriptMake", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = "TypeScriptMake",
+  pattern = { "typescript", "typescriptreact" },
+  callback = function()
+    vim.cmd("compiler tsc")
+  end,
+})
+
 local load = function(mod)
   package.loaded[mod] = nil
   require(mod)
