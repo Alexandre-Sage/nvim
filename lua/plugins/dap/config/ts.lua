@@ -36,7 +36,7 @@ return {
         type = "firefox",
         request = "launch",
         reAttach = true,
-        url = "http://localhost:8080",
+        url = "http://localhost:3000",
         webRoot = "${workspaceFolder}",
         firefoxExecutable = "/usr/bin/firefox",
         sourceMaps = true,

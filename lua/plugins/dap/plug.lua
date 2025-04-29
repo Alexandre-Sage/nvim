@@ -17,7 +17,7 @@ Plug.dependencies = {
     dependencies = { "nvim-neotest/nvim-nio" },
     keys = keymaps.dap_ui,
     opts = {
-      -- layouts = require("plugins.dap.commons.layout"),
+      layouts = require("plugins.dap.commons.layout"),
     },
     config = function(_, opts)
       local dap = require("dap")

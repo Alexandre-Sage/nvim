@@ -1,4 +1,5 @@
 local Plugs = {
+  { "nvim-lua/plenary.nvim" },
   -- {
   --   "stevearc/stickybuf.nvim",
   --   opts = {
