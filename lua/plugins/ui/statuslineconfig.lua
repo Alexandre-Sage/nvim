@@ -28,7 +28,7 @@ local bubbles_theme = {
   normal = {
     a = { fg = colors.black, bg = blue_1 },
     b = { fg = colors.white, bg = colors.grey },
-    c = { fg = colors.white },
+    c = { fg = colors.white, bg = "#201f21" },
   },
   insert = { a = { fg = colors.black, bg = colors.blue } },
   visual = { a = { fg = colors.black, bg = colors.cyan } },
@@ -37,7 +37,7 @@ local bubbles_theme = {
   inactive = {
     a = { fg = colors.white, bg = blue_1, guifg = colors.white },
     b = { fg = colors.white, bg = blue_1 },
-    c = { fg = colors.white },
+    c = { fg = colors.white, bg = "#201f21" },
   },
 }
 
@@ -105,7 +105,7 @@ Plug.opts = {
           return vim.fn.getcwd() -- Get current working directory
         end,
       },
-      { lsp_servers, color = { fg = colors.violet } },
+      { "lsp_status", color = { fg = colors.violet } },
     },
     lualine_y = { "filetype", "progress" },
     lualine_z = {
@@ -132,7 +132,8 @@ Plug.opts = {
         end,
         color = { fg = "#0afa82", guifg = colors.white }, -- Customize colors if needed
       },
-      { lsp_servers, color = { fg = colors.violet } },
+      "lsp_status",
+      -- { lsp_servers, color = { fg = colors.violet } },
     },
     lualine_y = { "filetype" },
     lualine_z = { "location" },

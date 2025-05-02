@@ -61,11 +61,11 @@
   },
   "Call back": {
     "prefix": "cb",
-    "body": ["($1) => {", "	$2", "}"]
+    "body": ["($1) => {", "$2", "}"]
   },
   "Call back destruct params": {
     "prefix": "cbd",
-    "body": ["({ $1 }) => {", "	$2", "}"]
+    "body": ["({ $1 }) => {", "$2", "}"]
   },
   "Call back return": {
     "prefix": "cbr",
@@ -76,4 +76,3 @@
     "body": ["({ $1 }) => $2"]
   }
 }
-

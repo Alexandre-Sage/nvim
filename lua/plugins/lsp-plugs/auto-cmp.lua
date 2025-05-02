@@ -16,11 +16,26 @@ Plug.dependencies = {
       config = function()
         local luasnip = require("luasnip")
         require("luasnip.loaders.from_vscode").load({
-          include = { "typescript", "typescriptreact" },
+          -- include = { "typescript", "typescriptreact" },
         })
         require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
         luasnip.filetype_extend("typescript", { "javascript" })
         luasnip.filetype_extend("typescriptreact", { "javascript", "typescript" })
+        vim.keymap.set({ "i", "s" }, "<Tab>", function()
+          if require("luasnip").jumpable(1) then
+            return "<Plug>luasnip-jump-next"
+          else
+            return "<Tab>"
+          end
+        end, { expr = true })
+
+        vim.keymap.set({ "i", "s" }, "<C-a>", function()
+          if require("luasnip").jumpable(-1) then
+            return "<Plug>luasnip-jump-prev"
+          else
+            return "<S-Tab>"
+          end
+        end, { expr = true })
       end,
     },
     opts = {

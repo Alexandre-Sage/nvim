@@ -53,19 +53,19 @@
   },
   "Time out": {
     "prefix": "timeO",
-    "body": ["setTimeout(() => {", "console.log({$1:$2})", "}, 3000);"]
+    "body": ["setTimeout(() => {", "console.log({$1:$2})", "}, 3000)"]
   },
   "Async iife": {
     "prefix": "aiife",
-    "body": ["(async () => {", "", "})();"]
+    "body": ["(async () => {", "", "})()"]
   },
   "Call back": {
     "prefix": "cb",
-    "body": ["($1) => {", "	$2", "}"]
+    "body": ["($1) => {", "$2", "}"]
   },
   "Call back destruct params": {
     "prefix": "cbd",
-    "body": ["({ $1 }) => {", "	$2", "}"]
+    "body": ["({ $1 }) => {", "$2", "}"]
   },
   "Call back return": {
     "prefix": "cbr",
@@ -96,4 +96,3 @@
     "body": ["writeFileSync(\"./$1.json\", JSON.stringify($2))"]
   }
 }
-
