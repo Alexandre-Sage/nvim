@@ -16,7 +16,7 @@ return {
   attach = function(buf)
     return {
       { { "n" }, "K", vim.lsp.buf.hover, { buffer = buf, desc = "todo" } },
-      { { "n" }, "<C-k>", vim.lsp.buf.signature_help, { buffer = buf, desc = "todo" } },
+      -- { { "n" }, "<C-k>", vim.lsp.buf.signature_help, { buffer = buf, desc = "todo" } },
       { { "n" }, "<leader>wa", vim.lsp.buf.add_workspace_folder, { buffer = buf, desc = "todo" } },
       { { "n" }, "<leader>wr", vim.lsp.buf.remove_workspace_folder, { buffer = buf, desc = "todo" } },
       { { "n" }, "<leader>wl", vim.lsp.buf.list_workspace_folders, { buffer = buf, desc = "todo" } },

@@ -1,0 +1,27 @@
+{
+  "route": {
+    "prefix": "route",
+    "body": "|request: Request<()>| async move {};"
+  },
+  "log": {
+    "prefix": "log",
+    "body": "println!(\"{:#?}\", $1);"
+  },
+  "loghere": {
+    "prefix": "loghere",
+    "body": "println!(\"################################## HERE ##################################\");"
+  },
+  "confT": {
+    "prefix": "conf_t",
+    "body": ["#[cfg(test)]", "mod test {", "  $1", "}"]
+  },
+  "testD": {
+    "prefix": "test",
+    "body": ["#[test]", "fn $1() {", "$2", "}"]
+  },
+  "base_derive": {
+    "prefix": "base_derive",
+    "body": "#[derive(Clone, Copy, Debug, PartialEq, Eq)]"
+  }
+}
+

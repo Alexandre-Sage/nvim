@@ -56,6 +56,7 @@ Plug.opts = {
     "sql",
     "bash",
     "scss",
+    "dap_repl",
   },
 }
 

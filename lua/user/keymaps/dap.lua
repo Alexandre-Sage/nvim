@@ -3,14 +3,14 @@ return {
     {
       "<leader>du",
       function()
-        require("dapui").toggle({})
+        require("dap-view").toggle(true)
       end,
       desc = "Dap UI",
     },
     {
       "<leader>de",
       function()
-        require("dapui").eval()
+        require("dap-view").add_expr()
       end,
       desc = "Eval",
       mode = { "n", "v" },

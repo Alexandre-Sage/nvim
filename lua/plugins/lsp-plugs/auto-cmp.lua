@@ -8,21 +8,58 @@ Plug.dependencies = {
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "saadparwaiz1/cmp_luasnip" },
-  { "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, -- Ensure LuaSnip build step is here
   {
-    "rafamadriz/friendly-snippets",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end,
-  },
+    "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        local luasnip = require("luasnip")
+        require("luasnip.loaders.from_vscode").load({
+          include = { "typescript", "typescriptreact" },
+        })
+        require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+        luasnip.filetype_extend("typescript", { "javascript" })
+        luasnip.filetype_extend("typescriptreact", { "javascript", "typescript" })
+      end,
+    },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+  }, -- Ensure LuaSnip build step is here
 }
 
 Plug.event = "InsertEnter"
 
 function Plug.config()
   local cmp = require("cmp")
-  local snip = require("luasnip")
+  local luasnip = require("luasnip")
   local compare = cmp.config.compare
+  -- require("luasnip.loaders.from_vscode").load({
+  --   include = { "typescript", "typescriptreact" },
+  -- })
+  -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+  -- luasnip.filetype_extend("typescript", { "javascript" })
+  -- luasnip.filetype_extend("typescriptreact", { "javascript", "typescript" })
+  ---
+  vim.keymap.set({ "i" }, "<C-s>", function()
+    luasnip.expand()
+  end, { silent = true })
+  vim.keymap.set({ "i", "s" }, "<C-L>", function()
+    luasnip.jump(1)
+  end, { silent = true })
+  vim.keymap.set({ "i", "s" }, "<C-J>", function()
+    luasnip.jump(-1)
+  end, { silent = true })
+
+  vim.keymap.set({ "i", "s" }, "<C-E>", function()
+    if luasnip.choice_active() then
+      luasnip.change_choice(1)
+    end
+  end, { silent = true })
+  ---
+
   cmp.setup({
     enabled = function()
       return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
@@ -42,14 +79,14 @@ function Plug.config()
     },
     snippet = {
       expand = function(args)
-        snip.lsp_expand(args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
     sources = {
-      { name = "nvim_lsp", priority = 9 },
-      { name = "buffer" },
-      { name = "luasnip" },
-      { name = "path" },
+      { name = "nvim_lsp", priority = 1000 },
+      { name = "luasnip", priority = 1750 },
+      { name = "buffer", priority = 500 },
+      { name = "path", priority = 250 },
       { name = "vim-dadbod-completion" },
       { name = "dotenv" },
       { name = "crates" },
@@ -80,6 +117,8 @@ function Plug.config()
   cmp.setup.filetype({ "dap-repl", "dapui_watches" }, {
     sources = {
       { name = "dap" },
+      { name = "nvim_lsp" }, -- Enable LSP completion
+      { name = "buffer" }, -- Optionally, add buffer completion
     },
   })
   vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.with(vim.lsp.diagnostic.on_diagnostic, {
@@ -105,7 +144,7 @@ function Plug.config()
     }),
     sources = cmp.config.sources({
       { name = "path", priority = 1 },
-      { name = "dotenv", priority = 3 },
+      -- { name = "dotenv", priority = 3 },
       { name = "buffer", priority = 2 },
     }, {
       {
@@ -129,7 +168,7 @@ function Plug.config()
     }),
     sources = {
       { name = "buffer" },
-      { name = "dotenv" },
+      -- { name = "dotenv" },
     },
   })
 end
