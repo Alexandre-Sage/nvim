@@ -3,7 +3,7 @@ return {
     {
       "<leader>du",
       function()
-        require("dap-view").toggle(true)
+        require("dap-view").open()
       end,
       desc = "Dap UI",
     },

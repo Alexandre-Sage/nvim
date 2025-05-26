@@ -1,0 +1,10 @@
+{
+  "crates": {
+    "prefix": "crates",
+    "body": "$1 = { version = \"$2\", features = [] }"
+  },
+  "crates-conf": {
+    "prefix": "crt",
+    "body": "= { version = \"$1\", features = [] }"
+  }
+}

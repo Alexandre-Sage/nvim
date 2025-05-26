@@ -1,4 +1,13 @@
 local Plugs = {
+  -- {
+  --   dir = "/home/adsoftware/.local/share/nvim/lazy/jwt-nvim",
+  --   build = function()
+  --     vim.fn.system("cargo build --release")
+  --   end,
+  --   config = function()
+  --     require("jwt-nvim")
+  --   end,
+  -- },
   { "nvim-lua/plenary.nvim" },
   {
     "karb94/neoscroll.nvim",
@@ -26,20 +35,20 @@ local Plugs = {
   -- { "mr-ubik/vim-hackerman-syntax" },
   { "xiyaowong/transparent.nvim" },
   -- { "maxmx03/fluoromachine.nvim" },
-  -- { "samharju/synthweave.nvim" },
-  -- { "lettertwo/laserwave.nvim" },
+  { "samharju/synthweave.nvim" },
+  { "lettertwo/laserwave.nvim" },
   { lazy = true, "Lewiky/moonokai" },
   { lazy = true, "cryptomilk/nightcity.nvim" },
-  -- { "titanzero/zephyrium" },
+  { "titanzero/zephyrium" },
   -- { lazy = true, "ofirgall/ofirkai.nvim" },
-  -- { "tiagovla/tokyodark.nvim" },
-  -- { "kevinm6/kurayami.nvim" },
+  { "tiagovla/tokyodark.nvim" },
+  { "kevinm6/kurayami.nvim" },
   {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {
       disable_mouse = false,
-      disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "aerial", "dbui" },
+      disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "aerial", "dbui", "dbout" },
     },
   },
 }

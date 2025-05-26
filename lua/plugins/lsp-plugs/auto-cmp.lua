@@ -19,8 +19,14 @@ Plug.dependencies = {
           -- include = { "typescript", "typescriptreact" },
         })
         require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
-        luasnip.filetype_extend("typescript", { "javascript" })
+        luasnip.filetype_extend("rust", { "rust" })
+        luasnip.filetype_extend("toml", { "toml" })
+        luasnip.filetype_extend("typescript", { "typescript", "javascript" })
         luasnip.filetype_extend("typescriptreact", { "javascript", "typescript" })
+
+        vim.keymap.set({ "i", "n" }, "<C-s>", function()
+          luasnip.expand({})
+        end, { silent = true })
         vim.keymap.set({ "i", "s" }, "<Tab>", function()
           if require("luasnip").jumpable(1) then
             return "<Plug>luasnip-jump-next"
@@ -58,9 +64,6 @@ function Plug.config()
   -- luasnip.filetype_extend("typescript", { "javascript" })
   -- luasnip.filetype_extend("typescriptreact", { "javascript", "typescript" })
   ---
-  vim.keymap.set({ "i" }, "<C-s>", function()
-    luasnip.expand()
-  end, { silent = true })
   vim.keymap.set({ "i", "s" }, "<C-L>", function()
     luasnip.jump(1)
   end, { silent = true })
@@ -98,8 +101,8 @@ function Plug.config()
       end,
     },
     sources = {
-      { name = "nvim_lsp", priority = 1000 },
-      { name = "luasnip", priority = 1750 },
+      { name = "nvim_lsp", priority = 1100 },
+      { name = "luasnip", priority = 1150 },
       { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
       { name = "vim-dadbod-completion" },
@@ -134,6 +137,13 @@ function Plug.config()
       { name = "dap" },
       { name = "nvim_lsp" }, -- Enable LSP completion
       { name = "buffer" }, -- Optionally, add buffer completion
+    },
+  })
+  -- require("cmp").register_source("curl", require("curl-cmp"))
+  require("cmp").setup.filetype({ "curl" }, {
+    sources = {
+      { name = "curl" },
+      { name = "dotenv" },
     },
   })
   vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.with(vim.lsp.diagnostic.on_diagnostic, {
@@ -173,8 +183,8 @@ function Plug.config()
   cmp.setup.cmdline("/", {
     mapping = cmp.mapping.preset.cmdline({ -- ["<C-o>"] = cmp.mapping.scroll_docs(-4), -- Up
       -- ["<C-p>"] = cmp.mapping.scroll_docs(4), -- Down
-      -- ["<tab>"] = cmp.mapping.select_next_item(),
-      -- ["<C-a>"] = cmp.mapping.select_prev_item(),
+      ["<tab>"] = cmp.mapping.select_next_item(),
+      ["<C-a>"] = cmp.mapping.select_prev_item(),
       -- ["<C-Space>"] = cmp.mapping.complete(),
       -- ["<CR>"] = cmp.mapping.confirm({
       --   behavior = cmp.ConfirmBehavior.Replace,

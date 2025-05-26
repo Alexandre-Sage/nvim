@@ -4,12 +4,15 @@ return {
     config = {
       type = "server",
       host = "localhost",
-      port = "${port}",
+      -- port = "${port}",
+      port = 8123,
       executable = {
         command = "node",
         args = {
-          require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-            .. "/js-debug/src/dapDebugServer.js", -- Use Mason's installed path
+          require("mason-registry").get_package("js-debug-adapter"),
+          -- "/home/adsoftware/.local/share/nvim/mason/bin/js-debug-adapter"
+          -- :get_install_path()
+          --          .. "/js-debug/src/dapDebugServer.js", -- Use Mason's installed path
           "${port}",
         },
       },
@@ -22,7 +25,8 @@ return {
       command = "node",
       args = {
         --	      os.getenv("HOME") .. "/.local/vscode-firefox-debug/dist/adapter.bundle.js"
-        require("mason-registry").get_package("firefox-debug-adapter"):get_install_path() .. "/dist/adapter.bundle.js",
+        require("mason-registry").get_package("firefox-debug-adapter"),
+        -- :get_install_path() .. "/dist/adapter.bundle.js",
       },
     },
   },

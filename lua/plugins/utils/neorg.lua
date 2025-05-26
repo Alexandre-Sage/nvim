@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("Filetype", {
     vim.keymap.set("n", "<CR>", "<Plug>(neorg.esupports.hop.hop-link)", { buffer = true })
   end,
 })
-require("neorg").setup({
+Plug.opts = {
   load = {
     ["core.defaults"] = {},
     ["core.completion"] = {},
@@ -40,6 +40,6 @@ require("neorg").setup({
       },
     },
   },
-})
+}
 
 return Plug

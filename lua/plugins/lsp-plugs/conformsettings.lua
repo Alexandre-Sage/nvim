@@ -52,14 +52,14 @@ Plug.opts = {
       },
     },
     sqlfluff = {
-      args = {
-        "fix",
-        "--dialect",
-        "ansi", -- or specify your SQL dialect: mysql, postgres, tsql, etc.
-        "--config",
-        vim.fn.expand("~/.sqlfluff"), -- path to your config file
-        "-", -- read from stdin
-      },
+      -- args = {
+      --   "fix",
+      --   "--dialect",
+      --   "ansi", -- or specify your SQL dialect: mysql, postgres, tsql, etc.
+      --   -- "--config",
+      --   -- vim.fn.expand("~/.sqlfluff"), -- path to your config file
+      --   "-", -- read from stdin
+      -- },
       -- You can also specify environment variables
       -- env = {
       --   SQLFLUFF_CONFIG = vim.fn.expand("~/.config/sqlfluff/config"),

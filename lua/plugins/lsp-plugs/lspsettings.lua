@@ -10,7 +10,7 @@ end
 
 Plug.dependencies = {
   { "hrsh7th/cmp-nvim-lsp" },
-  { "williamboman/mason-lspconfig.nvim" },
+  { "mason-org/mason-lspconfig.nvim" },
   { "simrat39/rust-tools.nvim", enabled = false },
   { "folke/neodev.nvim", opts = {} },
   { "neovimhaskell/haskell-vim" },
