@@ -4,15 +4,11 @@ return {
     config = {
       type = "server",
       host = "localhost",
-      -- port = "${port}",
-      port = 8123,
+      port = "${port}",
+      -- port = 8123,
       executable = {
-        command = "node",
+        command = vim.fn.exepath("js-debug-adapter"),
         args = {
-          require("mason-registry").get_package("js-debug-adapter"),
-          -- "/home/adsoftware/.local/share/nvim/mason/bin/js-debug-adapter"
-          -- :get_install_path()
-          --          .. "/js-debug/src/dapDebugServer.js", -- Use Mason's installed path
           "${port}",
         },
       },
