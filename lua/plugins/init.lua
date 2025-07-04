@@ -1,4 +1,6 @@
 local Plugs = {
+  { "seandewar/actually-doom.nvim" },
+  { "szymonwilczek/vim-be-better" },
   -- {
   --   dir = "/home/adsoftware/.local/share/nvim/lazy/jwt-nvim",
   --   build = function()

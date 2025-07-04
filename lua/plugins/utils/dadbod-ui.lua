@@ -7,7 +7,7 @@ local keymaps = {
   { { "n" }, "<leader>dbu", helpers.normal_cmd("DBUI"), { desc = "toggle dbui" } },
 }
 Plug.dependencies = {
-  { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+  { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true, enabled = false },
   { "tpope/vim-dadbod", lazy = true },
 }
 Plug.cmd = {
