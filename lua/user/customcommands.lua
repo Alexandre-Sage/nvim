@@ -63,6 +63,24 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
   desc = "Re-enable autoformat-on-save",
 })
+
+vim.api.nvim_create_user_command("InsertEnv", function(opts)
+  local varname = opts.args
+  local value = os.getenv(varname) or ""
+  vim.api.nvim_put({ value }, "c", true, true)
+end, {
+  nargs = 1,
+  complete = function(_, _, _)
+    -- Optional: show list of env vars for tab completion
+    local env = vim.fn.environ()
+    local keys = {}
+    for k, _ in pairs(env) do
+      table.insert(keys, k)
+    end
+    return keys
+  end,
+})
+
 vim.api.nvim_create_user_command("MkNeorgWorkSpace", function()
   local home_dir = os.getenv("HOME")
   local neorg_wp_folder = "neorg-workspace"
@@ -87,3 +105,143 @@ vim.api.nvim_create_user_command("MkNeorgWorkSpace", function()
     end
   end)
 end, {})
+
+--
+local function stream_command_to_buffer(ctx)
+  local cmd = ctx.args
+  local buf = vim.api.nvim_create_buf(false, true)
+  -- vim.cmd("split")
+
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "wipe"
+  local win = vim.api.nvim_open_win(buf, false, { split = "above", height = 15 })
+  -- vim.api.nvim_win_set_buf(0, buf)
+
+  vim.fn.jobstart(cmd, {
+    stdout_buffered = false,
+    on_stdout = function(_, data, _)
+      if data then
+        vim.schedule(function()
+          local lines = vim.tbl_filter(function(line)
+            return line ~= ""
+          end, data)
+          if #lines > 0 then
+            vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
+          end
+        end)
+      end
+    end,
+    on_stderr = function(_, data, _)
+      if data then
+        vim.schedule(function()
+          local lines = vim.tbl_filter(function(line)
+            return line ~= ""
+          end, data)
+          if #lines > 0 then
+            vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
+          end
+        end)
+      end
+    end,
+  })
+end
+vim.api.nvim_create_user_command("Stream", stream_command_to_buffer, { nargs = "+", complete = "command" })
+
+local function stream_shell_to_buffer(ctx)
+  vim.print(ctx)
+  local cmd = ctx.fargs
+  local buf = vim.api.nvim_create_buf(false, true)
+  -- vim.cmd("split")
+
+  vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "wipe"
+  vim.bo[buf].filetype = "zsh"
+  local win = vim.api.nvim_open_win(buf, false, { split = "above", height = 15 })
+
+  vim.system(cmd, {
+    stdout = function(err, data)
+      if data then
+        vim.schedule(function()
+          local lines = vim.split(data, "\n", { plain = true })
+          vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
+          local line_count = vim.api.nvim_buf_line_count(buf)
+          vim.api.nvim_win_set_cursor(win, { line_count, 0 })
+        end)
+      end
+    end,
+    stderr = function(err, data)
+      if data then
+        vim.schedule(function()
+          local lines = vim.split(data, "\n", { plain = true })
+          vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
+        end)
+      end
+    end,
+  })
+end
+vim.api.nvim_create_user_command("StreamS", stream_shell_to_buffer, { nargs = "+", complete = "command" })
+
+local function otp(output_lines, data, _)
+  if type(data) == "table" then
+    for _, line in ipairs(data or {}) do
+      if line ~= "" then
+        table.insert(output_lines, line)
+
+        print(">> " .. line)
+
+        local file, lnum, col, text = line:match("^([^:]+):(%d+):(%d+):%s*(.+)")
+        if file and lnum and col and text then
+          vim.fn.setqflist({
+            {
+              filename = file,
+              lnum = tonumber(lnum),
+              col = tonumber(col),
+              text = text,
+              type = "E",
+            },
+          }, "a") -- append to existing qflist
+        end
+      end
+    end
+  end
+end
+local function stream_command_to_term(ctx)
+  vim.print(ctx)
+  local cmd = ctx.fargs
+  local buf = vim.api.nvim_create_buf(false, true)
+
+  vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "wipe"
+  vim.bo[buf].filetype = "zsh"
+  local win = vim.api.nvim_open_win(buf, false, { split = "above", height = 15 })
+  vim.api.nvim_set_current_win(win)
+  vim.api.nvim_set_current_buf(buf)
+
+  local output_lines = {}
+  local job_id = vim.fn.termopen(cmd, {
+
+    on_stdout = function(_, data, _)
+      otp(output_lines, _, data, _)
+    end,
+    on_exit = function(_, code, _)
+      vim.schedule(function()
+        print("Process finished with exit code " .. code)
+      end)
+    end,
+  })
+
+  vim.wo[win].relativenumber = true
+  vim.defer_fn(function()
+    local line_count = vim.api.nvim_buf_line_count(buf)
+    vim.api.nvim_win_set_cursor(win, { line_count, 0 })
+  end, 100)
+  vim.cmd("stopinsert")
+
+  return job_id
+end
+vim.api.nvim_create_user_command("StreamH", stream_command_to_term, {
+  nargs = "+",
+  complete = function()
+    return { "cargo watch -x test", "cargo watch -x build", "cargo watch -x run" }
+  end,
+})
