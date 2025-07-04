@@ -64,6 +64,28 @@ end, {
   desc = "Re-enable autoformat-on-save",
 })
 
+vim.api.nvim_create_user_command("HardReset", function()
+  local terms = require("toggleterm.terminal").get_all()
+  if #terms >= 1 then
+    terms:map(function(term)
+      term:shutdown()
+    end)
+  end
+
+  vim.cmd("bufdo bwipeout")
+  vim.cmd("tabonly")
+  vim.cmd("only")
+  vim.cmd("cd " .. vim.g.initial_cwd) -- Or use vim.g.initial_cwd if you save it on startup
+  vim.cmd("Dashboard")
+  -- require("dashboardconfig")
+end, {})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.g.initial_cwd = vim.fn.getcwd()
+  end,
+  desc = "Save the initial working directory on startup",
+})
 vim.api.nvim_create_user_command("InsertEnv", function(opts)
   local varname = opts.args
   local value = os.getenv(varname) or ""
