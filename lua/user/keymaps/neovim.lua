@@ -36,6 +36,7 @@ return {
   -- { { "v" }, "<leader>T", normal_cmd("ToggleTermSendVisualLine") },
   { { "n" }, "<leader>dvo", normal_cmd("DiffviewOpen"), { desc = "Open diff view" } },
   { { "n" }, "<leader>dvc", normal_cmd("DiffviewClose"), { desc = "Close diff view" } },
+  { { "n" }, "<space>t", normal_cmd("ToggleTermH"), { desc = "ToggleTermH" } },
   -- Neorg
   { { "n" }, "<leader>Ng", normal_cmd("Neorg"), { desc = "Neorg commands" } },
   -- Quick fix

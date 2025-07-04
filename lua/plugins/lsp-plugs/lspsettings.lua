@@ -22,6 +22,16 @@ Plug.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
 Plug.event = { "BufReadPre", "BufNewFile" }
 function Plug.on_attach() end
 
+Plug.opts = {
+  ui = {
+    windows = {
+      default_options = {
+        border = "rounded",
+      },
+    },
+  },
+}
+
 function Plug.config()
   helpers.parse_key_map(keymaps.lspconfig)
   -- require("neodev").setup()
@@ -41,6 +51,7 @@ function Plug.config()
   require("mason-lspconfig").setup({
     ensure_installed = default.lsp,
     automatic_installation = true,
+    automatic_enable = true,
     handlers = (function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lsp_servers = {

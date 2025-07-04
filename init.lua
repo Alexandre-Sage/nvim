@@ -1,29 +1,6 @@
 local helpers = require("helpers")
 vim.g.mapleader = ","
 
--- local shada_dir = os.getenv("HOME") .. "/.local/share/nvim/shada"
--- local global_shada = os.getenv("HOME") .. "/.local/share/nvim/shada/main.shada"
---
--- vim.api.nvim_create_autocmd("VimEnter", {
---   callback = function()
---     if not vim.fn.isdirectory(shada_dir) then
---       vim.fn.mkdir(shada_dir, "p")
---     end
---     local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
---     local project_name = vim.fn.fnamemodify(git_root, ":t")
---
---     if git_root ~= "" then
---       local project_shada = shada_dir .. project_name .. ".shada"
---       if vim.fn.filereadable(project_shada) == 1 then
---         vim.o.shadafile = project_shada
---       else
---         vim.o.shadafile = global_shada
---       end
---     else
---       vim.o.shadafile = global_shada
---     end
---   end,
--- })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
   callback = function()
@@ -46,12 +23,21 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_augroup("TypeScriptMake", { clear = true })
+vim.api.nvim_create_augroup("MakeConfig", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "TypeScriptMake",
+  group = "MakeConfig",
   pattern = { "typescript", "typescriptreact" },
   callback = function()
     vim.cmd("compiler tsc")
+  end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+  group = "MakeConfig",
+  pattern = "rust",
+  callback = function()
+    vim.opt_local.makeprg = "cargo check --message-format=short"
+    -- vim.opt_local.errorformat =
+    --   "%Eerror[%^]: %m,%Eerror: %m,%C%\\s%#--> %f:%l:%c,%Z,%Wwarning[%^]: %m,%Wwarning: %m,%C%\\s%#--> %f:%l:%c,%Z"
   end,
 })
 
