@@ -1,4 +1,5 @@
 local Plugs = {
+  { "MunifTanjim/nui.nvim" },
   -- {
   --   dir = "/home/adsoftware/.local/share/nvim/lazy/jwt-nvim",
   --   build = function()
@@ -14,11 +15,7 @@ local Plugs = {
     opts = {},
   },
   "Alexandre-Sage/blue-dream.nvim",
-  { "ThePrimeagen/vim-be-good" },
-  { "efueyo/td.nvim" },
-  -- "lazyvim.config", --GIT
-  -- "tpope/vim-fugitive",
-  { lazy = true, "rktjmp/shipwright.nvim" },
+  -- { lazy = true, "rktjmp/shipwright.nvim" },
   { lazy = true, "Xuyuanp/nerdtree-git-plugin" },
   -- UTILS
   { lazy = true, "mracos/mermaid.vim" },

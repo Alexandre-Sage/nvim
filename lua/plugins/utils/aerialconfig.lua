@@ -1,5 +1,5 @@
 local Plug = { "stevearc/aerial.nvim" }
-
+Plug.lazy_load = true
 Plug.dependencies = {
   "nvim-treesitter/nvim-treesitter",
   "nvim-tree/nvim-web-devicons",
@@ -17,7 +17,7 @@ Plug.opts = {
     -- Ignore unlisted buffers. See :help buflisted
     unlisted_buffers = true,
     diff_windows = true,
-    filetypes = { "unfocus", "switch_buffer", "unsupported", "curl", "jq", "json" },
+    filetypes = { "unfocus", "switch_buffer", "unsupported", "curl", "jq", "json", "bash", "zsh" },
     buftypes = { "special", "curl", "jq" },
     wintypes = "special",
   },
