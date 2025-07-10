@@ -1,4 +1,21 @@
 local Plugs = {
+  {
+    "vernette/ai-commit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("ai-commit").setup({
+        -- your configuration
+        {
+          openrouter_api_key = "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", -- or set OPENROUTER_API_KEY environment variable
+          model = "google/gemini-2.0-flash-001", -- default model
+          auto_push = false, -- whether to automatically push after commit
+        },
+      })
+    end,
+  },
   { "MunifTanjim/nui.nvim" },
   -- {
   --   dir = "/home/adsoftware/.local/share/nvim/lazy/jwt-nvim",
@@ -32,14 +49,20 @@ local Plugs = {
   -- { "mr-ubik/vim-hackerman-syntax" },
   { "xiyaowong/transparent.nvim" },
   -- { "maxmx03/fluoromachine.nvim" },
-  { "samharju/synthweave.nvim" },
-  { "lettertwo/laserwave.nvim" },
+  -- { "samharju/synthweave.nvim" },
+  -- { "lettertwo/laserwave.nvim" },
   { lazy = true, "Lewiky/moonokai" },
-  { lazy = true, "cryptomilk/nightcity.nvim" },
+  -- { lazy = true, "cryptomilk/nightcity.nvim" },
   { "titanzero/zephyrium" },
-  -- { lazy = true, "ofirgall/ofirkai.nvim" },
-  { "tiagovla/tokyodark.nvim" },
-  { "kevinm6/kurayami.nvim" },
+  { lazy = true, "ofirgall/ofirkai.nvim" },
+  -- { "tiagovla/tokyodark.nvim" },
+  -- { "kevinm6/kurayami.nvim" },
+  -----
+  { "kdheepak/monochrome.nvim" },
+  { "eldritch-theme/eldritch.nvim" },
+  { "shaunsingh/moonlight.nvim" },
+  { "darkvoid-theme/darkvoid.nvim" },
+  -- { "dark-orchid/neovim" },
   {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
