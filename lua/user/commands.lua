@@ -3,7 +3,9 @@ vim.opt.termguicolors = true
 vim.cmd([[
 	autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
 	au BufRead,BufNewFile *.jq setfiletype jq
-    	colorscheme bluedream    
+    	"colorscheme bluedream    
+    	"colorscheme retrobox    
+	colorscheme darkvoid
     	syntax off
     	set number
     	set shiftwidth=0

@@ -18,10 +18,12 @@ return {
     name = "firefox",
     config = {
       type = "executable",
-      command = "node",
+      -- command = "node",
+      command = vim.fn.exepath("firefox-debug-adapter"),
       args = {
+        -- vim.fn.exepath("firefox-debug-adapter"),
         --	      os.getenv("HOME") .. "/.local/vscode-firefox-debug/dist/adapter.bundle.js"
-        require("mason-registry").get_package("firefox-debug-adapter"),
+        -- require("mason-registry").get_package("firefox-debug-adapter"),
         -- :get_install_path() .. "/dist/adapter.bundle.js",
       },
     },

@@ -50,6 +50,7 @@ Plug.opts = {
     "oil",
     "toggleterm",
     "nvim-dap-ui",
+    "overseer",
   },
   options = {
     theme = bubbles_theme,
@@ -77,7 +78,7 @@ Plug.opts = {
           hint = "DiagnosticHint",
         },
         symbols = { error = "❎", warn = "󰀧 ", info = "󰬐 ", hint = "󰞋 " },
-        colored = true,
+        -- colored = true,
         update_in_insert = false,
         always_visible = false,
       },

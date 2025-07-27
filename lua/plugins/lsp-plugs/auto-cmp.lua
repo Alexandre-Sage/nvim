@@ -102,7 +102,7 @@ function Plug.config()
     },
     sources = {
       { name = "nvim_lsp", priority = 1100 },
-      { name = "luasnip", priority = 1150 },
+      { name = "luasnip", priority = 1000 },
       { name = "buffer", priority = 500 },
       { name = "path", priority = 250 },
       { name = "vim-dadbod-completion" },
@@ -120,8 +120,8 @@ function Plug.config()
       },
     },
     mapping = cmp.mapping.preset.insert({
-      -- ["<C-o>"] = cmp.mapping.scroll_docs(-4), -- Up
-      -- ["<C-p>"] = cmp.mapping.scroll_docs(4), -- Down
+      ["<C-d>"] = cmp.mapping.scroll_docs(-4), -- Up
+      ["<C-u>"] = cmp.mapping.scroll_docs(4), -- Down
       ["<tab>"] = cmp.mapping.select_next_item(),
       ["<C-a>"] = cmp.mapping.select_prev_item(),
       ["<C-Space>"] = cmp.mapping.complete(),

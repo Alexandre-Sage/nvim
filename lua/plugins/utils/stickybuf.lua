@@ -1,4 +1,5 @@
 local Plug = { "stevearc/stickybuf.nvim" }
+Plug.enabled = false
 Plug.opts = {
   -- get_auto_pin = function(bufnr)
   --   -- You can return "bufnr", "buftype", "filetype", or a custom function to set how the window will be pinned.

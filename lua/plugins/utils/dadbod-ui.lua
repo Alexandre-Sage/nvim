@@ -1,6 +1,7 @@
 local helpers = require("helpers")
 local Plug = {
   "kristijanhusak/vim-dadbod-ui",
+  enabled = false,
 }
 
 local keymaps = {

@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.cmd("compiler tsc")
   end,
 })
+
 vim.api.nvim_create_autocmd("FileType", {
   group = "MakeConfig",
   pattern = "rust",
@@ -53,6 +54,6 @@ require("user.commands")
 require("user.customcommands")
 require("user.config")
 require("plugins.telescope.plugins.git-pickers.__git_dff_picker")
-require("plugins.telescope.plugins.lsp-pcikers.__rename-pop-up")
+-- require("plugins.telescope.plugins.lsp-pcikers.__rename-pop-up")
 require("plugins.telescope.plugins.utils.__diff-view-file-fist")
 require("plugins.telescope.plugins.utils.__search-read")

@@ -25,6 +25,14 @@ return {
   },
   {
     { "n" },
+    "<leader>lG",
+    function()
+      return require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })
+    end,
+    { noremap = true },
+  },
+  {
+    { "n" },
     "<leader>fb",
     function()
       return require("telescope.builtin").current_buffer_fuzzy_find({ results_ts_highlight = true })

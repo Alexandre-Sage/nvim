@@ -42,7 +42,7 @@ Plug.dependencies = {
       commented = false,
       -- Highlight groups for different elements
       virt_text_pos = "eol",
-      all_frames = false,
+      all_frames = true,
       virt_lines = false,
       virt_text_win_col = nil,
     },

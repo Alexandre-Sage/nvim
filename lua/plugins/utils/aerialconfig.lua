@@ -7,7 +7,18 @@ Plug.dependencies = {
 
 Plug.opts = {
   backends = { "treesitter", "lsp", "markdown", "asciidoc", "man" },
+  -- manage_folds = true,
+
+  -- When you fold code with za, zo, or zc, update the aerial tree as well.
+  -- Only works when manage_folds = true
+  -- link_folds_to_tree = true,
+
+  -- Fold code when you open/collapse symbols in the tree.
+  -- Only works when manage_folds = true
+  -- link_tree_to_folds = true,
+
   layout = { min_width = 30 },
+  preserve_equality = true,
   on_attach = function(bufnr)
     -- Jump forwards/backwards with '{' and '}'
     vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
@@ -17,7 +28,7 @@ Plug.opts = {
     -- Ignore unlisted buffers. See :help buflisted
     unlisted_buffers = true,
     diff_windows = true,
-    filetypes = { "unfocus", "switch_buffer", "unsupported", "curl", "jq", "json", "bash", "zsh" },
+    filetypes = { "unfocus", "switch_buffer", "unsupported", "curl", "jq", "bash", "zsh" },
     buftypes = { "special", "curl", "jq" },
     wintypes = "special",
   },
@@ -33,6 +44,34 @@ Plug.opts = {
     diagnostics_trigger_update = true,
     update_when_errors = true,
     update_delay = 300,
+  },
+  filter_kind = {
+    "Array",
+    "Boolean",
+    "Class",
+    "Constant",
+    "Constructor",
+    "Enum",
+    "EnumMember",
+    "Event",
+    "Field",
+    "File",
+    "Function",
+    "Interface",
+    "Key",
+    "Method",
+    "Module",
+    "Namespace",
+    "Null",
+    "Number",
+    "Object",
+    "Operator",
+    "Package",
+    "Property",
+    "String",
+    "Struct",
+    "TypeParameter",
+    "Variable",
   },
 }
 

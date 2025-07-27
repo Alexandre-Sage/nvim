@@ -13,7 +13,28 @@ Plug.cmd = { "Telescope" }
 
 Plug.opts = {
   pickers = {
+    live_grep = {
+      theme = "ivy",
+    },
+    buffers = {
+      theme = "ivy",
+    },
+    lsp_references = {
+      theme = "ivy",
+    },
+    find_files = {
+      theme = "ivy",
+      -- layout_config = {
+      --   -- mirror = true,
+      --   -- width = 0.9,
+      --   height = 0.4,
+      -- },
+    },
+    grep_string = {
+      theme = "ivy",
+    },
     current_buffer_fuzzy_find = {
+      theme = "ivy",
       tiebreak = function(current_entry, existing_entry)
         return current_entry.lnum < existing_entry.lnum
       end,
@@ -33,6 +54,7 @@ Plug.opts = {
   defaults = {
     path_display = { truncate = 2 }, --{ "filename_first", "shorten" },
     no_ignore = true,
+    theme = "ivy",
     layout_config = {
       width = 0.9,
     },
@@ -66,5 +88,4 @@ function Plug.init()
   require("telescope").load_extension("jsonfly")
   require("helpers").parse_key_map(require("user.keymaps.telescope"))
 end
-
 return Plug

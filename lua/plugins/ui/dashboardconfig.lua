@@ -22,32 +22,32 @@ Plug.opts = {
       [[]],
     },
     center = {
-      {
-        icon = "󱄋 ",
-        icon_hl = "Re Boot",
-        desc = "Recover last session                 ",
-        desc_hl = "String",
-        key = "r",
-        -- keymap = 'r',
-        key_hl = "Number",
-        key_format = "%s", -- remove default surrounding `[]`
-        action = [[ 
-	  	lua require("persistence").load({last = true}) 
-	  ]],
-      },
-      {
-        icon = "󰸨 ",
-        icon_hl = "Resume",
-        desc = "Load directory last session          ",
-        desc_hl = "String",
-        key = "h",
-        -- keymap = 'r',
-        key_hl = "Number",
-        key_format = "%s", -- remove default surrounding `[]`
-        action = [[
-		lua require("persistence").load()
-	  ]],
-      },
+      -- {
+      --   icon = "󱄋 ",
+      --   icon_hl = "Re Boot",
+      --   desc = "Recover last session                 ",
+      --   desc_hl = "String",
+      --   key = "r",
+      --   -- keymap = 'r',
+      --   key_hl = "Number",
+      --   key_format = "%s", -- remove default surrounding `[]`
+      --   action = [[
+      -- 	lua require("persistence").load({last = true})
+      -- ]],
+      -- },
+      --   {
+      --     icon = "󰸨 ",
+      --     icon_hl = "Resume",
+      --     desc = "Load directory last session          ",
+      --     desc_hl = "String",
+      --     key = "h",
+      --     -- keymap = 'r',
+      --     key_hl = "Number",
+      --     key_format = "%s", -- remove default surrounding `[]`
+      --     action = [[
+      -- lua require("persistence").load()
+      --  ]],
+      --   },
       {
         icon = "󰮗 ",
         icon_hl = "Title",
@@ -58,8 +58,8 @@ Plug.opts = {
         key_hl = "Number",
         key_format = "%s", -- remove default surrounding `[]`
         action = [[
-		lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, file_ignore_patterns = { ".git", "node_modules", "dist", "build", "target" }, })
-	  ]],
+      lua require('telescope.builtin').find_files({ no_ignore = true, hidden = true, file_ignore_patterns = { ".git", "node_modules", "dist", "build", "target" }, })
+       ]],
       },
 
       {
@@ -72,8 +72,8 @@ Plug.opts = {
         key_hl = "Number",
         key_format = "%s", -- remove default surrounding `[]`
         action = [[
-		lua require('telescope.builtin').live_grep({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
-	  ]],
+      lua require('telescope.builtin').live_grep({ no_ignore = true, hidden = true, file_ignore_patterns = { "node_modules" } })
+       ]],
       },
       {
         icon = "󱏒 ",
@@ -85,10 +85,11 @@ Plug.opts = {
         key_hl = "Number",
         key_format = "%s", -- remove default surrounding `[]`
         action = [[
-						lua require('oil').open()
-					]],
+      		lua require('oil').open()
+      	]],
       },
       {
+
         icon = " ",
         icon_hl = "Title",
         desc = "NeoGit",
@@ -97,9 +98,9 @@ Plug.opts = {
         -- 	keymap = 'SPC f f',
         key_hl = "Number",
         key_format = "%s", -- remove default surrounding `[]`
-        action = [[ 
-		Neogit	
-	]],
+        action = [[
+      	Neogit
+      ]],
       },
       {
         icon = " ",
@@ -110,11 +111,11 @@ Plug.opts = {
         -- 	keymap = 'SPC f f',
         key_hl = "Number",
         key_format = "%s", -- remove default surrounding `[]`
-        action = [[ 
-		DBUI 
-		wincmd l 
-		q 
-	]],
+        action = [[
+      	DBUI
+      	wincmd l
+      	q
+      ]],
       },
       {
         icon = "󰢩 ",
@@ -138,9 +139,9 @@ Plug.opts = {
         -- 	keymap = 'SPC f f',
         key_hl = "Number",
         key_format = "%s", -- remove default surrounding `[]`
-        action = [[ 
-		CurlOpen
-	]],
+        action = [[
+      	CurlOpen
+      ]],
       },
       {
         icon = "  󱞪  ",
@@ -151,10 +152,10 @@ Plug.opts = {
         -- 	keymap = 'SPC f f',
         key_hl = "Number",
         key_format = "%s", -- remove default surrounding `[]`
-        action = [[ 
-lua	      require("curl").pick_global_collection()
+        action = [[
+      lua	      require("curl").pick_global_collection()
 
-	]],
+      	]],
       },
     },
   },
