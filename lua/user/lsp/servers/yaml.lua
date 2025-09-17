@@ -12,6 +12,7 @@ return {
         schemas = {
           -- [require("schemastore").yaml.schemas({})] = true,
           ["https://www.artillery.io/schema.json"] = "**.artillery.yml",
+          ["https://www.schemastore.org/github-workflow.json"] = "**ci.yml",
         },
       },
     },

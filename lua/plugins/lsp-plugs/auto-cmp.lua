@@ -108,6 +108,7 @@ function Plug.config()
       { name = "vim-dadbod-completion" },
       { name = "dotenv" },
       { name = "crates" },
+      { name = "neorg" },
       -- { name = "ts_repl" },
     },
     view = {
@@ -126,7 +127,7 @@ function Plug.config()
       ["<C-a>"] = cmp.mapping.select_prev_item(),
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
+        behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       }),
     }),

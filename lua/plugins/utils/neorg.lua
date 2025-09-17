@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("Filetype", {
 Plug.opts = {
   load = {
     ["core.defaults"] = {},
-    ["core.completion"] = {},
+    ["core.completion"] = { config = { engine = "nvim-cmp" } },
     ["core.concealer"] = {
       folds = false,
       icon_preset = "diamond",

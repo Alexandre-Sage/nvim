@@ -51,7 +51,7 @@ local Plugs = {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {
       disable_mouse = false,
-      disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "aerial", "dbui", "dbout" },
+      disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "aerial", "dbui", "dbout", "overseer" },
     },
   },
 }
